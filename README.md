@@ -6,7 +6,22 @@ PLN de lenguas originaria.
 - Paquete en estado de `Planeación`. Revisar [Classifiers](https://pypi.org/classifiers/)
 - Repositorio de desarrollo: [ElotlMX/elotl_pkg](https://github.com/ElotlMX/elotl_pkg)
 - Paquete en pip: [elotl](https://pypi.org/project/elotl/)
-- Licencia: [Mozilla Public License 2.0 (MPL 2.0)](./LICENSE)
+
+## Instalación
+
+### Desde la fuente
+
+```bash
+git clone https://github.com/ElotlMX/elotl_pkg.git
+cd elotl_pkg
+pip install -e .
+```
+
+### Utilizando `pip`
+
+```bash
+pip install elotl
+```
 
 ## Uso
 
@@ -80,7 +95,7 @@ python -m pip install --upgrade setuptools wheel
 python setup.py clean sdist bdist_wheel
 ```
 
-### Instalar el paquete local
+### Probar el paquete local
 
 ```bash
 pip install -e .
@@ -92,6 +107,10 @@ pip install -e .
 pip install twine
 twine upload dist/*
 ```
+
+## Licencia
+
+[Mozilla Public License 2.0 (MPL 2.0)](./LICENSE)
 
 ## Referencias
 
