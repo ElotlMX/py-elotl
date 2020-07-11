@@ -14,7 +14,7 @@ setuptools.setup(
     url="https://github.com/ElotlMX/elotl_pkg",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Operating System :: OS Independent",
         "Topic :: Utilities",
