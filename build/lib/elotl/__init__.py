@@ -1,4 +1,4 @@
-__all__ = ["nahuatl", "otomi", "wixarika"]
+__all__ = ["corpora", "corpus", "nahuatl", "otomi"]
 
 def test():
     return ('Test paquete elotl satisfactorio')

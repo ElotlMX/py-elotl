@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="elotl",
-    version="0.0.1.2",
+    version="0.0.1.3",
     author="Paul Aguilar (@penserbjorne)",
     author_email="paul.aguilar.enriquez@hotmail.com",
     description="Paquete para PLN de lenguas originarias",
@@ -19,7 +19,10 @@ setuptools.setup(
         "Operating System :: OS Independent",
         "Topic :: Utilities",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "Development Status :: 1 - Planning",
+        "Development Status :: 2 - Pre-Alpha",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.7',
+    package_data = {
+    'corpora': ['*.csv']
+    }
 )
