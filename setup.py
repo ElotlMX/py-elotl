@@ -21,5 +21,6 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Development Status :: 2 - Pre-Alpha",
     ],
-    python_requires='>=3.7'
+    python_requires='>=3.7',
+    include_package_data=True,
 )
