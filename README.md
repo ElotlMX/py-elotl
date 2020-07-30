@@ -155,7 +155,7 @@ python setup.py clean sdist bdist_wheel
 ### Probar el paquete local
 
 ```bash
-pip install -e .
+python -m pip install -e .
 ```
 
 ### Enviar a PyPI
