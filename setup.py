@@ -11,7 +11,7 @@ setuptools.setup(
     description="Paquete para PLN de lenguas originarias",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ElotlMX/elotl_pkg",
+    url="https://github.com/ElotlMX/py-elotl",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

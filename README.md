@@ -7,7 +7,7 @@ Requiere python>=3.7 .
 
 - Paquete en estado de `Pre-Alpha`. Revisar [Classifiers](https://pypi.org/classifiers/)
 - Paquete en pip: [elotl](https://pypi.org/project/elotl/)
-- Repositorio de desarrollo: [ElotlMX/elotl_pkg](https://github.com/ElotlMX/elotl_pkg)
+- Repositorio de desarrollo: [ElotlMX/py-elotl](https://github.com/ElotlMX/py-elotl)
 
 ## Instalación
 
@@ -20,8 +20,8 @@ pip install elotl
 ### Desde la fuente
 
 ```bash
-git clone https://github.com/ElotlMX/elotl_pkg.git
-cd elotl_pkg
+git clone https://github.com/ElotlMX/py-elotl.git
+cd py-elotl
 pip install -e .
 ```
 
