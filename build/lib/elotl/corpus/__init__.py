@@ -5,13 +5,20 @@ def list_of_corpus():
     return elotl_list_of_corpus
 
 def load(corpus_name):
+    # https://stackoverflow.com/questions/6028000/how-to-read-a-static-file-from-inside-a-python-package
     # l1,l2,variant,document_name
     available_corpus = ['axolotl', 'tsunkua']
 
     if corpus_name in available_corpus:
 
         from .. import corpora
-        import importlib.resources as pkg_resources
+
+        try:
+            # For Python >= 3.7
+            import importlib.resources as pkg_resources
+        except ImportError:
+            # Try backported to Python < 3.7 `importlib_resources`.
+            import importlib_resources as pkg_resources
         from io import StringIO
         import csv
 
