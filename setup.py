@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="elotl",
-    version="0.0.1.6",
+    version="0.0.1.7",
     author="Paul Aguilar (@penserbjorne)",
     author_email="paul.aguilar.enriquez@hotmail.com",
     description="Paquete para PLN de lenguas originarias",
@@ -21,6 +21,6 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Development Status :: 2 - Pre-Alpha",
     ],
-    python_requires='>=3.7',
+    python_requires='>=3',
     include_package_data=True,
 )

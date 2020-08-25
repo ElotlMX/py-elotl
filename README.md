@@ -3,7 +3,7 @@
 Paquete de Python con algoritmos e implementaciones de la comunidad Elotl para
 PLN de lenguas originarias.
 
-Requiere python>=3.7 .
+Requiere python>=3.X
 
 - Paquete en estado de `Pre-Alpha`. Revisar [Classifiers](https://pypi.org/classifiers/)
 - Paquete en pip: [elotl](https://pypi.org/project/elotl/)
@@ -141,7 +141,7 @@ elotl/                              Top-level package
 ### Crear un entorno virtual y activarlo.
 
 ```bash
-virtualenv --python=/usr/bin/python3.7 elotl-venv
+virtualenv --python=/usr/bin/python3 elotl-venv
 source elotl-venv/bin/activate
 ```
 ### Actualizar `pip` y generar archivos de distribución.
