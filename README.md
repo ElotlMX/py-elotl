@@ -1,7 +1,9 @@
 # Elotl Package
 
 Paquete de Python con algoritmos e implementaciones de la comunidad Elotl para
-PLN de lenguas originarias.
+PLN de lenguas habladas en México
+
+Python package with NLP tools for low-resourced languages (Mexico)
 
 Requiere python>=3.X
 
