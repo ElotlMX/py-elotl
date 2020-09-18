@@ -72,8 +72,8 @@ La salida es la siguiente:
 
 ```bash
 Name		Description
-['axolotl', 'Is a nahuatl corpus']
-['tsunkua', 'Is an otomí corpus']
+['axolotl', 'Is a Spanish-Nahuatl parallel corpus']
+['tsunkua', 'Is a Spanish-otomí parallel corpus']
 
 ```
 
@@ -102,10 +102,10 @@ for row in axolotl:
 # lengua_no_originaria, lengua_originaria, variante, nombre_de_documento
 tsunkua = elotl.corpus.load('tsunkua')
   for row in tsunkua:
-      print(row[0]) # lengua_no_originaria
-      print(row[1]) # lengua_originaria
-      print(row[2]) # variante
-      print(row[3]) #nombre_de_documento
+      print(row[0]) # lengua 1
+      print(row[1]) # lengua 2
+      print(row[2]) # variante dialectal
+      print(row[3]) # fuente de documento
 ```
 
 ```bash
