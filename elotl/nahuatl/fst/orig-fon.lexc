@@ -1,0 +1,258 @@
+Multichar_Symbols
+
+iʔ eʔ aʔ oʔ uʔ kʷ t͡ʃ %" %! %¡ %# %$ %% %& %' %( %) %* %+ %, %- %. %\ % %; %< %> %= %> %? %@ %[ %] %/ %^ %` %{ %} %| %~
+
+LEXICON Root
+BeginPunct ;
+Cns ;
+Vow ;
+
+
+LEXICON Loop
+Cns ;
+Vow ;
+EndPunct ;
+InterPunct ;
+ #  ;
+
+
+LEXICON Vow
+FrontVow ;
+LowBackVow ;
+HighBackVow ;
+
+
+LEXICON FrontVow
+i:i Loop ;
+i':iʔ Cns ;
+í:í Loop ;
+ì:iʔ Cns ;
+î:iʔ # ;
+y:i Cns ;
+
+e:e Loop ;
+e':eʔ Cns ;
+é:é Loop ;
+ê:eʔ # ;
+
+e%::e%: Loop;
+i%::i%: Loop;
+ee:e%: Loop;
+ii:i%: Loop;
+
+LEXICON HighBackVow
+u:u CnsNonGlottal ;
+uj:u CnsNonGlottal ;
+ú:ú Cns ;
+uh:w CnsNonGlottal ;
+uh:w # ;
+u:w Vow ;
+
+
+LEXICON LowBackVow
+a:a Loop ;
+a':aʔ Cns ;
+á:á Loop ;
+à:aʔ Cns ;
+
+o:o Loop ;
+o':oʔ Cns ;
+ó:ó Loop ;
+a%::a%: Loop;
+o%::o%: Loop ;
+aa:a%: Loop;
+oo:o%: Loop ;
+
+LEXICON Lateral
+l:l Loop ;
+
+LEXICON CnsNonLateral
+
+h:ʔ Cns ;
+h:ʔ # ;
+h:j HighVow ;
+h:j LowBackVow ;
+j:ʔ Cns ;
+j:ʔ # ;
+j:j Vow ;
+
+b:b Loop ;
+c:s FrontVow ;
+c:k LowBackVow ;
+cu:kʷ Vow ;
+c:k CnsNonGlottal ;
+c:k # ;
+ç:s Vow ;
+ch:t͡ʃ Loop ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+
+! Aquí cometemos un error en el caso de /h/-/w/ si la ortografía original usa "u" para /w/. Ej: yehua /yehwa/ se
+! convierte en /yewa/. Quizás sea mejor producir las dos formas con weights diferentes y dejar que la/el usuarix decida
+! cual usar.
+hu:w Vow ;
+
+
+k:k Loop ;
+kw:kʷ Vow ;
+m:m Loop ;
+n:n Loop ;
+p:p Loop ;
+qu:kʷ LowBackVow ;
+qu:k FrontVow ;
+r:r Loop ;
+s:s Loop ;
+t:t CnsNonLateral ;
+t:t Vow ;
+t:t # ;
+tl:ɬ Vow ;
+tl:ɬ # ;
+w:w Loop ;
+x:ʃ Loop ;
+z:s Loop ;
+y:y Vow ;
+
+
+LEXICON CnsNonGlottal
+b:b Loop ;
+c:s FrontVow ;
+c:k LowBackVow ;
+cu:kʷ Vow ;
+c:k CnsNonGlottal ;
+c:k # ;
+ç:s Vow ;
+ch:t͡ʃ FrontVow ;
+ch:t͡ʃ LowBackVow ;
+ch:t͡ʃ CnsNonGlottal ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+k:k Loop ;
+m:m Loop ;
+n:n Loop ;
+p:p Loop ;
+qu:kʷ LowBackVow ;
+qu:k FrontVow ;
+r:r Loop ;
+s:s Loop ;
+t:t CnsNonLateral ;
+t:t Vow ;
+t:t # ;
+tl:ɬ Vow ;
+tl:ɬ # ;
+w:w Loop ;
+x:ʃ Loop ;
+z:s Loop ;
+l:l Loop ;
+y:y Vow ;
+
+
+
+LEXICON Cns
+Lateral ;
+CnsNonLateral ;
+
+LEXICON BeginPunct
+%":%" Loop ;
+%!:%! Loop ;
+%¡:%¡ Loop ;
+%#:%# Loop ;
+%$:%$ Loop ;
+%%:%% Loop ;
+%&:%& Loop ;
+%':%' Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%*:%* Loop ;
+%+:%+ Loop ;
+%,:%, Loop ;
+%-:%- Loop ;
+%.:%. Loop ;
+%\:%\ Loop ;
+%::%: Loop ;
+%;:%; Loop ;
+%<:%< Loop ;
+%>:%> Loop ;
+%=:%= Loop ;
+%>:%> Loop ;
+%?:? Loop ;
+%@:%@ Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%/:%/ Loop ;
+%^:%^ Loop ;
+%`:%` Loop ;
+%{:%{ Loop ;
+%}:%} Loop ;
+%|:%| Loop ;
+%~:%~ Loop ;
+
+LEXICON EndPunct
+%":%" # ;
+%!:%! # ;
+¡:¡ # ;
+%#:%# # ;
+%$:%$ # ;
+%%:%% # ;
+%&:%& # ;
+%':%' # ;
+%(:%( # ;
+%):%) # ;
+%*:%* # ;
+%+:%+ # ;
+%,:%, # ;
+%-:%- # ;
+%.:%. # ;
+%\:%\ # ;
+%::%: # ;
+%;:%; # ;
+%<:%< # ;
+%>:%> # ;
+%=:%= # ;
+%>:%> # ;
+%?:? # ;
+%@:%@ # ;
+%[:%[ # ;
+%]:%] # ;
+%/:%/ # ;
+%^:%^ # ;
+%`:%` # ;
+%{:%{ # ;
+%}:%} # ;
+%|:%| # ;
+%~:%~ # ;
+
+LEXICON InterPunct
+%":%" Loop ;
+%!:%! Loop ;
+¡:¡ Loop ;
+%#:%# Loop ;
+%$:%$ Loop ;
+%%:%% Loop ;
+%&:%& Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%*:%* Loop ;
+%+:%+ Loop ;
+%,:%, Loop ;
+%-:%- Loop ;
+%.:%. Loop ;
+%\:%\ Loop ;
+%::%: Loop ;
+%;:%; Loop ;
+%<:%< Loop ;
+%>:%> Loop ;
+%=:%= Loop ;
+%>:%> Loop ;
+%?:? Loop ;
+%@:%@ Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%/:%/ Loop ;
+%^:%^ Loop ;
+%`:%` Loop ;
+%{:%{ Loop ;
+%}:%} Loop ;
+%|:%| Loop ;
+%~:%~ Loop ;
