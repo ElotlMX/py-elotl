@@ -1,0 +1,285 @@
+LEXICON Root
+BeginPunct ;
+Cns ;
+Vow ;
+
+
+LEXICON Loop
+Cns ;
+Vow ;
+EndPunct ;
+InterPunct ;
+ #  ;
+
+
+LEXICON Vow
+FrontVow ;
+LowBackVow ;
+HighBackVow ;
+
+LEXICON NonConsonantalVow
+FrontVow ;
+LowBackVow ;
+u:u CnsNonGlottal ;
+uj:uʔ CnsNonGlottal ;
+ú:ú Cns ;
+uh:uʔ CnsNonGlottal ;
+uh:w EndPunct ;
+uh:w # ;
+u:w Vow ;
+
+LEXICON FrontVow
+i:i Loop ;
+i':iʔ Cns ;
+í:í Loop ;
+ì:iʔ Cns ;
+î:iʔ # ;
+î:iʔ EndPunct ;
+y:i Cns ;
+y:i # ;
+e:e Loop ;
+e':eʔ Cns ;
+é:é Loop ;
+ê:eʔ # ;
+ê:eʔ EndPunct ;
+e%::e%: Loop;
+i%::i%: Loop;
+ee:e%: Loop;
+ii:i%: Loop;
+
+LEXICON HighBackVow
+u:u CnsNonGlottal ;
+uj:u CnsNonGlottal ;
+ú:ú Cns ;
+uh:w CnsNonGlottal ;
+uh:w # ;
+uh:w EndPunct ;
+u:w Vow ;
+
+LEXICON LowBackVow
+a:a Loop ;
+a':aʔ Cns ;
+á:á Loop ;
+à:aʔ Cns ;
+o:o Loop ;
+o':oʔ Cns ;
+ó:ó Loop ;
+a%::a%: Loop;
+o%::o%: Loop ;
+aa:a%: Loop;
+oo:o%: Loop ;
+
+LEXICON Lateral
+l:l Loop ;
+
+LEXICON CnsNonLateral
+h:ʔ Cns ;
+h:ʔ # ;
+h:j Vow ;
+j:ʔ Cns ;
+j:ʔ # ;
+j:j Vow ;
+b:b Loop ;
+c:s FrontVow ;
+c:k LowBackVow ;
+cuh:kʷ Cns ;
+cuh:kʷ # ;
+cu:kʷ Vow ;
+chu:kʷ Vow ;
+chu:t͡ʃu Cns ;
+ch:t͡ʃ  FrontVow;
+ch:t͡ʃ  LowBackVow;
+ch:t͡ʃ  #;
+ch:t͡ʃ  Cns;
+c:k CnsNonGlottal ;
+c:k # ;
+c:k EndPunct ;
+ç:s Vow ;
+č:t͡ʃ Loop ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Aquí cometemos un error en el caso de /h/-/w/ si la ortografía original usa "u" para /w/. Ej: yehua /yehwa/ se
+! convierte en /yewa/. Quizás sea mejor producir las dos formas con weights diferentes y dejar que la/el usuarix decida
+! cual usar.
+hu:w Vow  "weight: 2.0";
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+k:k Loop ;
+kw:kʷ Vow ;
+m:m Loop ;
+n:n Loop ;
+ñ:ñ Vow ;
+p:p Loop ;
+qu:kʷ LowBackVow ;
+qu:k FrontVow ;
+r:r Loop ;
+s:s Loop ;
+š:ʃ Loop ;
+t:t CnsNonLateral ;
+t:t Vow ;
+t:t # ;
+tl:ɬ Vow ;
+tl:ɬ # ;
+v:v Loop ;
+w:w Loop ;
+x:ʃ Loop ;
+z:s Loop ;
+y:y NonConsonantalVow ;
+
+LEXICON CnsNonGlottal
+b:b Loop ;
+c:s FrontVow ;
+c:k LowBackVow ;
+cu:kʷ Vow ;
+c:k CnsNonGlottal ;
+c:k # ;
+c:k EndPunct ;
+ç:s Vow ;
+č:t͡ʃ Loop ;
+ch:t͡ʃ FrontVow ;
+ch:t͡ʃ LowBackVow ;
+ch:t͡ʃ CnsNonGlottal ;
+ch:t͡ʃ # ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+k:k Loop ;
+m:m Loop ;
+n:n Loop ;
+ñ:ñ Vow ;
+p:p Loop ;
+qu:kʷ LowBackVow ;
+qu:k FrontVow ;
+r:r Loop ;
+s:s Loop ;
+š:ʃ Loop ;
+t:t CnsNonLateral ;
+t:t Vow ;
+t:t # ;
+tl:ɬ Vow ;
+tl:ɬ # ;
+v:v Loop ;
+w:w Loop ;
+x:ʃ Loop ;
+z:s Loop ;
+l:l Loop ;
+y:y NonConsonantalVow ;
+
+
+
+LEXICON Cns
+Lateral ;
+CnsNonLateral ;
+
+LEXICON BeginPunct
+%":%" Loop ;
+%!:%! Loop ;
+%¡:%¡ Loop ;
+%#:%# Loop ;
+%$:%$ Loop ;
+%%:%% Loop ;
+%&:%& Loop ;
+%':%' Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%*:%* Loop ;
+%+:%+ Loop ;
+%,:%, Loop ;
+%-:%- Loop ;
+%.:%. Loop ;
+%\:%\ Loop ;
+%::%: Loop ;
+%;:%; Loop ;
+%<:%< Loop ;
+%>:%> Loop ;
+%=:%= Loop ;
+%>:%> Loop ;
+%?:? Loop ;
+%@:%@ Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%/:%/ Loop ;
+%^:%^ Loop ;
+%`:%` Loop ;
+%{:%{ Loop ;
+%}:%} Loop ;
+%|:%| Loop ;
+%~:%~ Loop ;
+%.:%. Loop ;
+%¿:%¿ Loop ;
+
+LEXICON EndPunct
+%":%" # ;
+%!:%! # ;
+¡:¡ # ;
+%#:%# # ;
+%$:%$ # ;
+%%:%% # ;
+%&:%& # ;
+%':%' # ;
+%(:%( # ;
+%):%) # ;
+%*:%* # ;
+%+:%+ # ;
+%,:%, # ;
+%-:%- # ;
+%.:%. # ;
+%\:%\ # ;
+%::%: # ;
+%;:%; # ;
+%<:%< # ;
+%>:%> # ;
+%=:%= # ;
+%>:%> # ;
+%?:? # ;
+%@:%@ # ;
+%[:%[ # ;
+%]:%] # ;
+%/:%/ # ;
+%^:%^ # ;
+%`:%` # ;
+%{:%{ # ;
+%}:%} # ;
+%|:%| # ;
+%~:%~ # ;
+%.:%. # ;
+%¿:%¿ #;
+
+LEXICON InterPunct
+%":%" Loop ;
+%!:%! Loop ;
+¡:¡ Loop ;
+%#:%# Loop ;
+%$:%$ Loop ;
+%%:%% Loop ;
+%&:%& Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%*:%* Loop ;
+%+:%+ Loop ;
+%,:%, Loop ;
+%-:%- Loop ;
+%.:%. Loop ;
+%\:%\ Loop ;
+%::%: Loop ;
+%;:%; Loop ;
+%<:%< Loop ;
+%>:%> Loop ;
+%=:%= Loop ;
+%>:%> Loop ;
+%?:? Loop ;
+%@:%@ Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%/:%/ Loop ;
+%^:%^ Loop ;
+%`:%` Loop ;
+%{:%{ Loop ;
+%}:%} Loop ;
+%|:%| Loop ;
+%~:%~ Loop ;
+%.:%. Loop ;
+%¿:%¿ Loop ;
