@@ -7,10 +7,8 @@ Vow ;
 LEXICON Loop
 Cns ;
 Vow ;
-EndPunct ;
-InterPunct ;
+Punct ;
  #  ;
-
 
 LEXICON Vow
 FrontVow ;
@@ -24,9 +22,9 @@ u:u CnsNonGlottal ;
 uj:uʔ CnsNonGlottal ;
 ú:ú Cns ;
 uh:uʔ CnsNonGlottal ;
-uh:w EndPunct ;
-uh:w # ;
-u:w Vow ;
+uh:uʔ EndPunct ;
+uh:uʔ # ;
+u:u Vow ;
 
 LEXICON FrontVow
 i:i Loop ;
@@ -85,7 +83,7 @@ c:k LowBackVow ;
 cuh:kʷ Cns ;
 cuh:kʷ # ;
 cu:kʷ Vow ;
-chu:kʷ Vow ;
+cu:kʷ Vow ;
 chu:t͡ʃu Cns ;
 ch:t͡ʃ  FrontVow;
 ch:t͡ʃ  LowBackVow;
@@ -94,21 +92,19 @@ ch:t͡ʃ  Cns;
 c:k CnsNonGlottal ;
 c:k # ;
 c:k EndPunct ;
+cu:ku Cns ; ! a veces esto se debería de realizar como kʷ
 ç:s Vow ;
 č:t͡ʃ Loop ;
 d:d Loop ;
 f:f Loop ;
 g:g Loop ;
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Aquí cometemos un error en el caso de /h/-/w/ si la ortografía original usa "u" para /w/. Ej: yehua /yehwa/ se
-! convierte en /yewa/. Quizás sea mejor producir las dos formas con weights diferentes y dejar que la/el usuarix decida
-! cual usar.
 hu:w Vow  "weight: 2.0";
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-k:k Loop ;
+k:k FrontVow ;
+k:k LowBackVow ;
+k:k Cns ;
+ku:ku Cns ;
 kw:kʷ Vow ;
+ku:kʷ Vow ;
 m:m Loop ;
 n:n Loop ;
 ñ:ñ Vow ;
@@ -118,11 +114,12 @@ qu:k FrontVow ;
 r:r Loop ;
 s:s Loop ;
 š:ʃ Loop ;
-t:t CnsNonLateral ;
+ŝ:ʃ Loop ;
+t:t Loop ; !CnsNonLateral ;
 t:t Vow ;
 t:t # ;
-tl:ɬ Vow ;
-tl:ɬ # ;
+tl:ɬ Loop "weight: 2.0" ;
+!tl:ɬ # ;
 v:v Loop ;
 w:w Loop ;
 x:ʃ Loop ;
@@ -133,7 +130,8 @@ LEXICON CnsNonGlottal
 b:b Loop ;
 c:s FrontVow ;
 c:k LowBackVow ;
-cu:kʷ Vow ;
+cu:kʷ Vow "weight: 2.0";
+c:k Vow ;
 c:k CnsNonGlottal ;
 c:k # ;
 c:k EndPunct ;
@@ -153,14 +151,15 @@ n:n Loop ;
 p:p Loop ;
 qu:kʷ LowBackVow ;
 qu:k FrontVow ;
+qu:k Cns ;
 r:r Loop ;
 s:s Loop ;
 š:ʃ Loop ;
+ŝ:ʃ Loop ;
 t:t CnsNonLateral ;
 t:t Vow ;
 t:t # ;
-tl:ɬ Vow ;
-tl:ɬ # ;
+tl:ɬ Loop ;
 v:v Loop ;
 w:w Loop ;
 x:ʃ Loop ;
@@ -168,87 +167,11 @@ z:s Loop ;
 l:l Loop ;
 y:y NonConsonantalVow ;
 
-
-
 LEXICON Cns
 Lateral ;
 CnsNonLateral ;
 
-LEXICON BeginPunct
-%":%" Loop ;
-%!:%! Loop ;
-%¡:%¡ Loop ;
-%#:%# Loop ;
-%$:%$ Loop ;
-%%:%% Loop ;
-%&:%& Loop ;
-%':%' Loop ;
-%(:%( Loop ;
-%):%) Loop ;
-%*:%* Loop ;
-%+:%+ Loop ;
-%,:%, Loop ;
-%-:%- Loop ;
-%.:%. Loop ;
-%\:%\ Loop ;
-%::%: Loop ;
-%;:%; Loop ;
-%<:%< Loop ;
-%>:%> Loop ;
-%=:%= Loop ;
-%>:%> Loop ;
-%?:? Loop ;
-%@:%@ Loop ;
-%[:%[ Loop ;
-%]:%] Loop ;
-%/:%/ Loop ;
-%^:%^ Loop ;
-%`:%` Loop ;
-%{:%{ Loop ;
-%}:%} Loop ;
-%|:%| Loop ;
-%~:%~ Loop ;
-%.:%. Loop ;
-%¿:%¿ Loop ;
-
-LEXICON EndPunct
-%":%" # ;
-%!:%! # ;
-¡:¡ # ;
-%#:%# # ;
-%$:%$ # ;
-%%:%% # ;
-%&:%& # ;
-%':%' # ;
-%(:%( # ;
-%):%) # ;
-%*:%* # ;
-%+:%+ # ;
-%,:%, # ;
-%-:%- # ;
-%.:%. # ;
-%\:%\ # ;
-%::%: # ;
-%;:%; # ;
-%<:%< # ;
-%>:%> # ;
-%=:%= # ;
-%>:%> # ;
-%?:? # ;
-%@:%@ # ;
-%[:%[ # ;
-%]:%] # ;
-%/:%/ # ;
-%^:%^ # ;
-%`:%` # ;
-%{:%{ # ;
-%}:%} # ;
-%|:%| # ;
-%~:%~ # ;
-%.:%. # ;
-%¿:%¿ #;
-
-LEXICON InterPunct
+LEXICON Punct
 %":%" Loop ;
 %!:%! Loop ;
 ¡:¡ Loop ;

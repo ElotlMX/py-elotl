@@ -6,8 +6,7 @@ BeginPunct ;
 LEXICON Loop
 Cns ;
 Vow ;
-EndPunct ;
-InterPunct ;
+Punct ;
  #  ;
 
 LEXICON FrontVow
@@ -23,11 +22,10 @@ ii:i Loop;
 LEXICON HighBackVow
 u:u CnsNonGlottal ;
 uj:u CnsNonGlottal ;
-ú:ú Cns ;
 uh:w CnsNonGlottal ;
+ú:ú Cns ;
 uh:w # ;
 u:w Vow ;
-
 
 LEXICON LowBackVow
 a:a Loop ;
@@ -47,8 +45,8 @@ HighBackVow ;
 FrontVow ;
 LowBackVow ;
 
-LEXICON SigueCnsVelar
-j:j Loop ;
+LEXICON CnsSigueVelar
+j:h Loop ;
 b:b Loop ;
 kʷ:cu Vow ;
 t͡ʃ:ch Loop ;
@@ -59,7 +57,7 @@ k:qu FrontVow ;
 k:c LowBackVow ;
 k:c HighBackVow ;
 k:c # ;
-k:c SigueCnsVelar ;
+k:c CnsSigueVelar ;
 m:m Loop ;
 n:n Loop ;
 ñ:ñ Vow ;
@@ -95,7 +93,7 @@ k:qu FrontVow ;
 k:c LowBackVow ;
 k:c HighBackVow ;
 k:c # ;
-k:c SigueCnsVelar ;
+k:c CnsSigueVelar ;
 m:m Loop ;
 n:n Loop ;
 ñ:ñ Vow ;
@@ -117,77 +115,7 @@ s:z # ;
 y:y Loop ;
 l:l Loop ;
 
-LEXICON BeginPunct
-%":%" Loop ;
-%!:%! Loop ;
-%¡:%¡ Loop ;
-%#:%# Loop ;
-%$:%$ Loop ;
-%%:%% Loop ;
-%&:%& Loop ;
-%':%' Loop ;
-%(:%( Loop ;
-%):%) Loop ;
-%*:%* Loop ;
-%+:%+ Loop ;
-%,:%, Loop ;
-%-:%- Loop ;
-%.:%. Loop ;
-%\:%\ Loop ;
-%::%: Loop ;
-%;:%; Loop ;
-%<:%< Loop ;
-%>:%> Loop ;
-%=:%= Loop ;
-%>:%> Loop ;
-%?:? Loop ;
-%@:%@ Loop ;
-%[:%[ Loop ;
-%]:%] Loop ;
-%/:%/ Loop ;
-%^:%^ Loop ;
-%`:%` Loop ;
-%{:%{ Loop ;
-%}:%} Loop ;
-%|:%| Loop ;
-%~:%~ Loop ;
-
-LEXICON EndPunct
-%":%" # ;
-%!:%! # ;
-¡:¡ # ;
-%#:%# # ;
-%$:%$ # ;
-%%:%% # ;
-%&:%& # ;
-%':%' # ;
-%(:%( # ;
-%):%) # ;
-%*:%* # ;
-%+:%+ # ;
-%,:%, # ;
-%-:%- # ;
-%.:%. # ;
-%\:%\ # ;
-%::%: # ;
-%;:%; # ;
-%<:%< # ;
-%>:%> # ;
-%=:%= # ;
-%>:%> # ;
-%?:? # ;
-%@:%@ # ;
-%[:%[ # ;
-%]:%] # ;
-%/:%/ # ;
-%^:%^ # ;
-%`:%` # ;
-%{:%{ # ;
-%}:%} # ;
-%|:%| # ;
-%~:%~ # ;
-
-LEXICON InterPunct
+LEXICON Punct
 %":%" Loop ;
 %!:%! Loop ;
 ¡:¡ Loop ;
