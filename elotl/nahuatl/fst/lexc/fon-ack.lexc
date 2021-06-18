@@ -1,7 +1,6 @@
 LEXICON Root
 Cns ;
 Vow ;
-BeginPunct ;
 
 LEXICON Loop
 Cns ;
@@ -49,7 +48,7 @@ LEXICON CnsSigueVelar
 j:h Loop ;
 b:b Loop ;
 kʷ:cu Vow ;
-t͡ʃ:ch Loop ;
+tʃ:ch Loop ;
 d:d Loop ;
 f:f Loop ;
 g:g Loop ;
@@ -65,9 +64,47 @@ p:p Loop ;
 r:r Loop ;
 t:t Loop ;
 ts:tz Vow "weight: 2.0";
-ɬ:tl Loop ;
+ƛ:tl Loop ;
 v:v Loop ;
 w:hu Vow ;
+ʃ:x Loop ;
+s:c FrontVow ;
+s:z LowBackVow ;
+s:z HighBackVow ;
+s:z Cns ;
+s:z # ;
+y:y Loop ;
+l:l Loop ;
+
+LEXICON CnsNonGlottal
+ʔ:h Cns ;
+ʔ:h # ;
+j:h Loop ;
+b:b Loop ;
+kʷ:cu Vow ;
+kʷ:uc Cns ;
+kʷ:uc # ;
+tʃ:ch Loop ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+k:qu FrontVow ;
+k:c LowBackVow ;
+k:c HighBackVow ;
+k:c # ;
+k:c CnsSigueVelar ;
+m:m Loop ;
+n:n Loop ;
+ñ:ñ Vow ;
+p:p Loop ;
+r:r Loop ;
+t:t Loop ;
+ts:tz Vow "weight: 2.0";
+ƛ:tl Loop ;
+v:v Loop ;
+w:hu Vow ;
+w:uh Cns ;
+w:uh # ;
 ʃ:x Loop ;
 s:c FrontVow ;
 s:z LowBackVow ;
@@ -101,7 +138,7 @@ p:p Loop ;
 r:r Loop ;
 t:t Loop ;
 ts:tz Vow "weight: 2.0";
-ɬ:tl Loop ;
+ƛ:tl Loop ;
 v:v Loop ;
 w:hu Vow ;
 w:uh Cns ;
