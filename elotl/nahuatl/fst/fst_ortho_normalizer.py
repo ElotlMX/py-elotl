@@ -4,6 +4,10 @@ from string import punctuation
 import attapply
 
 
+#class TextoNahuatl(object):
+#    def __init__(self, texto, ortografia="sep_u_j"):
+
+
 class Normalizador(object):
     def __init__(self, ortografia, tokenize: Callable = lambda s: s.split()):
         path_to_hfst = Path("att", f"{ortografia}.att")
