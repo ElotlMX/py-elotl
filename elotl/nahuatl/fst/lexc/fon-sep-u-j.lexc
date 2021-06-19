@@ -1,0 +1,89 @@
+LEXICON Root
+Cns ;
+Vow ;
+
+LEXICON Loop
+Cns ;
+Vow ;
+Punct ;
+ #  ;
+
+LEXICON Vow
+i:i Loop ;
+í:í Loop ;
+e:e Loop ;
+é:é Loop ;
+e%::e Loop;
+i%::i Loop;
+u:u Cns ;
+ú:ú Cns ;
+a:a Loop ;
+á:á Loop ;
+o:o Loop ;
+ó:ó Loop ;
+a%::a Loop;
+o%::o Loop ;
+
+LEXICON Cns
+ʔ:j Cns ;
+ʔ:j # ;
+b:b Loop ;
+kʷ:ku Vow ;
+kʷ:uk Cns ;
+kʷ:uk # ;
+t͡ʃ:ch Loop ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+k:k Loop ;
+m:m Loop ;
+n:n Loop ;
+ñ:ñ Vow ;
+p:p Loop ;
+r:r Loop ;
+s:s Loop ;
+t:t Loop ;
+ƛ:tl Loop ;
+v:v Loop ;
+w:u Loop ;
+ʃ:x Loop ;
+z:z Loop ;
+y:y Loop ;
+ll:l Loop "weight: 2.0";
+l:l Loop ;
+
+
+LEXICON Punct
+%":%" Loop ;
+%!:%! Loop ;
+¡:¡ Loop ;
+%#:%# Loop ;
+%$:%$ Loop ;
+%%:%% Loop ;
+%&:%& Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%*:%* Loop ;
+%+:%+ Loop ;
+%,:%, Loop ;
+%-:%- Loop ;
+%.:%. Loop ;
+%\:%\ Loop ;
+%::%: Loop ;
+%;:%; Loop ;
+%<:%< Loop ;
+%>:%> Loop ;
+%=:%= Loop ;
+%>:%> Loop ;
+%?:? Loop ;
+%@:%@ Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%/:%/ Loop ;
+%^:%^ Loop ;
+%`:%` Loop ;
+%{:%{ Loop ;
+%}:%} Loop ;
+%|:%| Loop ;
+%~:%~ Loop ;
+%¿:%¿ Loop ;
