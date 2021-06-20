@@ -12,7 +12,7 @@ class TextoNormalizado:
         self.norm_fst = attapply.ATTFST(Path("att", f"fon-{ortografia_normalizada}.att"))
         self.original = s
         self.fonemica = self._convertir(self.original, orig_fon_fst)
-        self.normalizada = self._convertir(self.fonemico, self.norm_fst)
+        self.normalizada = self._convertir(self.fonemica, self.norm_fst)
 
     def _convertir(self, s, fst):
         tokens_convertidos = []
@@ -26,7 +26,7 @@ class TextoNormalizado:
         return " ".join(tokens_convertidos)
 
     def __repr__(self):
-        return "Original: {}\nFonemica: {}\nNormalizada:{}".format(self.original, self.fonemico, self.normalizado)
+        return "Original: {}\nFonemica: {}\nNormalizada: {}".format(self.original, self.fonemica, self.normalizada)
 
 
 if __name__ == "__main__":
