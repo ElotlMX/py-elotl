@@ -15,29 +15,19 @@ e:e Loop ;
 é:é Loop ;
 e%::e Loop;
 i%::i Loop;
-ee:e Loop;
-ii:i Loop;
 
 LEXICON HighBackVow
 u:u CnsNonGlottal ;
 uj:u CnsNonGlottal ;
-uh:w CnsNonGlottal ;
 ú:ú Cns ;
-uh:w # ;
-u:w Vow ;
 
 LEXICON LowBackVow
 a:a Loop ;
-a':aʔ Cns ;
 á:á Loop ;
-à:aʔ Cns ;
 o:o Loop ;
-o':oʔ Cns ;
 ó:ó Loop ;
-a%::a%: Loop;
-o%::o%: Loop ;
-aa:a%: Loop;
-oo:o%: Loop ;
+a%::a Loop;
+o%::o Loop ;
 
 LEXICON Vow
 HighBackVow ;
