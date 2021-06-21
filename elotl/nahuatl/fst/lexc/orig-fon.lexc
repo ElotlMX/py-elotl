@@ -91,6 +91,7 @@ cu:ku Cns ; ! a veces esto se debería de realizar como kʷ
 d:d Loop ;
 f:f Loop ;
 g:g Loop ;
+hu:w Vow "weight: 2.0" ;
 k:k FrontVow ;
 k:k LowBackVow ;
 k:k Cns ;
