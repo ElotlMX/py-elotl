@@ -22,6 +22,7 @@ Example usage:
 Author: Mans Hulden
 License: Apache (Version 2.0)
 Last Update: 11/07/2016
+URL: https://github.com/mhulden/foma/blob/master/foma/python/attapply.py
 """
 import codecs
 import gzip
