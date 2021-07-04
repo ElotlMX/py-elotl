@@ -13,8 +13,8 @@ i:i Loop ;
 í:í Loop ;
 e:e Loop ;
 é:é Loop ;
-e%::e Loop;
-i%::i Loop;
+e%::e Loop "weight: 1.0";
+i%::i Loop "weight: 1.0";
 
 LEXICON HighBackVow
 u:u CnsNonGlottal ;
@@ -26,8 +26,8 @@ a:a Loop ;
 á:á Loop ;
 o:o Loop ;
 ó:ó Loop ;
-a%::a Loop;
-o%::o Loop ;
+a%::a Loop "weight: 1.0";
+o%::o Loop "weight: 1.0";
 
 LEXICON Vow
 HighBackVow ;
@@ -36,6 +36,10 @@ LowBackVow ;
 
 LEXICON CnsSigueVelar
 j:h Loop ;
+h:h Loop ;
+h:h FrontVow ;
+h:h LowBackVow ;
+
 b:b Loop ;
 kʷ:cu Vow ;
 t͡ʃ:ch Loop ;
@@ -70,6 +74,8 @@ LEXICON CnsNonGlottal
 ʔ:h Cns ;
 ʔ:h # ;
 j:h Loop ;
+h:h Loop ;
+
 b:b Loop ;
 kʷ:cu Vow ;
 kʷ:uc Cns ;
@@ -108,6 +114,7 @@ LEXICON Cns
 ʔ:h Cns ;
 ʔ:h # ;
 j:h Loop ;
+h:h Loop ;
 b:b Loop ;
 kʷ:cu Vow ;
 kʷ:uc Cns ;

@@ -1,7 +1,7 @@
 LEXICON Root
 Cns ;
 Vow ;
-
+Punct ;
 
 LEXICON Loop
 Cns ;
@@ -36,8 +36,10 @@ e:e Loop ;
 e':eʔ Cns ;
 é:é Loop ;
 ê:eʔ # ;
-e%::e%: Loop;
-i%::i%: Loop;
+e%::e%: Loop ;
+i%::i%: Loop ;
+ī:i%: Loop ;
+ē:e%: Loop ;
 ee:e%: Loop;
 ii:i%: Loop;
 
@@ -59,6 +61,7 @@ o':oʔ Cns ;
 ó:ó Loop ;
 a%::a%: Loop;
 o%::o%: Loop ;
+ā:a%: Loop ;
 aa:a%: Loop;
 oo:o%: Loop ;
 
@@ -68,23 +71,36 @@ l:l Loop ;
 LEXICON CnsNonLateral
 h:ʔ Cns ;
 h:ʔ # ;
-h:j Vow ;
-j:ʔ Loop ; ! Cns
+h:ʔ Punct ;
+
+h:h Vow ;
+j:ʔ Cns ;
 j:ʔ # ;
-!j:j Vow ;
+j:ʔ Punct ;
+
+j:h Vow ;
 b:b Loop ;
 c:s FrontVow ;
 c:k LowBackVow ;
 cuh:kʷ Cns ;
 cuh:kʷ # ;
+cuh:kʷ Punct ;
+
 cu:kʷ Vow "weight: 2.0";
 chu:t͡ʃu Cns ;
+chu:t͡ʃu # ;
+chu:t͡ʃu Punct ;
+
 ch:t͡ʃ  FrontVow;
 ch:t͡ʃ  LowBackVow;
 ch:t͡ʃ  #;
+ch:t͡ʃ  Punct;
 ch:t͡ʃ  Cns;
+
 c:k CnsNonGlottal ;
 c:k # ;
+c:k Punct ;
+
 cu:ku Cns ; ! a veces esto se debería de realizar como kʷ
 ç:s Vow ;
 č:t͡ʃ Loop ;
@@ -92,12 +108,18 @@ d:d Loop ;
 f:f Loop ;
 g:g Loop ;
 hu:w Vow "weight: 2.0" ;
+
 k:k FrontVow ;
 k:k LowBackVow ;
 k:k Cns ;
 k:k # ;
+k:k Punct ;
+
 kw:kʷ Vow "weight: 2.0";
 ku:kʷ Vow ;
+ku:ku # ;
+ku:ku Punct ;
+
 m:m Loop ;
 n:n Loop ;
 ñ:ñ Vow ;
@@ -108,11 +130,11 @@ r:r Loop ;
 s:s Loop ;
 š:ʃ Loop ;
 ŝ:ʃ Loop ;
-t:t Loop ; !CnsNonLateral ;
+t:t CnsNonLateral ;
 t:t Vow ;
 t:t # ;
+t:t Punct ;
 tl:ƛ Loop "weight: 2.0" ;
-!tl:ƛ # ;
 v:v Loop ;
 w:w Loop ;
 x:ʃ Loop ;
@@ -127,12 +149,16 @@ cu:kʷ Vow "weight: 2.0";
 c:k Vow ;
 c:k CnsNonGlottal ;
 c:k # ;
+c:k Punct ;
+
 ç:s Vow ;
 č:t͡ʃ Loop ;
 ch:t͡ʃ FrontVow ;
 ch:t͡ʃ LowBackVow ;
 ch:t͡ʃ CnsNonGlottal ;
 ch:t͡ʃ # ;
+ch:t͡ʃ Punct ;
+
 d:d Loop ;
 f:f Loop ;
 g:g Loop ;
@@ -151,7 +177,8 @@ s:s Loop ;
 t:t CnsNonLateral ;
 t:t Vow ;
 t:t # ;
-tl:ƛ Loop ;
+t:t Punct ;
+tl:ƛ Loop "weight: 2.0";
 v:v Loop ;
 hu:w Vow  "weight: 2.0";
 w:w Loop ;

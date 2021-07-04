@@ -14,21 +14,22 @@ i:i Loop ;
 í:í Loop ;
 e:e Loop ;
 é:é Loop ;
-e%::e Loop;
-i%::i Loop;
+e%::e Loop "weight: 1.0";
+i%::i Loop "weight: 1.0";
 u:u Cns ;
 ú:ú Cns ;
 a:a Loop ;
 á:á Loop ;
 o:o Loop ;
 ó:ó Loop ;
-a%::a Loop;
-o%::o Loop ;
+a%::a Loop "weight: 1.0";
+o%::o Loop "weight: 1.0";
 
 LEXICON Cns
 ʔ:h Cns ;
 ʔ:h # ;
 ʔ:h Vow ;
+h:h Vow ;
 b:b Loop ;
 kʷ:kw Vow ;
 kʷ:wk Cns ;
