@@ -23,6 +23,7 @@ uj:u CnsNonGlottal ;
 
 LEXICON LowBackVow
 a:a Loop ;
+ã:ã Loop ;
 á:á Loop ;
 o:o Loop ;
 ó:ó Loop ;
@@ -182,3 +183,7 @@ LEXICON Punct
 %}:%} Loop ;
 %|:%| Loop ;
 %~:%~ Loop ;
+%”:%” Loop ;
+%”:%” Loop ;
+%“:%“ Loop ;
+%—:%— Loop ;
