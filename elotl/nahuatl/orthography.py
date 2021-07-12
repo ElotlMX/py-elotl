@@ -1,6 +1,5 @@
 """
-
-Para usarlo desde la línea de comandos:
+Para usar desde la línea de comandos:
     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|ack]
 
 O, desde otro programa de Python:
@@ -15,11 +14,26 @@ from pathlib import Path
 from elotl.nahuatl.fst.attapply import ATTFST
 
 path_to_att_dir = Path("elotl", "nahuatl", "fst", "att")
-path_to_orig_fon = path_to_att_dir /  "orig-fon.att"
+path_to_orig_fon = path_to_att_dir / "orig-fon.att"
 ORIG_FON_FST = ATTFST(path_to_orig_fon)
 
 
 class Normalizer(object):
+    """
+    Class for normalizing Nahuatl texts to a single orthography. Currently
+    supported output orthographies: SEP (e.g. "tiualaske") and ACK (e.g.
+     "tihualazque").
+
+    The entry points for converting text are `.normalize(...)` and
+    `.to_phones(...)`.
+
+    Parameters
+    ----------
+    normalized_ort: str
+        Name of the orthography to convert everything into. Must be one of
+        ("sep", "ack").
+
+    """
     def __init__(self, normalized_ort: str = "sep"):
         self.norm_fst = ATTFST(
             path_to_att_dir / f"fon-{normalized_ort}.att"
@@ -35,11 +49,11 @@ class Normalizer(object):
         ----------
         w: str
             Input word.
-        
+
         fst: ATTFST
-            FST object created with attapply. This object has an `apply` command
-            used to apply the fst to an input.
-        
+            FST object created with attapply. This object has an `apply`
+            command used to apply the fst to an input.
+
         Returns
         -------
         str
@@ -57,20 +71,20 @@ class Normalizer(object):
         in elotl/nahuatl/fst/lexc/orig-fon.lexc.
         """
         return self._convert(w, ORIG_FON_FST)
-        
+
     def _normalize_word(self, original_word: str) -> tuple[str, str]:
         """
-        Convert an input word from 'any' orthography into a normalized 
+        Convert an input word from 'any' orthography into a normalized
         orthography (currently only either SEP or ACK). Since this process
-        requires first converting the input to a pseudo-phonemic representation,
-        we return both the phonemic and normalized forms.
+        requires first converting the input to a pseudo-phonemic
+        representation, we return both the phonemic and normalized forms.
 
         Parameters
         ----------
         original_word: str
-            Input word form, in theory in any mixture of common Nahuatl 
+            Input word form, in theory in any mixture of common Nahuatl
             orthographies.
-        
+
         Returns
         -------
         Tuple
@@ -85,12 +99,12 @@ class Normalizer(object):
             print("Unable to convert word '{}' to phonemes."
                   .format(w))
             return w, w
-            
+
         normed = self._convert(fon, self.norm_fst)
         if normed is None:
-            print("Unable to convert word '{}'.from phonemes to "
-                             "normalized orthography.".format(fon))
             # TODO: log this as a warning instead of printing to stdout.
+            print("Unable to convert word '{}'.from phonemes to "
+                  "normalized orthography.".format(fon))
             return fon, w
 
         return fon, normed
@@ -101,21 +115,21 @@ class Normalizer(object):
 
     def to_phones(self, text: str, overrides: dict[str, str] = None) -> str:
         """
-        Convert a non-normalized Nahuatl text into approximate/pseudo IPA. 
+        Convert a non-normalized Nahuatl text into approximate/pseudo IPA.
         Conversion happens at the word-level after tokenizing on whitespace.
 
         Parameters
         ----------
         text: str
             Input text. It can be from any of a number of possible Nahuatl
-            orthographies (the system attempts to handle many of the graphic 
+            orthographies (the system attempts to handle many of the graphic
             variations observed in diverse Nahuatl texts).
-        
+
         overrides: dict
-            A dictionary of hard-coded normalizations. If an input word 
-            (lowered) is contained in the dictionary, we will use the form it 
+            A dictionary of hard-coded normalizations. If an input word
+            (lowered) is contained in the dictionary, we will use the form it
             maps to instead of applying the FST on it.
-        
+
         Returns
         -------
         str
@@ -135,23 +149,23 @@ class Normalizer(object):
 
     def normalize(self, text: str, overrides: dict[str, str] = None) -> str:
         """
-        Convert a non-normalized Nahuatl text into normalized orthography. 
-        Depending on the value used when initializing this class, the normalized
-        orthography is either SEP or ACK. Conversion happens at the word-level 
-        after tokenizing on whitespace.
+        Convert a non-normalized Nahuatl text into normalized orthography.
+        Depending on the value used when initializing this class, the
+        normalized orthography is either SEP or ACK. Conversion happens at the
+        word-level after tokenizing on whitespace.
 
         Parameters
         ----------
         text: str
             Input text. It can be from any of a number of possible Nahuatl
-            orthographies (the system attempts to handle many of the graphic 
+            orthographies (the system attempts to handle many of the graphic
             variations observed in diverse Nahuatl texts).
-        
+
         overrides: dict
-            A dictionary of hard-coded normalizations. If an input word 
-            (lowered) is contained in the dictionary, we will use the form it 
+            A dictionary of hard-coded normalizations. If an input word
+            (lowered) is contained in the dictionary, we will use the form it
             maps to instead of applying the FST on it.
-        
+
         Returns
         -------
         str
@@ -174,10 +188,9 @@ class Normalizer(object):
 if __name__ == "__main__":
     argparser = argparse.ArgumentParser()
     argparser.add_argument("texto")
-    argparser.add_argument("--ortografia_preferida", "-ort", 
+    argparser.add_argument("--ortografia_preferida", "-ort",
                            choices=["sep", "ack"], default="sep")
 
     args = argparser.parse_args()
     n = Normalizer(output_ort=args.ortografia_preferida)
     print(n.normalize(args.texto))
-    
