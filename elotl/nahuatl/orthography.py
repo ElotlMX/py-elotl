@@ -1,46 +1,5 @@
 """
-El escritura del Náhuatl siempre ha contenido una gran diversidad ortográfica.
-Para facilitar el uso de textos de fuentes distintos, que probablemente utilizan
-diferentes sistemas ortográficas, este script hace disponible la normalización
-ortográfica basada en el conocimiento de los diversos sistemas de escritura 
-Náhuatl tanto en los tiempos coloniales como en la actualidad.
 
-Por el momento se ofrecen dos ortografías comunes que se pueden ocupar como la
-"ortografía normalizada":
-
-    * SEP: Ortografía utilizada por la Secretería de Educación Pública de México
-           a veces llamada de "ortografía moderna". Consiste en las siguentes
-           equivalencias entre fonemas y grafemas: /k/='k', /w/='u', /s/='s' y
-           el saltillo se escribe con 'j'.
-    * ACK: Ortografía nombrado por tres académicos estadounidenses 
-           (Richard Andrews, Joseph Campbell, y Frances Karttunen). Ésta tiene
-           muchos de los rasgos de sistemas de escritura del llamado "Náhuatl
-           Clásico", como el uso de 'qu/c' para el fonéma /k/ y 'hu/uh' para el
-           fonéma /w/. El saltillo en esta ortografía se representa con 'h'.
-
-En ambas ortografías, la duración vocálica se omite.
-
-Para realizar la normalización, usamos un par de transductores de estado finito
-(FST). Éstos están definidos en los archivos ".lexc" (elotl/nahuatl/fst/lexc/)
-y compilado a un formato ".att" (elotl/nahuatl/fst/att/). Primero, convertimos
-el texto de entrada a una ortografía fonética con el FST "orig-fon". Luego, 
-esta forma se convierte en la ortografía normalizada con el FST "fon-sep" o 
-"fon-ack".
-
-Artículo sobre los diferentes sistemas ortográficos actuales del Nahuatl:
-- https://www.academia.edu/42858002/La_escritura_n%C3%A1huatl_y_los_procesos_de_su_revitalizaci%C3%B3n
-
-Información acerca de la ortografía SEP ("moderna"):
-- https://nawatl.com/articulos/ortografia-moderna/
-
-Ejemplos de unas publicaciones de la SEP utilizando la ortografía SEP:
-- https://www.gob.mx/cms/uploads/attachment/file/3050/vocabulario_nahuatl_WEB.pdf
-- https://www.gob.mx/cms/uploads/attachment/file/3040/LibroMaestroNahuatl1-14.pdf
-- https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-EN6CTWPkgG-libro_del_maestro_-_na_huatl-cicloii.pdf
-
-
-
-###############################################################################
 Para usarlo desde la línea de comandos:
     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|ack]
 
@@ -48,8 +7,7 @@ O, desde otro programa de Python:
 
     >>> from elotl.nahuatl.orthography import Normalizer
     >>> normalizer = Normalizer("sep")  # o "ack"
-    >>> normalizer.normalize("<texto>")
-################################################################################
+    >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
 """
 import argparse
 from pathlib import Path
