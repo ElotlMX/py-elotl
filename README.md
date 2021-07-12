@@ -143,8 +143,8 @@ elotl/                              Top-level package
 ### Crear un entorno virtual y activarlo.
 
 ```bash
-virtualenv --python=/usr/bin/python3 elotl-venv
-source elotl-venv/bin/activate
+virtualenv --python=/usr/bin/python3 venv
+source venv/bin/activate
 ```
 ### Actualizar `pip` y generar archivos de distribución.
 
