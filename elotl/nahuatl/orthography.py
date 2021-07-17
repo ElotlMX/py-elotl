@@ -8,6 +8,7 @@ O, desde otro programa de Python:
     >>> normalizer = Normalizer("sep")  # o "ack"
     >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
 """
+from __future__ import annotations
 import argparse
 from pathlib import Path
 
