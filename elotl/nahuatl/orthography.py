@@ -1,13 +1,14 @@
-"""
-Para usar desde la línea de comandos:
-    $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|ack]
+# -*- coding: UTF-8 -*-
 
-O, desde otro programa de Python:
+# Para usar desde la línea de comandos:
+#     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|ack]
 
-    >>> from elotl.nahuatl.orthography import Normalizer
-    >>> normalizer = Normalizer("sep")  # o "ack"
-    >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
-"""
+# O, desde otro programa de Python:
+
+#     >>> from elotl.nahuatl.orthography import Normalizer
+#     >>> normalizer = Normalizer("sep")  # o "ack"
+#     >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
+
 from __future__ import annotations
 import argparse
 from pathlib import Path
@@ -174,11 +175,11 @@ class Normalizer(object):
 
         """
         overrides = overrides if overrides is not None else {}
-
         norm = []
         for token in self._tokenize(text):
             if token in overrides:
                 norm.append(overrides[token])
+                continue
             _, t_norm = self._normalize_word(token)
 
             norm.append(t_norm)
