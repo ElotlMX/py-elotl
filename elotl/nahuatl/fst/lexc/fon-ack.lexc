@@ -128,6 +128,7 @@ k:qu FrontVow ;
 k:c LowBackVow ;
 k:c HighBackVow ;
 k:c # ;
+k:c Punct ;
 k:c CnsSigueVelar ;
 m:m Loop ;
 n:n Loop ;
@@ -147,6 +148,7 @@ s:z LowBackVow ;
 s:z HighBackVow ;
 s:z Cns ;
 s:z # ;
+s:z Punct ;
 y:y Loop ;
 l:l Loop ;
 
