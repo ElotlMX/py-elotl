@@ -55,12 +55,13 @@ class TestOrthographicNormalization(unittest.TestCase):
         'huiliz tiquecuiloz tlen nica timitztlatlanilia itich nin amatl'
     ]
 
-    sep_normalizer = Normalizer("sep")
+    sep_normalizer_u_j = Normalizer("sep-u-j")
+    sep_normalizer_w_h = Normalizer("sep-w-h")
     ack_normalizer = Normalizer("ack")
 
-    def test_normalize_sep(self):
+    def test_normalize_sep_u_j(self):
         for i, inp in enumerate(self.test_inputs):
-            normed = self.sep_normalizer.normalize(inp)
+            normed = self.sep_normalizer_u_j.normalize(inp)
             self.assertEquals(normed, self.sep_outputs[i])
 
     def test_normalize_ack(self):
@@ -72,7 +73,7 @@ class TestOrthographicNormalization(unittest.TestCase):
         inp = "ce Crucifixo"
         outp = "se crucifixo"
         normed_w_override = (
-            self.sep_normalizer.normalize(
+            self.sep_normalizer_u_j.normalize(
                 inp,
                 overrides={'Crucifixo': 'crucifixo'}
             )
