@@ -26,7 +26,7 @@ except ImportError:
 # https://stackoverflow.com/a/58520692
 with pkg_resources.path("elotl.utils.fst.att", "orig-fon.att") as p:
     _path_to_orig_fon = p
-print(_path_to_orig_fon)
+
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
 _available_orthographies = ['sep-u-j', 'sep-w-h', 'ack']
 
@@ -57,7 +57,6 @@ class Normalizer(object):
         with pkg_resources.path("elotl.utils.fst.att", "fon-" + normalized_ort + ".att") as p:
             _path_to_att_dir = p
 
-        print(_path_to_att_dir)
         self.norm_fst = ATTFST(_path_to_att_dir)
 
     def _convert(self, w: str, fst: ATTFST) -> str:
