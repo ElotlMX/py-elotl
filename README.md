@@ -163,6 +163,7 @@ elotl/                              Top-level package
                   orthography.py    Module to normalyze nahuatl orthography and phonemas
           utils/                    Subpackage with useful functions and files
                   fst/              Finite State Transducer functions
+                        att/        Module with static .att files
 test/                               Unit test scripts
 ```
 
