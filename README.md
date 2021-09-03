@@ -1,25 +1,28 @@
-# Elotl Package
+# Py-Elotl
 
-Paquete de Python con algoritmos e implementaciones de la comunidad Elotl para
-PLN de lenguas habladas en México
+Python package for Natural Language Processing (NLP), focused on low-resource languages spoken in Mexico.
 
-Python package with NLP tools for low-resourced languages (Mexico)
+This is a project of [Comunidad Elotl](https://elotl.mx/).
+
+Developed by:
+- Paul Aguilar [@penserbjorne](https://github.com/penserbjorne), [paul.aguilar.enriquez@hotmail.com](mailto:paul.aguilar.enriquez@hotmail.com)
+- Robert Pugh [@Lguyogiro](https://github.com/Lguyogiro), [robertpugh408@gmail.com](mailto:robertpugh408@gmail.com)
 
 Requiere python>=3.X
 
-- Paquete en estado de `Pre-Alpha`. Revisar [Classifiers](https://pypi.org/classifiers/)
-- Paquete en pip: [elotl](https://pypi.org/project/elotl/)
-- Repositorio de desarrollo: [ElotlMX/py-elotl](https://github.com/ElotlMX/py-elotl)
+- Development Status `Pre-Alpha`. Read [Classifiers](https://pypi.org/classifiers/)
+- pip package: [elotl](https://pypi.org/project/elotl/)
+- GitHub repository: [ElotlMX/py-elotl](https://github.com/ElotlMX/py-elotl)
 
-## Instalación
+## Installation
 
-### Utilizando `pip`
+### Using `pip`
 
 ```bash
 pip install elotl
 ```
 
-### Desde la fuente
+### From source
 
 ```bash
 git clone https://github.com/ElotlMX/py-elotl.git
@@ -27,41 +30,17 @@ cd py-elotl
 pip install -e .
 ```
 
-## Uso
+## Use
 
-<!--
-### Importar por separado
-
-```python
->>> import elotl
->>> import elotl.nahuatl
->>> import elotl.otomi
->>> elotl.test()
-'Test paquete elotl satisfactorio'
->>> elotl.nahuatl.test()
-'Test subpaquete elotl-nahuatl satisfactorio'
->>> elotl.otomi.test()
-'Test subpaquete elotl-otomi satisfactorio'
-```
-
-### Importar todo
-
-```python
->>> from elotl import *
->>> nahuatl.test()
-'Test subpaquete elotl-nahuatl satisfactorio'
->>> otomi.test()
-'Test subpaquete elotl-otomi satisfactorio'
-```
--->
-
-### Trabajando con corpus
+### Working with corpus
 
 ```python
 import elotl.corpus
 ```
 
-#### Listando corpus disponibles
+#### Listing available corpus
+
+Code:
 
 ```python
 print("Name\t\tDescription")
@@ -70,7 +49,7 @@ for row in list_of_corpus:
     print(row)
 ```
 
-La salida es la siguiente:
+Output:
 
 ```bash
 Name		Description
@@ -79,17 +58,19 @@ Name		Description
 
 ```
 
-#### Cargando un corpus
+#### Loading a corpus
+
+If a non-existent corpus is requested, a value of 0 is returned.
 
 ```python
-# Si se solicita un corpus inexistente se retorna un valor 0
 axolotl = elotl.corpus.load('axolotlr')
 if axolotl == 0:
-    print("El nombre ingresado no corresponde a ningun corpus")
+    print("The name entered does not correspond to any corpus")
 ```
 
+If an existing corpus is entered, a list is returned.
+
 ```python
-# Si se ingresa un corpus existente se retorna una lista
 axolotl = elotl.corpus.load('axolotl')
 for row in axolotl:
     print(row)
@@ -99,15 +80,20 @@ for row in axolotl:
 ['Hay que adivinar: un pozo, a la mitad del cerro, te vas a encontrar.', 'See tosaasaanil, see tosaasaanil. Tias iipan see tepeetl, iitlakotian tepeetl, tikoonextis san see aameyalli.', '', 'Adivinanzas nahuas']
 ```
 
+Each element of the list has four indices:
+
+- non_original_language
+- original_language
+- variant
+- document_name
+
 ```python
-# Cada elemento de la lista cuenta con cuatro indices:
-# lengua_no_originaria, lengua_originaria, variante, nombre_de_documento
 tsunkua = elotl.corpus.load('tsunkua')
   for row in tsunkua:
-      print(row[0]) # lengua 1
-      print(row[1]) # lengua 2
-      print(row[2]) # variante dialectal
-      print(row[3]) # fuente de documento
+      print(row[0]) # language 1
+      print(row[1]) # language 2
+      print(row[2]) # variant
+      print(row[3]) # document
 ```
 
 ```bash
@@ -118,35 +104,84 @@ El otomí de toluca, Yolanda Lastra
 
 ```
 
-## Estructura del paquete
+### Normalizing nahuatl orthographies
 
-La siguiente estructura es una referencia. Conforme el paquete crezca se ira
-documentando mejor.
+Import the orthography module and Load the axolot nahuatl corpus.
 
-```bash
-elotl/                              Top-level package
-          __init__.py               Inicializar el paquete
-          corpora/                  Aquí se encuentran los datos de los corpus
-          corpus/                   Subpaquete para cargar corpus
-                  __init__.py
-                  corpus.py          
-          nahuatl/                  Subpaquete para el idioma nahuatl
-                  __init__.py
-                  ...
-          otomi/                    Subpaquete para el idioma otomi
-                  __init__.py
-                  ...
+```python
+import elotl.corpus
+import elotl.nahuatl.orthography
+a = elotl.corpus.load("axolotl")
 ```
 
-## Desarrollo
+Creates a normalizer object, passing as parameter the normalization to be used.
 
-### Crear un entorno virtual y activarlo.
+The following normalizations are currently available:
+
+- sep-u-j
+- sep-w-h
+- ack
+
+If an unsupported normalization is specified, sep-u-j will be used by default.
+
+You can use the `normalize` method to normalize a text to the selected orthography. And the `to_phones` method to get
+the phonemes.
+
+```python
+>>> n = elotl.nahuatl.orthography.Normalizer("sep-u-j")
+>>> n.normalize(a[1][1])
+'au in ye yujki in on tlenamakak niman ye ik teixpan on motlalia se tlakatl itech mokaua.'
+>>> n.to_phones(a[1][1])
+'aw in ye yuʔki in on ƛenamakak niman ye ik teiʃpan on moƛalia se ƛakaƛ itet͡ʃ mokawa.'
+```
+
+```python
+>>> n = elotl.nahuatl.orthography.Normalizer("sep-w-h")
+>>> n.normalize(a[1][1])
+'aw in ye yuhki in on tlenamakak niman ye ik teixpan on motlalia se tlakatl itech mokawa.'
+>>> n.to_phones(a[1][1])
+'aw in ye yuʔki in on ƛenamakak niman ye ik teiʃpan on moƛalia se ƛakaƛ itet͡ʃ mokawa.'
+```
+
+```python
+>>> n = elotl.nahuatl.orthography.Normalizer("ack")
+>>> n.normalize(a[1][1])
+'auh in ye yuhqui in on tlenamacac niman ye ic teixpan on motlalia ce tlacatl itech mocahua.'
+>>> n.to_phones(a[1][1])
+'aw in ye yuʔki in on ƛenamakak niman ye ik teiʃpan on moƛalia se ƛakaƛ itet͡ʃ mokawa.'
+```
+## Package structure
+
+The following structure is a reference. As the package grows it will be better documented.
+
+```
+elotl/                              Top-level package
+          __init__.py               Initialize the package
+          corpora/                  Here are the corpus data
+          corpus/                   Subpackage to load corpus     
+          nahuatl/                  Nahuatl language subpackage
+                  orthography.py    Module to normalyze nahuatl orthography and phonemas
+          utils/                    Subpackage with useful functions and files
+                  fst/              Finite State Transducer functions
+test/                               Unit test scripts
+```
+
+## Development
+
+### Build FSTs
+
+Requires [HFST](https://github.com/hfst/hfst) to be installed. Install it and build the FSTs with `make`.
+
+```bash
+make all
+```
+### Create a virtual environment and activate it.
 
 ```bash
 virtualenv --python=/usr/bin/python3 venv
 source venv/bin/activate
 ```
-### Actualizar `pip` y generar archivos de distribución.
+### Update `pip` and generate distribution files.
 
 ```bash
 python -m pip install --upgrade pip
@@ -154,25 +189,26 @@ python -m pip install --upgrade setuptools wheel
 python setup.py clean sdist bdist_wheel
 ```
 
-### Probar el paquete local
+### Testing the package locally
 
 ```bash
 python -m pip install -e .
 ```
 
-### Enviar a PyPI
+### Send to PyPI
 
 ```bash
 python -m pip install twine
 twine upload dist/*
 ```
 
-## Licencia
+## License
 
 [Mozilla Public License 2.0 (MPL 2.0)](./LICENSE)
 
-## Referencias
+## References
 
 - [https://elotl.mx/](https://elotl.mx/)
 - [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
 - [How To Package Your Python Code](https://python-packaging.readthedocs.io/en/latest/minimal.html)
+- [Making a Python Package](https://python-packaging-tutorial.readthedocs.io/en/latest/setup_py.html)
