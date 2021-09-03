@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 # Para usar desde la línea de comandos:
-#     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|ack]
+#     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep-u-j|sep-w-h|ack]
 
 # O, desde otro programa de Python:
 
@@ -15,6 +15,7 @@ from pathlib import Path
 
 from elotl.utils.fst.attapply import ATTFST
 
+_available_orthographies = ['sep-u-j', 'sep-w-h', 'ack']
 _path_to_att_dir = Path("elotl", "utils", "fst", "att")
 _path_to_orig_fon = _path_to_att_dir / "orig-fon.att"
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
@@ -23,8 +24,10 @@ _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
 class Normalizer(object):
     """
     Class for normalizing Nahuatl texts to a single orthography. Currently
-    supported output orthographies: SEP (e.g. "tiualaske") and ACK (e.g.
-     "tihualazque").
+    supported output orthographies:
+    - SEP-U-J (e.g. "tiualaske")
+    - SEP-W-H
+    - ACK (e.g. "tihualazque").
 
     The entry points for converting text are `.normalize(...)` and
     `.to_phones(...)`.
@@ -33,10 +36,14 @@ class Normalizer(object):
     ----------
     normalized_ort: str
         Name of the orthography to convert everything into. Must be one of
-        ("sep", "ack").
+        ("sep-u-j", "sep-w-h", "ack").
 
     """
-    def __init__(self, normalized_ort: str = "sep"):
+    def __init__(self, normalized_ort: str = "sep-u-j"):
+        if not (normalized_ort in _available_orthographies):
+            print(normalized_ort + " is not a supported orthography.")
+            print("Using sep-u-j as orthography.")
+            normalized_ort = "sep-u-j"
         self.norm_fst = ATTFST(
             _path_to_att_dir / f"fon-{normalized_ort}.att"
         )
@@ -45,7 +52,7 @@ class Normalizer(object):
         """
         Convert an input word form to an output form using the provided ATTFST
         object. In this implementation, we assume high weights are preferred,
-        so we select the last of the generated candidates.
+        so we select the last of the generated candidates.SEP
 
         Parameters
         ----------
@@ -77,7 +84,7 @@ class Normalizer(object):
     def _normalize_word(self, original_word: str) -> tuple[str, str]:
         """
         Convert an input word from 'any' orthography into a normalized
-        orthography (currently only either SEP or ACK). Since this process
+        orthography (currently SEP-U-J, SEP-W-H and ACK). Since this process
         requires first converting the input to a pseudo-phonemic
         representation, we return both the phonemic and normalized forms.
 
@@ -153,7 +160,7 @@ class Normalizer(object):
         """
         Convert a non-normalized Nahuatl text into normalized orthography.
         Depending on the value used when initializing this class, the
-        normalized orthography is either SEP or ACK. Conversion happens at the
+        normalized orthography is SEP-U-J, SEP-W-H or ACK. Conversion happens at the
         word-level after tokenizing on whitespace.
 
         Parameters
