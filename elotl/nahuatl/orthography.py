@@ -11,15 +11,24 @@
 
 from __future__ import annotations
 #import argparse
-from pathlib import Path
+#from pathlib import Path
 
 from elotl.utils.fst.attapply import ATTFST
 
-_available_orthographies = ['sep-u-j', 'sep-w-h', 'ack']
-_path_to_att_dir = Path("elotl", "utils", "fst", "att")
-_path_to_orig_fon = _path_to_att_dir / "orig-fon.att"
-_ORIG_FON_FST = ATTFST(_path_to_orig_fon)
+# https://docs.python.org/3/library/importlib.html?highlight=resources#module-importlib.resources
+try:
+    # For Python >= 3.7
+    import importlib.resources as pkg_resources
+except ImportError:
+    # Try backported to Python < 3.7 `importlib_resources`.
+    import importlib_resources as pkg_resources
 
+# https://stackoverflow.com/a/58520692
+with pkg_resources.path("elotl.utils.fst.att", "orig-fon.att") as p:
+    _path_to_orig_fon = p
+print(_path_to_orig_fon)
+_ORIG_FON_FST = ATTFST(_path_to_orig_fon)
+_available_orthographies = ['sep-u-j', 'sep-w-h', 'ack']
 
 class Normalizer(object):
     """
@@ -44,9 +53,12 @@ class Normalizer(object):
             print(normalized_ort + " is not a supported orthography.")
             print("Using sep-u-j as orthography.")
             normalized_ort = "sep-u-j"
-        self.norm_fst = ATTFST(
-            _path_to_att_dir / f"fon-{normalized_ort}.att"
-        )
+
+        with pkg_resources.path("elotl.utils.fst.att", "fon-" + normalized_ort + ".att") as p:
+            _path_to_att_dir = p
+
+        print(_path_to_att_dir)
+        self.norm_fst = ATTFST(_path_to_att_dir)
 
     def _convert(self, w: str, fst: ATTFST) -> str:
         """

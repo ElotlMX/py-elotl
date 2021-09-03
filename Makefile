@@ -7,6 +7,8 @@ all: clean_fst fst
 
 fst:
 	mkdir -p $(HFST_DIR) $(ATT_DIR)
+	touch $(ATT_DIR)/__init__.py
+
 	hfst-lexc $(LEXC_DIR)/orig-fon.lexc -o $(HFST_DIR)/orig-fon.hfst
 	hfst-lexc $(LEXC_DIR)/fon-sep-u-j.lexc -o $(HFST_DIR)/fon-sep-u-j.hfst
 	hfst-lexc $(LEXC_DIR)/fon-sep-w-h.lexc -o $(HFST_DIR)/fon-sep-w-h.hfst
