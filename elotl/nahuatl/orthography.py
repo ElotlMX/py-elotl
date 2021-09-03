@@ -6,18 +6,18 @@
 # O, desde otro programa de Python:
 
 #     >>> from elotl.nahuatl.orthography import Normalizer
-#     >>> normalizer = Normalizer("sep")  # o "ack"
+#     >>> normalizer = Normalizer("sep-u-j")  # o "sep-w-h" "ack"
 #     >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
 
 from __future__ import annotations
-import argparse
+#import argparse
 from pathlib import Path
 
-from elotl.nahuatl.fst.attapply import ATTFST
+from elotl.utils.fst.attapply import ATTFST
 
-path_to_att_dir = Path("elotl", "nahuatl", "fst", "att")
-path_to_orig_fon = path_to_att_dir / "orig-fon.att"
-ORIG_FON_FST = ATTFST(path_to_orig_fon)
+_path_to_att_dir = Path("elotl", "utils", "fst", "att")
+_path_to_orig_fon = _path_to_att_dir / "orig-fon.att"
+_ORIG_FON_FST = ATTFST(_path_to_orig_fon)
 
 
 class Normalizer(object):
@@ -38,7 +38,7 @@ class Normalizer(object):
     """
     def __init__(self, normalized_ort: str = "sep"):
         self.norm_fst = ATTFST(
-            path_to_att_dir / f"fon-{normalized_ort}.att"
+            _path_to_att_dir / f"fon-{normalized_ort}.att"
         )
 
     def _convert(self, w: str, fst: ATTFST) -> str:
@@ -72,7 +72,7 @@ class Normalizer(object):
         Converts an input word to a sequence of phonemes using an FST defined
         in elotl/nahuatl/fst/lexc/orig-fon.lexc.
         """
-        return self._convert(w, ORIG_FON_FST)
+        return self._convert(w, _ORIG_FON_FST)
 
     def _normalize_word(self, original_word: str) -> tuple[str, str]:
         """
@@ -187,12 +187,12 @@ class Normalizer(object):
         return " ".join(norm)
 
 
-if __name__ == "__main__":
-    argparser = argparse.ArgumentParser()
-    argparser.add_argument("texto")
-    argparser.add_argument("--ortografia_preferida", "-ort",
-                           choices=["sep", "ack"], default="sep")
+#if __name__ == "__main__":
+#    argparser = argparse.ArgumentParser()
+#    argparser.add_argument("texto")
+#    argparser.add_argument("--ortografia_preferida", "-ort",
+#                           choices=["sep", "ack"], default="sep")
 
-    args = argparser.parse_args()
-    n = Normalizer(output_ort=args.ortografia_preferida)
-    print(n.normalize(args.texto))
+#    args = argparser.parse_args()
+#    n = Normalizer(output_ort=args.ortografia_preferida)
+#    print(n.normalize(args.texto))
