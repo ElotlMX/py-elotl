@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="elotl",
-    version="0.0.1.11",
+    version="0.0.1.14",
     author="Paul Aguilar (@penserbjorne)",
     author_email="paul.aguilar.enriquez@hotmail.com",
     description="Paquete para PLN de lenguas originarias",
@@ -17,6 +17,11 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Operating System :: OS Independent",
+        "Environment :: Console",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Education",
+        "Intended Audience :: Science/Research",
+        "Natural Language :: Spanish",
         "Topic :: Utilities",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Development Status :: 2 - Pre-Alpha",
