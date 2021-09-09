@@ -1,18 +1,16 @@
 # -*- coding: UTF-8 -*-
 
 # Para usar desde la línea de comandos:
-#     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep-u-j|sep-w-h|ack]
+#     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|inali|ack]
 
 # O, desde otro programa de Python:
 
 #     >>> from elotl.nahuatl.orthography import Normalizer
-#     >>> normalizer = Normalizer("sep-u-j")  # o "sep-w-h" "ack"
+#     >>> normalizer = Normalizer("sep")  # o "inali" "ack"
 #     >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
 
 from __future__ import annotations
-#import argparse
-#from pathlib import Path
-
+import logging
 from elotl.utils.fst.attapply import ATTFST
 
 # https://docs.python.org/3/library/importlib.html?highlight=resources#module-importlib.resources
@@ -28,15 +26,17 @@ with pkg_resources.path("elotl.utils.fst.att", "orig-fon.att") as p:
     _path_to_orig_fon = p
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
-_available_orthographies = ['sep-u-j', 'sep-w-h', 'ack']
+_available_orthographies = ['sep', 'inali', 'ack']
+logger = logging.getLogger(__name__)
+
 
 class Normalizer(object):
     """
     Class for normalizing Nahuatl texts to a single orthography. Currently
     supported output orthographies:
-    - SEP-U-J (e.g. "tiualaske")
-    - SEP-W-H
-    - ACK (e.g. "tihualazque").
+    - SEP (e.g. "tiualaskej")
+    - INALI (e.g. "tiwalaskeh")
+    - ACK (e.g. "tihualazqueh")
 
     The entry points for converting text are `.normalize(...)` and
     `.to_phones(...)`.
@@ -45,16 +45,35 @@ class Normalizer(object):
     ----------
     normalized_ort: str
         Name of the orthography to convert everything into. Must be one of
-        ("sep-u-j", "sep-w-h", "ack").
+        ("sep", "inali", "ack").
+    
+    log_level: str
+        Desired level of logging ("error", "warn", or "debug"). If "warn" or
+        "debug", a message will be produced every time the normalizer is unable
+        to convert a word in the input. This can be a bit annoying, so by
+        default the log level is set to "error".
 
     """
-    def __init__(self, normalized_ort: str = "sep-u-j"):
+    def __init__(self, normalized_ort: str = "sep", log_level="error"):
         if not (normalized_ort in _available_orthographies):
             print(normalized_ort + " is not a supported orthography.")
-            print("Using sep-u-j as orthography.")
-            normalized_ort = "sep-u-j"
+            print("Using 'sep' as orthography.")
+            normalized_ort = "sep"
 
-        with pkg_resources.path("elotl.utils.fst.att", "fon-" + normalized_ort + ".att") as p:
+        log_level = log_level.lower()
+        if log_level == "warn":
+            logger.setLevel(logging.WARN)
+        elif log_level == "error":
+            logger.setLevel(logging.ERROR)
+        elif log_level == "debug":
+            logger.setLevel(logging.DEBUG)
+        else:
+            logger.setLevel(logging.ERROR)
+            logging.error("Log level '{}' not recognized. Setting log level to"
+                          " 'ERROR'.".format(log_level))
+
+        with pkg_resources.path("elotl.utils.fst.att",
+                                "fon-" + normalized_ort + ".att") as p:
             _path_to_att_dir = p
 
         self.norm_fst = ATTFST(_path_to_att_dir)
@@ -63,7 +82,7 @@ class Normalizer(object):
         """
         Convert an input word form to an output form using the provided ATTFST
         object. In this implementation, we assume high weights are preferred,
-        so we select the last of the generated candidates.SEP
+        so we select the last of the generated candidates.
 
         Parameters
         ----------
@@ -95,7 +114,7 @@ class Normalizer(object):
     def _normalize_word(self, original_word: str) -> tuple[str, str]:
         """
         Convert an input word from 'any' orthography into a normalized
-        orthography (currently SEP-U-J, SEP-W-H and ACK). Since this process
+        orthography (currently SEP, INALI, and ACK). Since this process
         requires first converting the input to a pseudo-phonemic
         representation, we return both the phonemic and normalized forms.
 
@@ -115,16 +134,14 @@ class Normalizer(object):
 
         fon = self._g2p(w)
         if fon is None:
-            # TODO: log this as a warning instead of printing to stdout.
-            print("Unable to convert word '{}' to phonemes."
-                  .format(w))
+            logger.warn("Unable to convert word '{}' to phonemes."
+                        .format(w))
             return w, w
 
         normed = self._convert(fon, self.norm_fst)
         if normed is None:
-            # TODO: log this as a warning instead of printing to stdout.
-            print("Unable to convert word '{}'.from phonemes to "
-                  "normalized orthography.".format(fon))
+            logger.warn("Unable to convert word '{}'.from phonemes to "
+                        "normalized orthography.".format(fon))
             return fon, w
 
         return fon, normed
@@ -163,6 +180,11 @@ class Normalizer(object):
             if token in overrides:
                 t_fon = overrides[token.lower()]
             t_fon = self._g2p(token)
+            if t_fon is None:
+                logger.warn("Unable to convert word '{}' to phonemes."
+                            .format(token))
+                fon.append(token)
+                continue
             fon.append(t_fon)
 
         return " ".join(fon)
@@ -171,8 +193,8 @@ class Normalizer(object):
         """
         Convert a non-normalized Nahuatl text into normalized orthography.
         Depending on the value used when initializing this class, the
-        normalized orthography is SEP-U-J, SEP-W-H or ACK. Conversion happens at the
-        word-level after tokenizing on whitespace.
+        normalized orthography is SEP, INALI or ACK. Conversion happens
+        at the word-level after tokenizing on whitespace.
 
         Parameters
         ----------
@@ -203,14 +225,3 @@ class Normalizer(object):
             norm.append(t_norm)
 
         return " ".join(norm)
-
-
-#if __name__ == "__main__":
-#    argparser = argparse.ArgumentParser()
-#    argparser.add_argument("texto")
-#    argparser.add_argument("--ortografia_preferida", "-ort",
-#                           choices=["sep", "ack"], default="sep")
-
-#    args = argparser.parse_args()
-#    n = Normalizer(output_ort=args.ortografia_preferida)
-#    print(n.normalize(args.texto))
