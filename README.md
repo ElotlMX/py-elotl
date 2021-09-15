@@ -118,9 +118,12 @@ Creates a normalizer object, passing as parameter the normalization to be used.
 
 The following normalizations are currently available:
 
-- sep-u-j
-- sep-w-h
+- sep
+  - Alphabet often seen in use by the Secretaría de Educación Pública and the Instituto Nacional de Educación Indígena. important characteristics of this alphabet are the use of "u" for the phoneme /w/, "k" for /k/, and "j" for /h/.
+- inali
+  - Alphabet in use by the Instituto Nacional tde Lenguas Indígenas. Uses "w" for /w/, "k" for /k/, and "h" for /h/.
 - ack
+  - Alphabet initially used by Richard Andrews and subsequently by a number of other Nahuatl scholars. Named after Andrews, Campbell, and Karttunen.
 
 If an unsupported normalization is specified, sep-u-j will be used by default.
 
@@ -128,7 +131,7 @@ You can use the `normalize` method to normalize a text to the selected orthograp
 the phonemes.
 
 ```python
->>> n = elotl.nahuatl.orthography.Normalizer("sep-u-j")
+>>> n = elotl.nahuatl.orthography.Normalizer("sep")
 >>> n.normalize(a[1][1])
 'au in ye yujki in on tlenamakak niman ye ik teixpan on motlalia se tlakatl itech mokaua.'
 >>> n.to_phones(a[1][1])
@@ -136,7 +139,7 @@ the phonemes.
 ```
 
 ```python
->>> n = elotl.nahuatl.orthography.Normalizer("sep-w-h")
+>>> n = elotl.nahuatl.orthography.Normalizer("inali")
 >>> n.normalize(a[1][1])
 'aw in ye yuhki in on tlenamakak niman ye ik teixpan on motlalia se tlakatl itech mokawa.'
 >>> n.to_phones(a[1][1])
