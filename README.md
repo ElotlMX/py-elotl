@@ -123,7 +123,7 @@ The following normalizations are currently available:
 - inali
   - Alphabet in use by the Instituto Nacional tde Lenguas Indígenas. Uses "w" for /w/, "k" for /k/, and "h" for /h/.
 - ack
-  - Alphabet initially used by Richard Andrews and subsequently by a number of other Nahuatl scholars. Named after Andrews, Campbell, and Karttunen.
+  - Alphabet initially used by Richard Andrews and subsequently by a number of other Nahuatl scholars. Named after Andrews, Campbell, and Karttunen. Uses "hu" for /w/, "c" and "qu" for /k/, and "h" for /h/.
 
 If an unsupported normalization is specified, sep-u-j will be used by default.
 
