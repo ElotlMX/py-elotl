@@ -119,9 +119,9 @@ Creates a normalizer object, passing as parameter the normalization to be used.
 The following normalizations are currently available:
 
 - sep
-  - Alphabet often seen in use by the Secretaría de Educación Pública and the Instituto Nacional de Educación Indígena. important characteristics of this alphabet are the use of "u" for the phoneme /w/, "k" for /k/, and "j" for /h/.
+  - Alphabet often seen in use by the Secretaría de Educación Pública (SEP) and the Instituto Nacional para la Educación de los Adultos (INEA). important characteristics of this alphabet are the use of "u" for the phoneme /w/, "k" for /k/, and "j" for /h/.
 - inali
-  - Alphabet in use by the Instituto Nacional tde Lenguas Indígenas. Uses "w" for /w/, "k" for /k/, and "h" for /h/.
+  - Alphabet in use by the Instituto Nacional de Lenguas Indígenas. Uses "w" for /w/, "k" for /k/, and "h" for /h/.
 - ack
   - Alphabet initially used by Richard Andrews and subsequently by a number of other Nahuatl scholars. Named after Andrews, Campbell, and Karttunen. Uses "hu" for /w/, "c" and "qu" for /k/, and "h" for /h/.
 
