@@ -55,8 +55,8 @@ class TestOrthographicNormalization(unittest.TestCase):
         'huiliz tiquecuiloz tlen nica timitztlatlanilia itich nin amatl'
     ]
 
-    sep_normalizer_u_j = Normalizer("sep-u-j")
-    sep_normalizer_w_h = Normalizer("sep-w-h")
+    sep_normalizer_u_j = Normalizer("sep")
+    sep_normalizer_w_h = Normalizer("inali")
     ack_normalizer = Normalizer("ack")
 
     def test_normalize_sep_u_j(self):
