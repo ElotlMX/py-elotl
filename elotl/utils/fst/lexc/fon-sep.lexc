@@ -17,7 +17,9 @@ e:e Loop ;
 e%::e Loop "weight: 1.0";
 i%::i Loop "weight: 1.0";
 u:u Cns ;
+u:u Punct ;
 ú:ú Cns ;
+ú:ú Punct ;
 a:a Loop ;
 á:á Loop ;
 o:o Loop ;
@@ -30,7 +32,10 @@ LEXICON Cns
 ʔ:j # ;
 ʔ:j Punct ;
 
+h:j Cns ;
 h:j Vow ;
+h:j Punct ;
+hw:ju Vow ;
 b:b Loop ;
 kʷ:ku Vow ;
 kʷ:uk Cns ;
@@ -61,7 +66,9 @@ l:l Loop ;
 
 LEXICON Punct
 %":%" Loop ;
+%”:%” Loop ;
 %!:%! Loop ;
+%“:%“ Loop ;
 ¡:¡ Loop ;
 %#:%# Loop ;
 %$:%$ Loop ;
