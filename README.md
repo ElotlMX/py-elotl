@@ -125,7 +125,7 @@ The following normalizations are currently available:
 - ack
   - Alphabet initially used by Richard Andrews and subsequently by a number of other Nahuatl scholars. Named after Andrews, Campbell, and Karttunen. Uses "hu" for /w/, "c" and "qu" for /k/, and "h" for /h/.
 
-If an unsupported normalization is specified, sep-u-j will be used by default.
+If an unsupported normalization is specified, sep will be used by default.
 
 You can use the `normalize` method to normalize a text to the selected orthography. And the `to_phones` method to get
 the phonemes.
@@ -172,24 +172,47 @@ test/                               Unit test scripts
 
 ## Development
 
-### Build FSTs
+### Requirements
 
-Requires [HFST](https://github.com/hfst/hfst) to be installed. Install it and build the FSTs with `make`.
+- python3
+- [HFST](https://github.com/hfst/hfst)
+- GNU make
+- virtualenv
+- Python packages
+  - setuptools
+  - wheel
+
+### Quick build
 
 ```bash
+virtualenv --python=/usr/bin/python3 venv
+source venv/bin/activate
 make all
 ```
-### Create a virtual environment and activate it.
+
+### Step by step
+
+#### Build FSTs
+
+Build the FSTs with `make`.
+
+```bash
+make fst
+```
+
+#### Create a virtual environment and activate it.
 
 ```bash
 virtualenv --python=/usr/bin/python3 venv
 source venv/bin/activate
 ```
-### Update `pip` and generate distribution files.
+
+#### Update `pip` and generate distribution files.
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install --upgrade setuptools wheel
+rm -rf build/ dist/
 python setup.py clean sdist bdist_wheel
 ```
 

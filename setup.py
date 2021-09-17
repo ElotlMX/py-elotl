@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="elotl",
-    version="0.0.1.15",
+    version="0.0.1.16",
     author="Paul Aguilar (@penserbjorne)",
     author_email="paul.aguilar.enriquez@hotmail.com",
     description="Paquete para PLN de lenguas originarias",
