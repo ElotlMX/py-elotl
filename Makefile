@@ -3,9 +3,10 @@ LEXC_DIR = $(FST_DIR)/lexc
 HFST_DIR = $(FST_DIR)/hfst
 ATT_DIR = $(FST_DIR)/att
 
-all: clean_fst fst
+all: fst build_python
 
 fst:
+	rm -rf $(HFST_DIR) $(ATT_DIR)
 	mkdir -p $(HFST_DIR) $(ATT_DIR)
 	touch $(ATT_DIR)/__init__.py
 
@@ -23,5 +24,10 @@ fst:
 	hfst-fst2txt $(HFST_DIR)/fon-inali.hfst > $(ATT_DIR)/fon-inali.att
 	hfst-fst2txt $(HFST_DIR)/fon-ack.hfst > $(ATT_DIR)/fon-ack.att
 
-clean_fst:
-	rm -rf $(HFST_DIR) $(ATT_DIR)
+build_python:
+	rm -rf build/ dist/
+	python -m pip install --upgrade pip
+	python -m pip install --upgrade setuptools wheel
+	rm -rf build/ dist/
+	python setup.py clean sdist bdist_wheel
+	python -m pip install -e .
