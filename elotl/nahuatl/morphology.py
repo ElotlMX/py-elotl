@@ -89,6 +89,8 @@ class Convertor(object):
 			intersect = msd.intersection(pos_pat)
 			if intersect == pos_pat:
 				analysis['pos'] = out[1]
+				for i in out[2].split('|'):
+					analysis['feats'].add(i)
 				msd = remainder
 			feats_pat = set([inn[2]])
 			remainder = msd - feats_pat

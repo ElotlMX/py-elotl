@@ -3,6 +3,7 @@
 2	_	n	rel	_	_	NOUN	NounType=Relat	_	
 2	_	n	dim	_	_	NOUN	Deriv=Dim	_	
 2	_	prn	pro	_	_	PRON	PronType=Prs	_
+2	_	neg	_	_	_	PART	Polarity=Neg	_
 1	_	_	pres	_	_	_	Tense=Pres|VerbForm=Fin	_
 1	_	_	pret	_	_	_	Tense=Past|VerbForm=Fin	_
 1	_	_	fut	_	_	_	Tense=Fut|VerbForm=Fin	_
