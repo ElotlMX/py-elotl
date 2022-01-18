@@ -215,6 +215,7 @@ class Analyser(object):
 			converted.append((self._convert_analysis(analysis), weight))
 		return converted
 
+
 	def analyse(self, text, tokenise = False):
 		"""
 		An analyse function that can take either a string with a tokeniser, 
@@ -266,3 +267,11 @@ class Analyser(object):
 
 		return tokens
 
+	def analyze(self, text, tokenize = False):
+		"""
+		Convenience function for alternative spelling.
+		"""
+		return self.analyse(text, tokenize)
+
+# Convenience alias for Analyser to Analyzer
+Analyzer = Analyser
