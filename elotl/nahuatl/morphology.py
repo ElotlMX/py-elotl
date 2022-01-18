@@ -97,6 +97,7 @@ class Convertor(object):
 				for i in out[2].split('|'):
 					analysis['feats'].add(i)
 				msd = remainder
+
 		return analysis
 
 	def convert(self, analysis_):
@@ -124,14 +125,17 @@ class Analyser(object):
 
 	def _tokenise(self, text):
 		tokens = re.sub('([^a-zA-Z]+)', ' \g<1> ', text)
-		return [token.strip() for token in tokens if not token.strip() == '']
+		return [token.strip() for token in tokens.split(' ') if not token.strip() == '']
 
 	def _convert_analysis(self, analysis):
 		analyses = self.convertor.convert(analysis)
 		return analyses
 
-	def _analyse_token(self,token):
+	def _analyse_token(self,token, alternative=''):
 		analyses = list(self.analyser.apply(token))
+		if len(analyses) == 0:
+			analyses = list(self.analyser.apply(alternative))
+				
 		converted = []
 		for (analysis, weight) in analyses:
 			converted.append((self._convert_analysis(analysis), weight))
@@ -164,7 +168,7 @@ class Analyser(object):
 			wordforms = self.tokenise(text)	
 
 		for wordform in wordforms:
-			analyses = self._analyse_token(wordform)
+			analyses = self._analyse_token(wordform, wordform.lower())
 			token = Token(wordform, analyses)
 			tokens.append(token)
 

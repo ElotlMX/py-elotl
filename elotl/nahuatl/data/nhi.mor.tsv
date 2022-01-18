@@ -7,6 +7,7 @@
 1	_	_	pret	_	_	_	Tense=Past|VerbForm=Fin	_
 1	_	_	fut	_	_	_	Tense=Fut|VerbForm=Fin	_
 1	_	_	impf	_	_	_	Aspect=Impf|Tense=Past|VerbForm=Fin	_
+1	_	_	opt	_	_	_	Mood=Opt	_
 1	_	_	p1|sg	_	_	_	Number=Sing|Person=1	_
 1	_	_	p2|sg	_	_	_	Number=Sing|Person=2	_
 1	_	_	p3|sg	_	_	_	Number=Sing|Person=3	_
