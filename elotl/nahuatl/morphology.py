@@ -1,13 +1,10 @@
 # -*- coding: UTF-8 -*-
 
-# Para usar desde la línea de comandos:
-#     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|inali|ack]
-
 # O, desde otro programa de Python:
 
-#     >>> from elotl.nahuatl.orthography import Normalizer
-#     >>> normalizer = Normalizer("sep")  # o "inali" "ack"
-#     >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
+#	>>> from elotl.nahuatl.morphology import Analyser
+#	>>> a = Analyser()
+#	>>> res = a.analyse('Huan nomama onechilhuaya, “Amo quen ximati, teh xiyo in escuela.', tokenise=True)
 
 #from __future__ import annotations
 import logging
@@ -23,8 +20,12 @@ except ImportError:
 
 class Token(object):
 	"""
-		Each analysis is formed of a weight and a sequence of words, a token may 
-		contain more than one word, a word is a triple of (lemma, pos, [feat=value])
+	Each analysis is formed of a weight and a sequence of words, a token may 
+	contain more than one word, a word is a triple of (lemma, pos, [feat=value])
+
+	Parameters
+	----------
+
 	"""
 	def __init__(self, wordform, analyses = []):
 		self.wordform = wordform
@@ -41,12 +42,30 @@ class Convertor(object):
 	def _convert_tags(self, t):
 		"""
 			Turn v|tv into <v><tv> and p1|sg into <p1><sg>
+
+		Parameters
+		----------
+
+		Returns 
+		----------
+
 		"""
+
 		if t != '':
 			return '<' + t.replace('|', '><') + '>'
 		return t
 
 	def _load_conversion_rules(self, fn):
+		"""
+
+		Parameters
+		----------
+
+		Returns 
+		----------
+
+		"""
+
 		rules = {'sym': set(), 'sub': []}
 		for line in open(fn):
 			if line[0] == '#':
@@ -76,9 +95,17 @@ class Convertor(object):
 
 	def _convert(self, a):
 		"""
-			Convert an analysis to UD using the conversion rules, rules
-			are applied in priority order.
+		Convert an analysis to UD using the conversion rules, rules
+		are applied in priority order.
+
+		Parameters
+		----------
+
+		Returns 
+		----------
+
 		"""
+
 		analysis = {'lemma':'', 'pos':'', 'feats': set()}
 		tags = [i for i in self.input_patterns.findall(a) if not i == '']
 		msd = set(tags)
@@ -104,6 +131,16 @@ class Convertor(object):
 		return analysis
 
 	def convert(self, analysis_):
+		"""
+
+		Parameters
+		----------
+
+		Returns 
+		----------
+
+		"""
+
 		analysis = []	
 		subwords = analysis_.split('+')
 		for word in subwords:
@@ -111,7 +148,12 @@ class Convertor(object):
 		return analysis
 
 class Analyser(object):
+	"""
 
+	Parameters
+	----------
+
+	"""
 	def __init__(self, tokeniser=None, normalise=False, log_level="error"):
 		if not tokeniser:
 			self.tokenise = self._tokenise
@@ -127,14 +169,43 @@ class Analyser(object):
 		self.convertor = Convertor(_path_to_tsv_dir)
 
 	def _tokenise(self, text):
+		"""
+
+		Parameters
+		----------
+
+		Returns 
+		----------
+
+		"""
+
 		tokens = re.sub('([^a-zA-Z]+)', ' \g<1> ', text)
 		return [token.strip() for token in tokens.split(' ') if not token.strip() == '']
 
 	def _convert_analysis(self, analysis):
+		"""
+
+		Parameters
+		----------
+
+		Returns 
+		----------
+
+		"""
+
 		analyses = self.convertor.convert(analysis)
 		return analyses
 
 	def _analyse_token(self,token, alternative=''):
+		"""
+
+		Parameters
+		----------
+
+		Returns 
+		----------
+
+		"""
 		analyses = list(self.analyser.apply(token))
 		if len(analyses) == 0:
 			analyses = list(self.analyser.apply(alternative))
@@ -146,18 +217,36 @@ class Analyser(object):
 
 	def analyse(self, text, tokenise = False):
 		"""
-			An analyse function that can take either a string with a tokeniser, 
-			a pre-tokenised list or a pre-tokenised string. If it is passed a 
-			tokeniser the tokeniser is first run and then the list is analysed,
-			if passed a list, the list is analysed, if passed a pre-tokenised
-			list then the list is split on space and then analysed.
+		An analyse function that can take either a string with a tokeniser, 
+		a pre-tokenised list or a pre-tokenised string. If it is passed a 
+		tokeniser the tokeniser is first run and then the list is analysed,
+		if passed a list, the list is analysed, if passed a pre-tokenised
+		list then the list is split on space and then analysed.
 
-			>>> a.analyse('a b c')
-			[<Token "a" (0)>, <Token "b" (0)>, <Token "c" (0)>]
-			>>> a.analyse(['a', 'b', 'c'])
-			[<Token "a" (0)>, <Token "b" (0)>, <Token "c" (0)>]
-			>>> a.analyse('ab, c', tokenise=True)
-			[<Token "a" (0)>, <Token "b" (0)>, <Token "," (0)>, <Token "c" (0)>]
+
+		Parameters
+		----------
+		text: str or list
+			Input text/sentence. It can be either a string or a list. It
+			should be pre-tokenised, alternatively see below.
+		
+		tokenise: bool
+			Should tokenisation be performed on the input prior to analysis?
+			
+		Returns
+		----------
+		list
+			List of Token objects.
+
+		Examples
+		----------
+
+		>>> a.analyse('a b c')
+		[<Token "a" (0)>, <Token "b" (0)>, <Token "c" (0)>]
+		>>> a.analyse(['a', 'b', 'c'])
+		[<Token "a" (0)>, <Token "b" (0)>, <Token "c" (0)>]
+		>>> a.analyse('ab, c', tokenise=True)
+		[<Token "a" (0)>, <Token "b" (0)>, <Token "," (0)>, <Token "c" (0)>]
 		"""
 
 		tokens = []
