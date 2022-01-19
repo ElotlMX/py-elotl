@@ -26,21 +26,21 @@ class Token(object):
 	contain more than one word, a word is a dictionary of
 		{lemma, pos, [feat=value]}
 	"""
-	def __init__(self, wordform, analyses=[]):
+	def __init__(self, wordform, analyses=[], max_analyses=None):
 		self.wordform = wordform
-		self.analyses = analyses
+		self.analyses = analyses[:max_analyses]
 		self.pos = None
 		self.lemma = None
 
 		"""
 		If the lemma and POS are unambiguous (e.g. all analyses share the
 		same lemma and POS then we can set the global lemma/POS to that.
-		For analyses that contain more than one syntactic word, e.g. 
+		For analyses that contain more than one syntactic word, e.g.
 		contractions, this is not possible.
 		"""
 		lemmas = set()
 		categories = set()
-		for (analysis, weight) in analyses:
+		for (analysis, weight) in self.analyses:
 			if len(analysis) == 1:
 				lemmas.add(analysis[0]['lemma'])
 				categories.add(analysis[0]['pos'])
@@ -128,10 +128,14 @@ class Convertor(object):
 			inn = [re.sub('^_$', '', i) for i in row[1:5]]
 			out = [re.sub('^_$', '', i) for i in row[5:]]
 
-			if inn[0] != '': score += 4
-			if inn[1] != '': score += 3
-			if inn[2] != '': score += (2 * len(inn[2].split('|')))
-			if inn[3] != '': score += 1
+			if inn[0] != '':
+				score += 4
+			if inn[1] != '':
+				score += 3
+			if inn[2] != '':
+				score += (2 * len(inn[2].split('|')))
+			if inn[3] != '':
+				score += 1
 
 			inn = [inn[0],
 					self._convert_tags(inn[1]), self._convert_tags(inn[2]), inn[3]]
@@ -302,12 +306,16 @@ class Analyser(object):
 		if len(analyses) == 0 and alternative:
 			analyses = list(self.analyser.apply(alternative))
 
+		# Sort the analyses by weight, higher weight = worse
+		analyses.sort(key=lambda x: x[1])
+
 		converted = []
 		for (analysis, weight) in analyses:
 			converted.append((self._convert_analysis(analysis), weight))
+
 		return converted
 
-	def analyse(self, text, tokenise=False):
+	def analyse(self, text, tokenise=False, max_analyses=None):
 		"""
 		An analyse function that can take either a string with a tokeniser,
 		a pre-tokenised list or a pre-tokenised string. If it is passed a
@@ -324,6 +332,11 @@ class Analyser(object):
 
 		tokenise: bool
 			Should tokenisation be performed on the input prior to analysis?
+
+		max_analyses: int
+			The maximum number of analyses that should be returned, these
+			will be returned in order of weight, lowest weight first. If
+			None, return all analyses.
 
 		Returns
 		----------
@@ -353,12 +366,12 @@ class Analyser(object):
 
 		for wordform in wordforms:
 			analyses = self._analyse_token(wordform, wordform.lower())
-			token = Token(wordform, analyses)
+			token = Token(wordform, analyses, max_analyses)
 			tokens.append(token)
 
 		return tokens
 
-	def analyze(self, text, tokenize=False):
+	def analyze(self, text, tokenize=False, max_analyses=None):
 		"""
 		Convenience alias of analyse() with alternative spelling.
 
@@ -371,12 +384,17 @@ class Analyser(object):
 		tokenize: bool
 			Should tokenisation be performed on the input prior to analysis?
 
+		max_analyses: int
+			The maximum number of analyses that should be returned, these
+			will be returned in order of weight, lowest weight first. If
+			None, return all analyses.
+
 		Returns
 		----------
 		list
 			List of Token objects.
 		"""
-		return self.analyse(text, tokenize)
+		return self.analyse(text, tokenize, max_analyses)
 
 # Convenience alias for Analyser to Analyzer
 Analyzer = Analyser
