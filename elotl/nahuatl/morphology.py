@@ -11,6 +11,7 @@ Ejemplo de uso:
 
 import re
 from elotl.utils.fst.attapply import ATTFST
+from elotl.nahuatl.orthography import Normalizer as Normaliser
 
 try:
 	# For Python >= 3.7
@@ -189,7 +190,8 @@ class Convertor(object):
 				msd = remainder
 
 		# Convert set of Feature=Value pairs to dictionary of Feature:Value
-		analysis['feats'] = {i.split('=')[0]: i.split('=')[1] for i in analysis['feats']}
+		analysis['feats'] = {i.split('=')[0]: i.split('=')[1]
+					for i in analysis['feats']}
 
 		return analysis
 
@@ -287,7 +289,7 @@ class Analyser(object):
 		analyses = self.convertor.convert(analysis)
 		return analyses
 
-	def _analyse_token(self, token, alternative=''):
+	def _analyse_token(self, token, alternatives=[]):
 		"""
 		Function that takes a token and returns a list of analyses with their
 		weights as assigned by the transducer.
@@ -297,17 +299,24 @@ class Analyser(object):
 		token: str
 			A surface token
 
-		alternative: str
-			An alternative form, e.g. a lowercased or normalised form
+		alternative: list
+			A list of alternative forms, e.g. a lowercased or normalised form
 
 		Returns
 		----------
 		list
 			A list of the possible analyses with weights
 		"""
+
+		# Look up the word form in the FST
 		analyses = list(self.analyser.apply(token))
-		if len(analyses) == 0 and alternative:
-			analyses = list(self.analyser.apply(alternative))
+		i = 0
+		# If the result is empty, try cycling through all the alternatives
+		while analyses == []:
+			if i >= len(alternatives):
+				break
+			analyses = list(self.analyser.apply(alternatives[i]))
+			i += 1
 
 		# Sort the analyses by weight, higher weight = worse
 		analyses.sort(key=lambda x: x[1])
@@ -318,14 +327,13 @@ class Analyser(object):
 
 		return converted
 
-	def analyse(self, text, tokenise=False, max_analyses=None):
+	def analyse(self, text, tokenise=False, normalise=False, max_analyses=None):
 		"""
 		An analyse function that can take either a string with a tokeniser,
 		a pre-tokenised list or a pre-tokenised string. If it is passed a
 		tokeniser the tokeniser is first run and then the list is analysed,
 		if passed a list, the list is analysed, if passed a pre-tokenised
 		list then the list is split on space and then analysed.
-
 
 		Parameters
 		----------
@@ -335,6 +343,9 @@ class Analyser(object):
 
 		tokenise: bool
 			Should tokenisation be performed on the input prior to analysis?
+
+		normalise: bool
+			Should normalised forms be added to the list of alternatives?
 
 		max_analyses: int
 			The maximum number of analyses that should be returned, these
@@ -367,14 +378,20 @@ class Analyser(object):
 		else:
 			wordforms = self.tokenise(text)
 
+		normaliser = Normaliser('ack')
+
 		for wordform in wordforms:
-			analyses = self._analyse_token(wordform, wordform.lower())
+			alternatives = [wordform.lower()]
+			if normalise:
+				alternatives += [normaliser.normalize(wordform),
+					normaliser.normalize(wordform).lower()]
+			analyses = self._analyse_token(wordform, alternatives)
 			token = Token(wordform, analyses, max_analyses)
 			tokens.append(token)
 
 		return tokens
 
-	def analyze(self, text, tokenize=False, max_analyses=None):
+	def analyze(self, text, tokenize=False, normalize=False, max_analyses=None):
 		"""
 		Convenience alias of analyse() with alternative spelling.
 
@@ -397,7 +414,7 @@ class Analyser(object):
 		list
 			List of Token objects.
 		"""
-		return self.analyse(text, tokenize, max_analyses)
+		return self.analyse(text, tokenize, normalize, max_analyses)
 
 # Convenience alias for Analyser to Analyzer
 Analyzer = Analyser
