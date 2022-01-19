@@ -24,7 +24,7 @@ class Token(object):
 	"""
 	Each analysis is formed of a weight and a sequence of words, a token may
 	contain more than one word, a word is a dictionary of
-		{lemma, pos, [feat=value]}
+		{lemma, pos, {feat:value}}
 	"""
 	def __init__(self, wordform, analyses=[], max_analyses=None):
 		self.wordform = wordform
@@ -187,6 +187,9 @@ class Convertor(object):
 				for i in out[2].split('|'):
 					analysis['feats'].add(i)
 				msd = remainder
+
+		# Convert set of Feature=Value pairs to dictionary of Feature:Value
+		analysis['feats'] = {i.split('=')[0]: i.split('=')[1] for i in analysis['feats']}
 
 		return analysis
 
