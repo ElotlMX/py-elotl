@@ -50,7 +50,7 @@ class Token(object):
 			self.pos = categories.pop()
 
 	def __repr__(self):
-		return '<Token form="{0}" lemma="{1}" pos="{2}" analyses="{3}")>'.format(
+		return '<Token form="{0}" lemma="{1}" pos="{2}" analyses="{3}">'.format(
 			self.wordform, self.lemma, self.pos, len(self.analyses))
 
 
