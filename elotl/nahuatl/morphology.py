@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# O, desde otro programa de Python:
+# Ejemplo de uso:
 
 #	>>> from elotl.nahuatl.morphology import Analyser
 #	>>> a = Analyser()
@@ -35,35 +35,65 @@ class Token(object):
 		return '<Token "{0}" ({1})>'.format(self.wordform,len(self.analyses))
 
 class Convertor(object):
+	"""
+	A class to convert from Apertium-style analyses to UD-compatible analyses by
+	means of a sequence of priority-ordered rules.
+
+	Parameters
+	----------
+	rule_file: str
+		A path to the location of the TSV file containing the tagset conversion rules.
+		Each rule is composed of 9 columns: 
+			1. Priority
+			2. Input lemma
+			3. Input POS
+			4. Input features
+			5. Input dependency relation (unused)
+			6. Output lemma
+			7. Output POS
+			8. Output features
+			9. Output dependency relation (unused)
+
+	"""
 	def __init__(self, rule_file):
 		self.conversion_rules = self._load_conversion_rules(rule_file)
 		self.input_patterns = re.compile('(' + '|'.join(self.conversion_rules['sym']) + ')')
 
-	def _convert_tags(self, t):
+	def _convert_tags(self, tags):
 		"""
-			Turn v|tv into <v><tv> and p1|sg into <p1><sg>
+		Convert from the tag format in the TSV rule-file to tags that will match
+		the Apertium analyses, e.g. v|tv → <v><tv> and p1|sg → <p1><sg>
 
 		Parameters
 		----------
+		tags: str
+			A sequence of tags separated by the pipe symbol, |
 
 		Returns 
 		----------
-
+		str
+			A sequences of tags encased in less-than and greater-than < > 
 		"""
 
-		if t != '':
-			return '<' + t.replace('|', '><') + '>'
-		return t
+		if tags != '':
+			return '<' + tags.replace('|', '><') + '>'
+		return tags
 
 	def _load_conversion_rules(self, fn):
 		"""
+		Loads the conversion rules and scores each rule. Longer rules are scored higher,
+		rules containing lemmas are scored higher.
 
 		Parameters
 		----------
+		fn: str
+			A path to the location of the TSV file containing the tagset conversion rules.
 
 		Returns 
 		----------
-
+		dict
+			A dictionary containing a set of symbols used for matching and a list of
+			substitution rules.
 		"""
 
 		rules = {'sym': set(), 'sub': []}
@@ -100,10 +130,15 @@ class Convertor(object):
 
 		Parameters
 		----------
+		a: str
+			An Apertium-compatible analysis, e.g. <s_sg1>quiza<v><iv><pret>, note
+			that by this point there should be no subwords.
 
 		Returns 
 		----------
-
+		dict
+			A dictionary containing a lemma, a part-of-speech and a 
+			set of Feature=Value pairs.
 		"""
 
 		analysis = {'lemma':'', 'pos':'', 'feats': set()}
@@ -132,13 +167,19 @@ class Convertor(object):
 
 	def convert(self, analysis_):
 		"""
+		The main function for conversion, takes a full analysis, including possible
+		subwords, e.g. ya<adv>+<s_sg1>quiza<v><iv><pret> and returns a list of 
+		syntactic words. 
 
 		Parameters
 		----------
+		analysis_: str
+			An Apertium-compatible analysis.
 
 		Returns 
 		----------
-
+		list
+			A list of the component analyses by syntactic word.
 		"""
 
 		analysis = []	
@@ -149,15 +190,20 @@ class Convertor(object):
 
 class Analyser(object):
 	"""
+	Class for returning morphological analyses in a Python-friendly format with UD style
+	POS tags and Feature=Value pairs.
 
 	Parameters
 	----------
+	tokeniser: function
+		A tokenisation function, if none is provided a default tokeniser, _tokenise()
+		is used which is based on regular expressions.
 
 	"""
-	def __init__(self, tokeniser=None, normalise=False, log_level="error"):
-		if not tokeniser:
-			self.tokenise = self._tokenise
-		else:
+	def __init__(self, tokeniser=None):
+		self.tokenise = self._tokenise
+
+		if tokeniser:
 			self.tokenise = tokeniser
 
 		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.att") as p:
@@ -170,13 +216,18 @@ class Analyser(object):
 
 	def _tokenise(self, text):
 		"""
+		Internal backoff tokenisation function. 
 
 		Parameters
 		----------
+		text: str
+			The text to be tokenised.
 
 		Returns 
 		----------
-
+		list
+			List of space separated tokens.
+		
 		"""
 
 		tokens = re.sub('([^a-zA-Z]+)', ' \g<1> ', text)
@@ -184,13 +235,21 @@ class Analyser(object):
 
 	def _convert_analysis(self, analysis):
 		"""
+		Takes an analysis returned by the transducer and converts it to a more Python-friendly
+		format. 
 
 		Parameters
 		----------
+		analysis: str
+			An analysis for a surface token, e.g. ya<adv>+<s_sg1>quiza<v><iv><pret>
 
 		Returns 
 		----------
-
+		list
+			A list of syntactic words with their analyses in UD format
+			[{'lemma': 'ya', 'pos': 'ADV', 'feats': set()}, 
+				{'lemma': 'quiza', 'pos': 'VERB', 'feats': {
+				'Number[subj]=Sing', 'Person[subj]=1', 'Tense=Past', 'VerbForm=Fin', 'Subcat=Intr'}}]
 		"""
 
 		analyses = self.convertor.convert(analysis)
@@ -198,16 +257,24 @@ class Analyser(object):
 
 	def _analyse_token(self,token, alternative=''):
 		"""
+		Function that takes a token and returns a list of analyses with their 
+		weights as assigned by the transducer.
 
 		Parameters
 		----------
+		token: str
+			A surface token
+
+		alternative: str
+			An alternative form, e.g. a lowercased or normalised form
 
 		Returns 
 		----------
-
+		list
+			A list of the possible analyses with weights
 		"""
 		analyses = list(self.analyser.apply(token))
-		if len(analyses) == 0:
+		if len(analyses) == 0 and alternative:
 			analyses = list(self.analyser.apply(alternative))
 				
 		converted = []
@@ -269,7 +336,21 @@ class Analyser(object):
 
 	def analyze(self, text, tokenize = False):
 		"""
-		Convenience function for alternative spelling.
+		Convenience alias of analyse() with alternative spelling.
+
+		Parameters
+		----------
+		text: str or list
+			Input text/sentence. It can be either a string or a list. It
+			should be pre-tokenised, alternatively see below.
+		
+		tokenize: bool
+			Should tokenisation be performed on the input prior to analysis?
+			
+		Returns
+		----------
+		list
+			List of Token objects.
 		"""
 		return self.analyse(text, tokenize)
 
