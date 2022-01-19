@@ -29,9 +29,29 @@ class Token(object):
 	def __init__(self, wordform, analyses=[]):
 		self.wordform = wordform
 		self.analyses = analyses
+		self.pos = None
+		self.lemma = None
+
+		"""
+		If the lemma and POS are unambiguous (e.g. all analyses share the
+		same lemma and POS then we can set the global lemma/POS to that.
+		For analyses that contain more than one syntactic word, e.g. 
+		contractions, this is not possible.
+		"""
+		lemmas = set()
+		categories = set()
+		for (analysis, weight) in analyses:
+			if len(analysis) == 1:
+				lemmas.add(analysis[0]['lemma'])
+				categories.add(analysis[0]['pos'])
+		if len(lemmas) == 1:
+			self.lemma = lemmas.pop()
+		if len(categories) == 1:
+			self.pos = categories.pop()
 
 	def __repr__(self):
-		return '<Token "{0}" ({1})>'.format(self.wordform, len(self.analyses))
+		return '<Token form="{0}" lemma="{1}" pos="{2}" analyses="{3}")>'.format(
+			self.wordform, self.lemma, self.pos, len(self.analyses))
 
 
 class Convertor(object):
