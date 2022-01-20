@@ -191,7 +191,7 @@ class Convertor(object):
 
 		# Convert set of Feature=Value pairs to dictionary of Feature:Value
 		analysis['feats'] = {i.split('=')[0]: i.split('=')[1]
-					for i in analysis['feats']}
+					for i in analysis['feats'] if not i == ''}
 
 		return analysis
 
@@ -261,7 +261,7 @@ class Analyser(object):
 
 		"""
 
-		tokens = re.sub(r'([^a-zA-Z]+)', r' \g<1> ', text)
+		tokens = re.sub(r'([^\w])', r' \g<1> ', text)
 		return [token.strip()
 			for token in tokens.split(' ')
 				if not token.strip() == '']
