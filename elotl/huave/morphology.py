@@ -4,13 +4,13 @@
 Ejemplo de uso:
 
 
-	>>> from elotl.nahuatl.morphology import Analyser
+	>>> from elotl.huave.morphology import Analyser
 	>>> a = Analyser()
-	>>> res = a.analyse('“Amo quen ximati, teh xiyo in escuela.', tokenise=True)
+	>>> res = a.analyse('Teat tepood tambas mal wiiüd sawün win.', tokenise=True)
 """
 
 from elotl.utils.fst.attapply import ATTFST
-from elotl.nahuatl.orthography import Normalizer as Normaliser
+#from elotl.huave.orthography import Normalizer as Normaliser
 import elotl.utils.morphology
 
 try:
@@ -38,11 +38,12 @@ class Analyser(elotl.utils.morphology.Analyser):
 		if tokeniser:
 			self.tokenise = tokeniser
 
-		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.att") as p:
+		with pkg_resources.path("elotl.huave.data", "huv.mor.att") as p:
 			_path_to_att_dir = p
-		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.tsv") as p:
+		with pkg_resources.path("elotl.huave.data", "huv.mor.tsv") as p:
 			_path_to_tsv_dir = p
 
 		self.analyser = ATTFST(_path_to_att_dir)
 		self.convertor = elotl.utils.morphology.Convertor(_path_to_tsv_dir)
-		self.normaliser = Normaliser("ack")
+		#self.normaliser = Normaliser("ack")
+		self.normaliser = None
