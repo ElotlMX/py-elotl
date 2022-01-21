@@ -8,7 +8,7 @@ Ejemplo de uso:
 	>>> a = Analyser()
 	>>> res = a.analyse('“Amo quen ximati, teh xiyo in escuela.', tokenise=True)
 """
-
+import logging
 from elotl.utils.fst.attapply import ATTFST
 from elotl.nahuatl.orthography import Normalizer as Normaliser
 import elotl.utils.morphology
@@ -21,6 +21,9 @@ try:
 except ImportError:
 	# Try backported to Python < 3.7 `importlib_resources`.
 	import importlib_resources as pkg_resources
+
+logger = logging.getLogger(__name__)
+
 
 class Analyser(elotl.utils.morphology.Analyser):
 	"""
@@ -39,8 +42,12 @@ class Analyser(elotl.utils.morphology.Analyser):
 
 		if lang_code is None:
 			self.lang_code = NAHUATL_DEFAULT_LANG_CODE
+			logger.info("No Nahuatl variant language code provided. "
+			            "Defaulting to `nhi`.")
 		else:
 			if lang_code not in NAHUATL_SUPPORTED_LANG_CODES:
+				logger.errorf"Unsupported lang code for Nahuatl: "
+								 f"{lang_code}")
 				raise ValueError(f"Unsupported lang code for Nahuatl: "
 								 f"{lang_code}")
 			else:
