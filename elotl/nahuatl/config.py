@@ -5,5 +5,5 @@
 # TODO: entrenar un modelo general (multi-dialectal) y añadir "all" como una 
 # de las opciones.
 #
-NAHUATL_DEFAULT_LANG_CODE = "nhi"
-NAHUATL_SUPPORTED_LANG_CODES = ["nhi"]
+DEFAULT_LANG_CODE = "nhi"
+SUPPORTED_LANG_CODES = ["nhi"]

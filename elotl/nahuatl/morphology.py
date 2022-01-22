@@ -12,8 +12,7 @@ import logging
 from elotl.utils.fst.attapply import ATTFST
 from elotl.nahuatl.orthography import Normalizer as Normaliser
 import elotl.utils.morphology
-from elotl.utils.config import (NAHUATL_SUPPORTED_LANG_CODES, 
-							    NAHUATL_DEFAULT_LANG_CODE)
+from elotl.nahuatl.config import SUPPORTED_LANG_CODES, DEFAULT_LANG_CODE
 
 try:
 	# For Python >= 3.7
