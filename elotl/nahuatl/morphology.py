@@ -46,8 +46,7 @@ class Analyser(elotl.utils.morphology.Analyser):
 			            "Defaulting to `nhi`.")
 		else:
 			if lang_code not in NAHUATL_SUPPORTED_LANG_CODES:
-				logger.errorf"Unsupported lang code for Nahuatl: "
-								 f"{lang_code}")
+				logger.error("Unsupported language variant specified.")
 				raise ValueError(f"Unsupported lang code for Nahuatl: "
 								 f"{lang_code}")
 			else:
