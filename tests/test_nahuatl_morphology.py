@@ -11,11 +11,12 @@ class TokenEncoder(JSONEncoder):
 class TestVariantSelection(unittest.TestCase):
 
 	def test_unsupported_variant(self):
-		self.assertRaises(ValueError, Analyser("abc"))
+		init_analyser_w_abc = lambda: Analyser(lang_code="abc")
+		self.assertRaises(ValueError, init_analyser_w_abc)
 	
 	def test_default_variant(self):
 		a = Analyser()
-		self.assertEquals(a.lang_code, "nhi")
+		self.assertEqual(a.lang_code, "nhi")
 
 class TestAnalysisWithExplicitVariantSelection(unittest.TestCase):
 	analyser = Analyser(lang_code="nhi")
@@ -38,7 +39,7 @@ class TestAnalysisWithExplicitVariantSelection(unittest.TestCase):
 		resj = json.dumps(res, cls=TokenEncoder)
 		self.assertEqual(resj, outpj)
 
-		
+
 class TestAnalysis(unittest.TestCase):
 	analyser = Analyser()
 

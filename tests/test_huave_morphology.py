@@ -12,6 +12,7 @@ class TestAnalysis(unittest.TestCase):
 	analyser = Analyser()
 
 	def test_analysis_tokenisation(self):
+		self.maxDiff=None
 
 		inp = "tambas."
 		outp = [{"wordform": "tambas", "analyses": [[[{"lemma": "mb", "pos": "VERB", "feats": {"Person": "1", "Tense": "Past", "Number": "Sing", "Subcat": "Intr"}}], 0.0]], "pos": "VERB", "lemma": "mb"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
