@@ -26,8 +26,8 @@ class TestAnalysisWithExplicitVariantSelection(unittest.TestCase):
 		inp = "Nomama."
 		outp = [{"wordform": "Nomama", "analyses": [[[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[psor]": "1"}}], 0.0], [[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[subj]": "3", "Number[subj]": "Sing", "Person[psor]": "1"}}], 1.0]], "pos": "NOUN", "lemma": "mama"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
 		res = self.analyser.analyse(inp, tokenise=True)
-		outpj = json.dumps(outp, cls=TokenEncoder)
-		resj = json.dumps(res, cls=TokenEncoder)
+		outpj = json.dumps(outp, cls=TokenEncoder, sort_keys=True)
+		resj = json.dumps(res, cls=TokenEncoder, sort_keys=True)
 		self.assertEqual(resj, outpj)
 
 	def test_analysis(self):
@@ -35,8 +35,8 @@ class TestAnalysisWithExplicitVariantSelection(unittest.TestCase):
 		inp = ["Nomama","."]
 		outp = [{"wordform": "Nomama", "analyses": [[[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[psor]": "1"}}], 0.0], [[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[subj]": "3", "Number[subj]": "Sing", "Person[psor]": "1"}}], 1.0]], "pos": "NOUN", "lemma": "mama"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
 		res = self.analyser.analyse(inp)
-		outpj = json.dumps(outp, cls=TokenEncoder)
-		resj = json.dumps(res, cls=TokenEncoder)
+		outpj = json.dumps(outp, cls=TokenEncoder, sort_keys=True)
+		resj = json.dumps(res, cls=TokenEncoder, sort_keys=True)
 		self.assertEqual(resj, outpj)
 
 
@@ -48,13 +48,8 @@ class TestAnalysis(unittest.TestCase):
 		inp = "Nomama."
 		outp = [{"wordform": "Nomama", "analyses": [[[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[psor]": "1"}}], 0.0], [[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[subj]": "3", "Number[subj]": "Sing", "Person[psor]": "1"}}], 1.0]], "pos": "NOUN", "lemma": "mama"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
 		res = self.analyser.analyse(inp, tokenise=True)
-<<<<<<< HEAD
-		outpj = json.dumps(outp, cls=TokenEncoder)
-		resj = json.dumps(res, cls=TokenEncoder)
-=======
 		outpj = json.dumps(outp, cls=TokenEncoder, sort_keys=True)
 		resj = json.dumps(res, cls=TokenEncoder, sort_keys=True)
->>>>>>> fran-morph-refactor
 		self.assertEqual(resj, outpj)
 
 	def test_analysis(self):
@@ -62,13 +57,8 @@ class TestAnalysis(unittest.TestCase):
 		inp = ["Nomama","."]
 		outp = [{"wordform": "Nomama", "analyses": [[[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[psor]": "1"}}], 0.0], [[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[subj]": "3", "Number[subj]": "Sing", "Person[psor]": "1"}}], 1.0]], "pos": "NOUN", "lemma": "mama"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
 		res = self.analyser.analyse(inp)
-<<<<<<< HEAD
-		outpj = json.dumps(outp, cls=TokenEncoder)
-		resj = json.dumps(res, cls=TokenEncoder)
-=======
 		outpj = json.dumps(outp, cls=TokenEncoder, sort_keys=True)
 		resj = json.dumps(res, cls=TokenEncoder, sort_keys=True)
->>>>>>> fran-morph-refactor
 		self.assertEqual(resj, outpj)
 
 
