@@ -62,12 +62,12 @@ class TestOrthographicNormalization(unittest.TestCase):
     def test_normalize_sep_u_j(self):
         for i, inp in enumerate(self.test_inputs):
             normed = self.sep_normalizer_u_j.normalize(inp)
-            self.assertEquals(normed, self.sep_outputs[i])
+            self.assertEqual(normed, self.sep_outputs[i])
 
     def test_normalize_ack(self):
         for i, inp in enumerate(self.test_inputs):
             normed = self.ack_normalizer.normalize(inp)
-            self.assertEquals(normed, self.ack_outputs[i])
+            self.assertEqual(normed, self.ack_outputs[i])
 
     def test_overrides(self):
         inp = "ce Crucifixo"
@@ -78,7 +78,7 @@ class TestOrthographicNormalization(unittest.TestCase):
                 overrides={'Crucifixo': 'crucifixo'}
             )
         )
-        self.assertEquals(normed_w_override, outp)
+        self.assertEqual(normed_w_override, outp)
 
 
 if __name__ == '__main__':

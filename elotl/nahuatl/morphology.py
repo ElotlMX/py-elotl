@@ -8,10 +8,11 @@ Ejemplo de uso:
 	>>> a = Analyser()
 	>>> res = a.analyse('“Amo quen ximati, teh xiyo in escuela.', tokenise=True)
 """
-
+import logging
 from elotl.utils.fst.attapply import ATTFST
 from elotl.nahuatl.orthography import Normalizer as Normaliser
 import elotl.utils.morphology
+from elotl.nahuatl.config import SUPPORTED_LANG_CODES, DEFAULT_LANG_CODE
 
 try:
 	# For Python >= 3.7
@@ -19,6 +20,9 @@ try:
 except ImportError:
 	# Try backported to Python < 3.7 `importlib_resources`.
 	import importlib_resources as pkg_resources
+
+logger = logging.getLogger(__name__)
+
 
 class Analyser(elotl.utils.morphology.Analyser):
 	"""
@@ -32,15 +36,26 @@ class Analyser(elotl.utils.morphology.Analyser):
 		is used which is based on regular expressions.
 
 	"""
-	def __init__(self, tokeniser=None):
+	def __init__(self, tokeniser=None, lang_code=None):
 		self.tokenise = self._tokenise
 
+		if lang_code is None:
+			self.lang_code = DEFAULT_LANG_CODE
+			logger.info("No Nahuatl variant language code provided. "
+			            "Defaulting to `nhi`.")
+		else:
+			if lang_code not in SUPPORTED_LANG_CODES:
+				logger.error("Unsupported language variant specified.")
+				raise ValueError(f"Unsupported lang code for Nahuatl: "
+								 f"{lang_code}")
+			else:
+				self.lang_code = lang_code
 		if tokeniser:
 			self.tokenise = tokeniser
 
-		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.att") as p:
+		with pkg_resources.path("elotl.nahuatl.data", f"{self.lang_code}.mor.att") as p:
 			_path_to_att_dir = p
-		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.tsv") as p:
+		with pkg_resources.path("elotl.nahuatl.data", f"{self.lang_code}.mor.tsv") as p:
 			_path_to_tsv_dir = p
 
 		self.analyser = ATTFST(_path_to_att_dir)
