@@ -1,0 +1,77 @@
+#prior	lem	pos	feat	dep	lem	pos	feat	dep
+1	_	_	top	_	_	_	_	_
+1	_	_	ant	_	_	_	_	_
+1	_	_	impers	_	_	_	Person=0	_
+1	_	_	tn	_	_	_	PronType=Pers|Clitic=Yes	_
+1	_	_	nlc	_	_	_	Deixis=Nloc	_
+1	_	_	subj	_	_	_	Mood=Sub	_
+1	_	_	dist	_	_	_	Deixis=Remt	_
+1	_	_	dst	_	_	_	Deixis=Remt	_
+1	_	_	prox	_	_	_	Deixis=Prox	_
+1	_	_	prx	_	_	_	Deixis=Prox	_
+1	_	_	excl	_	_	_	Clusivity=Ex	_
+1	_	_	incl	_	_	_	Clusivity=In	_
+1	_	_	copret	_	_	_	Tense=Copret	_
+1	_	_	def	_	_	_	Definite=Def	_
+1	_	_	dem	_	_	_	PronType=Dem	_
+1	_	_	fut	_	_	_	Tense=Fut	_
+1	_	_	i12	_	_	_	Clusivity=In	_
+1	_	_	i21	_	_	_	Clusivity=In	_
+1	_	_	i31	_	_	_	Clusivity=Ex	_
+1	_	_	impf	_	_	_	Aspect=Imp	_
+1	_	_	ind	_	_	_	Definite=Ind	_
+1	_	_	itg	_	_	_	PronType=Int	_
+1	_	_	iv	_	_	_	Subcat=Intr	_
+1	_	_	m	_	_	_	Gender=Msc	_
+1	_	_	neg	_	_	_	Polarity=Neg	_
+1	_	_	o_p1	_	_	_	Person[obj]=1	_
+1	_	_	o_p2	_	_	_	Person[obj]=2	_
+1	_	_	o_p3	_	_	_	Person[obj]=3	_
+1	_	_	p1	_	_	_	Person=1	_
+1	_	_	p2	_	_	_	Person=2	_
+1	_	_	p3	_	_	_	Person=3	_
+1	_	_	perf	_	_	_	Aspect=Perf	_
+1	_	_	pers	_	_	_	PronType=Prs	_
+1	_	_	pl	_	_	_	Number=Plur	_
+1	_	_	pos	_	_	_	Possessive=Yes	_
+1	_	_	pres	_	_	_	Tense=Pres	_
+1	_	_	pret	_	_	_	Tense=Past	_
+1	_	_	prog	_	_	_	Aspect=Prog	_
+1	_	_	px1plexcl	_	_	Number[psor]=Plur|Person[psor]=1|Clusivity[psor]=Ex	_
+1	_	_	px1pli31	_	_	Number[psor]=Plur|Person[psor]=1|Clusivity[psor]=Ex	_
+1	_	_	px1plincl	_	_	Number[psor]=Plur|Person[psor]=1|Clusivity[psor]=In	_
+1	_	_	px1sg	_	_	_	Number[psor]=Sing|Person[psor]=1	_
+1	_	_	px2pl	_	_	_	Number[psor]=Plur|Person[psor]=2	_
+1	_	_	px3pldst	_	_	Number[psor]=Plur|Person[psor]=3|Deixis=Remt	_
+1	_	_	px3plprx	_	_	Number[psor]=Plur|Person[psor]=3|Deixis=Prox	_
+1	_	_	px3sgdst	_	_	Number[psor]=Sing|Person[psor]=3|Deixis=Remt	_
+1	_	_	qnt	_	_	_	PronType=Qnt	_
+1	_	_	sg	_	_	_	Number=Sing	_
+1	_	_	s_p1	_	_	_	Person[subj]=1	_
+1	_	_	s_p2	_	_	_	Person[subj]=2	_
+1	_	_	s_p3	_	_	_	Person[subj]=3	_
+1	_	_	s_p3i	_	_	_	Person[subj]=3|Clusivity=In	_
+1	_	_	s_pl	_	_	_	Number[subj]=Plur	_
+1	_	_	tv	_	_	_	Subcat=Tran	_
+1	_	adj	_	_	_	ADJ	_	_
+1	_	adv	_	_	_	ADV	_	_
+1	_	apos	_	_	_	PUNCT	_	_
+1	_	aux	_	_	_	AUX	_	_
+1	_	cm	_	_	_	PUNCT	_	_
+1	_	cnjadv	_	_	_	SCONJ	_	_
+1	_	cnjcoo	_	_	_	CCONJ	_	_
+1	_	cnjsub	_	_	_	SCONJ	_	_
+1	_	det	_	_	_	DET	_	_
+1	_	guio	_	_	_	PUNCT	_	_
+1	_	ij	_	_	_	INTJ	_	_
+1	_	lpar	_	_	_	PUNCT	_	_
+1	_	lquot	_	_	_	PUNCT	_	_
+1	_	n	_	_	_	NOUN	_	_
+1	_	np	_	_	_	PROPN	_	_
+1	_	num	_	_	_	NUM	_	_
+1	_	pr	_	_	_	ADP	_	_
+1	_	prn	_	_	_	PRON	_	_
+1	_	rpar	_	_	_	PUNCT	_	_
+1	_	rquot	_	_	_	PUNCT	_	_
+1	_	sent	_	_	_	PUNCT	_	_
+1	_	v	_	_	_	VERB	_	_
