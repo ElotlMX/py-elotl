@@ -8,6 +8,7 @@ Ejemplo de uso:
 	>>> res = a.analyse('Mä ga ze̱ngua mä dada habu̱ bí ʼbu̱i', tokenise=True)
 """
 import logging
+import re
 from elotl.utils.fst.attapply import ATTFST
 #from elotl.otomi.orthography import Normalizer as Normaliser
 import elotl.utils.morphology
@@ -60,6 +61,28 @@ class Analyser(elotl.utils.morphology.Analyser):
 		self.analyser = ATTFST(_path_to_att_dir)
 		self.convertor = elotl.utils.morphology.Convertor(_path_to_tsv_dir)
 		self.normaliser = None
+
+	def _tokenise(self, text):
+		"""
+		Internal backoff tokenisation function.
+
+		Parameters
+		----------
+		text: str
+			The text to be tokenised.
+
+		Returns
+		----------
+		list
+			List of space separated tokens.
+
+		"""
+		diacritics = '\u0331'
+		tokens = re.sub(r'([^\w' + diacritics + '])', r' \g<1> ', text)
+		return [token.strip()
+			for token in tokens.split(' ')
+				if not token.strip() == '']
+
 
 # Convenience alias for Analyser to Analyzer
 Analyzer = Analyser
