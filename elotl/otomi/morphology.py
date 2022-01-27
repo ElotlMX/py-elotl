@@ -10,7 +10,6 @@ Ejemplo de uso:
 import logging
 import re
 from elotl.utils.fst.attapply import ATTFST
-#from elotl.otomi.orthography import Normalizer as Normaliser
 import elotl.utils.morphology
 from elotl.otomi.config import SUPPORTED_LANG_CODES, DEFAULT_LANG_CODE
 
