@@ -45,6 +45,8 @@ class Analyser(elotl.utils.morphology.Analyser):
 		else:
 			if lang_code not in SUPPORTED_LANG_CODES:
 				logger.error("Unsupported language variant specified.")
+				logger.error("Available codes: " + 
+						" ".join(SUPPORTED_LANG_CODES))
 				raise ValueError(f"Unsupported lang code for Otomi: "
 								 f"{lang_code}")
 			else:
