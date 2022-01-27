@@ -78,6 +78,13 @@ class Analyser(elotl.utils.morphology.Analyser):
 			List of space separated tokens.
 
 		"""
+
+		"""
+		This regular expression is a combination of all word symbols 
+		and the diacritic symbols mentioned above. Otomi uses
+		the U+0331 COMBINING MACRON BELOW symbol, and combining characters
+		are usually not included in the set of word symbols.
+		"""
 		diacritics = '\u0331'
 		tokens = re.sub(r'([^\w' + diacritics + '])', r' \g<1> ', text)
 		return [token.strip()
