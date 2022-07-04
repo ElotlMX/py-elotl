@@ -19,6 +19,14 @@ and the output symbol is `@0@`, which stands for epsilon. The weight is `0.00000
 
 Here the output symbol is a tag, `<pr>` for preposition.
 
+## Creating the att file with HFST
+Given a non-optimized binary fst, use the following command to generate the
+.att file:
+
+```
+hfst-eliminate-flags <path/to/fst.hfst> | hfst-fst2txt -o <output_file.att>
+```
+
 ## Tags
 
 The internal representation of morphological tags in the analyser is an mnemonic 
