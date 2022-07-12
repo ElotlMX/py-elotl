@@ -1,6 +1,6 @@
 #prior	lem	pos	feat	dep	lem	pos	feat	dep
 #1	_	_	appl	_	_	_	_	_
-#1	_	_	Cfact	_	_	_	_	_
+#1	_	_	cfact	_	_	_	_	_
 2	_	n	pl	_	_	NOUN	Number=Plur	_
 2	_	n	rel	_	_	NOUN	NounType=Relat	_	
 2	_	n	dim	_	_	NOUN	Deriv=Dim	_	
@@ -8,7 +8,8 @@
 2	_	prn	pers	_	_	PRON	PronType=Prs	_
 2	_	neg	_	_	_	PART	Polarity=Neg	_
 1	_	afirm	_	_	_	PART	_	_
-1	_	_	lat	_	_	_	Movement=Lat	_
+1	_	_	and	_	_	_	Movement=And	_
+1	_	_	ven	_	_	_	Movement=Ven	_
 1	_	_	dur	_	_	_	Aspect=Dur	_
 1	_	_	hon	_	_	_	Polite=Form	_
 1	_	_	f	_	_	_	Gender=Fem	_

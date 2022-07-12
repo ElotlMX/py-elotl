@@ -164,7 +164,6 @@ class Convertor(object):
 			A dictionary containing a lemma, a part-of-speech and a
 			set of Feature=Value pairs.
 		"""
-
 		analysis = {'lemma': '', 'pos': '', 'feats': set()}
 		tags = [i for i in self.input_patterns.findall(a) if not i == '']
 		msd = set(tags)
