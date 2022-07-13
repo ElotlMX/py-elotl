@@ -1,3 +1,6 @@
 include elotl/corpora/*.csv
 include elotl/utils/fst/att/*.att
 include elotl/nahuatl/data/*.att
+include elotl/nahuatl/data/*.tsv
+include elotl/huave/data/*.tsv
+include elotl/otomi/data/*.tsv

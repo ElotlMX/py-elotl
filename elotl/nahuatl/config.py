@@ -6,4 +6,4 @@
 # de las opciones.
 #
 DEFAULT_LANG_CODE = "nhi"
-SUPPORTED_LANG_CODES = ["nhi"]
+SUPPORTED_LANG_CODES = ["nhi", "nci"]
