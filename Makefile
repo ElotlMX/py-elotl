@@ -14,15 +14,18 @@ fst:
 	hfst-lexc $(LEXC_DIR)/fon-sep.lexc -o $(HFST_DIR)/fon-sep.hfst
 	hfst-lexc $(LEXC_DIR)/fon-inali.lexc -o $(HFST_DIR)/fon-inali.hfst
 	hfst-lexc $(LEXC_DIR)/fon-ack.lexc -o $(HFST_DIR)/fon-ack.hfst
-
+	hfst-lexc $(LEXC_DIR)/fon-ilv.lexc -o $(HFST_DIR)/fon-ilv.hfst
+	
 	hfst-compose -1 $(HFST_DIR)/orig-fon.hfst -2 $(HFST_DIR)/fon-sep.hfst -o $(HFST_DIR)/orig-sep.hfst
 	hfst-compose -1 $(HFST_DIR)/orig-fon.hfst -2 $(HFST_DIR)/fon-inali.hfst -o $(HFST_DIR)/orig-inali.hfst
 	hfst-compose -1 $(HFST_DIR)/orig-fon.hfst -2 $(HFST_DIR)/fon-ack.hfst -o $(HFST_DIR)/orig-ack.hfst
+	hfst-compose -1 $(HFST_DIR)/orig-fon.hfst -2 $(HFST_DIR)/fon-ilv.hfst -o $(HFST_DIR)/orig-ilv.hfst
 
 	hfst-fst2txt $(HFST_DIR)/orig-fon.hfst > $(ATT_DIR)/orig-fon.att
 	hfst-fst2txt $(HFST_DIR)/fon-sep.hfst > $(ATT_DIR)/fon-sep.att
 	hfst-fst2txt $(HFST_DIR)/fon-inali.hfst > $(ATT_DIR)/fon-inali.att
 	hfst-fst2txt $(HFST_DIR)/fon-ack.hfst > $(ATT_DIR)/fon-ack.att
+	hfst-fst2txt $(HFST_DIR)/fon-ilv.hfst > $(ATT_DIR)/fon-ilv.att
 
 build_python:
 	rm -rf build/ dist/
