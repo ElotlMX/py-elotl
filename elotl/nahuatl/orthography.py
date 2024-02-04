@@ -26,7 +26,7 @@ with pkg_resources.path("elotl.utils.fst.att", "orig-fon.att") as p:
     _path_to_orig_fon = p
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
-_available_orthographies = ['sep', 'inali', 'ack']
+_available_orthographies = ['sep', 'inali', 'ack', "ilv"]
 logger = logging.getLogger(__name__)
 
 
