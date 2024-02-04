@@ -1,0 +1,114 @@
+#prior  lem     pos     feat    dep     lem     pos     feat    dep
+2	_	n	rel	_	_	NOUN	NounType=Relat	_
+2	_	prn	rel	_	_	PRON	PronType=Rel	_
+2	_	adv	rel	_	_	ADV	PronType=Rel	_
+#
+1	_	n	_	_	_	NOUN	_	_
+1	_	np	_	_	_	PROPN	_	_
+1	_	v	_	_	_	VERB	_	_
+1	_	num	_	_	_	NUM	_	_
+1	_	prn	_	_	_	PRON	_	_
+1	_	det	_	_	_	DET	_	_
+1	_	mod	_	_	_	PART	_	_
+1	_	adv	_	_	_	ADV	_	_
+1	_	adj	_	_	_	ADJ	_	_
+1	_	cnjcoo	_	_	_	CCONJ	_	_
+1	_	cnjsub	_	_	_	SCONJ	_	_
+1	_	aux	_	_	_	AUX	_	_
+1	_	vaux	_	_	_	AUX	_	_
+1	_	cop	_	_	_	AUX	_	_
+1	_	ij	_	_	_	INTJ	_	_
+1	_	pr	_	_	_	ADP	_	_
+1	_	x	_	_	_	X	_	_
+1	_	cm	_	_	_	PUNCT	_	_
+1	_	sent	_	_	_	PUNCT	_	_
+#
+1	_	_	tv	_	_	_	Subcat=Tran	_
+1	_	_	iv	_	_	_	Subcat=Intr	_
+#
+1	_	_	redup	_	_	_	Reduplicated=Yes	_
+1	_	_	imp	_	_	_	Mood=Imp	_
+1	_	_	cni	_	_	_	Mood=Cond	_
+1	_	_	impf	_	_	_	Aspect=Imp	_
+1	_	_	fut	_	_	_	Tense=Fut	_
+1	_	_	pres	_	_	_	Tense=Pres	_
+1	_	_	pret	_	_	_	Tense=Pret	_
+1	_	_	prog	_	_	_	Aspect=Prog	_
+1	_	_	opt	_	_	_	Mood=Opt	_
+1	_	_	plu	_	_	_	Tense=Plu	_
+1	_	_	pp	_	_	_	Tense=Past	_
+#
+1	_	_	abs	_	_	_	Case=Abs	_
+1	_	_	top	_	_	_	_	_
+1	_	_	ant	_	_	_	_	_
+1	_	_	cog	_	_	_	_	_
+1	_	_	cmp	_	_	_	_	_
+1	_	_	dim	_	_	_	Deriv=Dim	_
+1	_	_	hon	_	_	_	Polite=Form	_
+1	_	_	incorp	_	_	_	_	_
+#
+1	_	_	f	_	_	_	Gender=Fem	_
+1	_	_	m	_	_	_	Gender=Masc	_
+1	_	_	mf	_	_	_	Gender=Fem,Masc	_
+#
+1	_	_	itg	_	_	_	PronType=Int	_
+1	_	_	pers	_	_	_	PronType=Pers	_
+1	_	_	short	_	_	_	_	_
+#
+1	_	_	sg1	_	_	_	Number=Sing|Person=1	_
+1	_	_	sg2	_	_	_	Number=Sing|Person=2	_
+1	_	_	sg3	_	_	_	Number=Sing|Person=3	_
+1	_	_	pl1	_	_	_	Number=Plur|Person=1	_
+1	_	_	pl2	_	_	_	Number=Plur|Person=2	_
+1	_	_	pl3	_	_	_	Number=Plur|Person=3	_
+#
+1	_	_	o_aa	_	_	_	Person[obj]=3|Animacy[obj]=Anim	_
+1	_	_	o_nn	_	_	_	Person[obj]=3|Animacy[obj]=Inan	_
+1	_	_	o_sg1	_	_	_	Number[obj]=Sing|Person[obj]=1	_
+1	_	_	o_sg2	_	_	_	Number[obj]=Sing|Person[obj]=2	_
+1	_	_	o_sg3	_	_	_	Number[obj]=Sing|Person[obj]=3	_
+1	_	_	o_pl1	_	_	_	Number[obj]=Plur|Person[obj]=1	_
+1	_	_	o_pl2	_	_	_	Number[obj]=Plur|Person[obj]=2	_
+1	_	_	o_pl3	_	_	_	Number[obj]=Plur|Person[obj]=3	_
+1	_	_	o_ref	_	_	_	Reflexive[obj]=Yes	_
+#
+1	_	_	i_sg1	_	_	_	Number[iobj]=Sing|Person[iobj]=1	_
+1	_	_	i_sg2	_	_	_	Number[iobj]=Sing|Person[iobj]=2	_
+1	_	_	i_sg3	_	_	_	Number[iobj]=Sing|Person[iobj]=3	_
+1	_	_	i_pl1	_	_	_	Number[iobj]=Plur|Person[iobj]=1	_
+1	_	_	i_pl2	_	_	_	Number[iobj]=Plur|Person[iobj]=2	_
+1	_	_	i_pl3	_	_	_	Number[iobj]=Plur|Person[iobj]=3	_
+1	_	_	i_ref	_	_	_	Reflexive[iobj]=Yes	_
+#
+1	_	_	on	_	_	_	Movement=And	_
+1	_	_	hual	_	_	_	Movement=Ven	_
+#
+#
+1	_	_	sg	_	_	_	Number=Sing	_
+1	_	_	pl	_	_	_	Number=Plur	_
+#
+1	_	_	s_sg1	_	_	_	Number[subj]=Sing|Person[subj]=1	_
+1	_	_	s_sg2	_	_	_	Number[subj]=Sing|Person[subj]=2	_
+1	_	_	s_sg3	_	_	_	Number[subj]=Sing|Person[subj]=3	_
+1	_	_	s_pl1	_	_	_	Number[subj]=Plur|Person[subj]=1	_
+1	_	_	s_pl2	_	_	_	Number[subj]=Plur|Person[subj]=2	_
+1	_	_	s_pl3	_	_	_	Number[subj]=Plur|Person[subj]=3	_
+#
+1	_	_	px1sg	_	_	_	Number[psor]=Sing|Person[psor]=1	_
+1	_	_	px2sg	_	_	_	Number[psor]=Sing|Person[psor]=2	_
+1	_	_	px3sg	_	_	_	Number[psor]=Sing|Person[psor]=3	_
+1	_	_	px1pl	_	_	_	Number[psor]=Plur|Person[psor]=1	_
+1	_	_	px2pl	_	_	_	Number[psor]=Plur|Person[psor]=2	_
+1	_	_	px3pl	_	_	_	Number[psor]=Plur|Person[psor]=3	_
+1	_	_	px3aa	_	_	_	Animacy[psor]=Anim|Person[psor]=3	_
+1	_	_	px3nn	_	_	_	Animacy[psor]=Inan|Person[psor]=3	_
+#
+1	_	_	and	_	_	_	Movement=And	_
+1	_	_	ven	_	_	_	Movement=Ven	_
+#
+1	_	_	sen	_	_	_	Incorporated=Sen	_
+1	_	_	yek	_	_	_	Incorporated=Yek	_
+1	_	_	nal	_	_	_	Incorporated=Nal	_
+1	_	_	pan	_	_	_	Incorporated=Pan	_
+1	_	_	tel	_	_	_	Incorporated=Tel	_
+#

@@ -18,6 +18,30 @@ class TestVariantSelection(unittest.TestCase):
 		a = Analyser()
 		self.assertEqual(a.lang_code, "nhi")
 
+class TestAnalysisWithExplicitVariantSelectionForAzz(unittest.TestCase):
+	analyser = Analyser(lang_code="azz")
+
+	def test_analysis_tokenisation(self):
+
+		inp = "Iwki tamatisneki a n' xiwtsin."
+		outp = [{"wordform": "Iwki", "analyses": [[[{"lemma": "iuki", "pos": "ADV", "feats": {}}], 0.0]], "pos": "ADV", "lemma": "iuki"}, {"wordform": "tamatisneki", "analyses": [[[{"lemma": "mati", "pos": "VERB", "feats": {"Tense": "Fut", "Number[subj]": "Sing", "Subcat": "Tran", "Person[subj]": "3", "Person[obj]": "3", "Animacy[obj]": "Inan"}}, {"lemma": "neki", "pos": "AUX", "feats": {}}], 0.0], [[{"lemma": "tamati", "pos": "VERB", "feats": {"Person[subj]": "3", "Tense": "Fut", "Number[subj]": "Sing", "Subcat": "Intr"}}, {"lemma": "neki", "pos": "AUX", "feats": {}}], 0.0]], "pos": null, "lemma": null}, {"wordform": "a", "analyses": [[[{"lemma": "a", "pos": "INTERJ", "feats": {}}], 0.0]], "pos": "INTERJ", "lemma": "a"}, {"wordform": "n", "analyses": [[[{"lemma": "in", "pos": "DET", "feats": {}}], 0.0]], "pos": "DET", "lemma": "in"}, {"wordform": "'", "analyses": [], "pos": null, "lemma": null}, {"wordform": "xiwtsin", "analyses": [[[{"lemma": "xihuit", "pos": "NOUN", "feats": {"Polite": "Form"}}], 0.0], [[{"lemma": "xihuit", "pos": "NOUN", "feats": {"Polite": "Form", "Number[subj]": "Plur", "Person[subj]": "3"}}], 0.0], [[{"lemma": "xihuit", "pos": "NOUN", "feats": {"Person[subj]": "3", "Polite": "Form", "Number[subj]": "Sing"}}], 0.0]], "pos": "NOUN", "lemma": "xihuit"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
+		res = self.analyser.analyse(inp, tokenise=True)
+		outpj = json.dumps(outp, cls=TokenEncoder, sort_keys=True)
+		resj = json.dumps(res, cls=TokenEncoder, sort_keys=True)
+		self.assertEqual(resj, outpj)
+
+	def test_analysis(self):
+
+		inp = ["Iwki","tamatisneki", "a", "n'", "xiwtsin","."]
+		outp = [{"wordform": "Iwki", "analyses": [[[{"lemma": "iuki", "pos": "ADV", "feats": {}}], 0.0]], "pos": "ADV", "lemma": "iuki"}, {"wordform": "tamatisneki", "analyses": [[[{"lemma": "mati", "pos": "VERB", "feats": {"Tense": "Fut", "Number[subj]": "Sing", "Subcat": "Tran", "Person[subj]": "3", "Person[obj]": "3", "Animacy[obj]": "Inan"}}, {"lemma": "neki", "pos": "AUX", "feats": {}}], 0.0], [[{"lemma": "tamati", "pos": "VERB", "feats": {"Person[subj]": "3", "Tense": "Fut", "Number[subj]": "Sing", "Subcat": "Intr"}}, {"lemma": "neki", "pos": "AUX", "feats": {}}], 0.0]], "pos": null, "lemma": null}, {"wordform": "a", "analyses": [[[{"lemma": "a", "pos": "INTERJ", "feats": {}}], 0.0]], "pos": "INTERJ", "lemma": "a"}, {"wordform": "n", "analyses": [[[{"lemma": "in", "pos": "DET", "feats": {}}], 0.0]], "pos": "DET", "lemma": "in"}, {"wordform": "'", "analyses": [], "pos": null, "lemma": null}, {"wordform": "xiwtsin", "analyses": [[[{"lemma": "xihuit", "pos": "NOUN", "feats": {"Polite": "Form"}}], 0.0], [[{"lemma": "xihuit", "pos": "NOUN", "feats": {"Polite": "Form", "Number[subj]": "Plur", "Person[subj]": "3"}}], 0.0], [[{"lemma": "xihuit", "pos": "NOUN", "feats": {"Person[subj]": "3", "Polite": "Form", "Number[subj]": "Sing"}}], 0.0]], "pos": "NOUN", "lemma": "xihuit"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
+		res = self.analyser.analyse(inp)
+		outpj = json.dumps(outp, cls=TokenEncoder, sort_keys=True)
+		resj = json.dumps(res, cls=TokenEncoder, sort_keys=True)
+		self.assertEqual(resj, outpj)
+
+
+
+
 class TestAnalysisWithExplicitVariantSelection(unittest.TestCase):
 	analyser = Analyser(lang_code="nhi")
 
