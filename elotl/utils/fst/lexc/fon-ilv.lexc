@@ -155,9 +155,10 @@ y:y Loop ;
 l:l Loop ;
 
 LEXICON Punct
+%':%' Loop ;
 %":%" Loop ;
 %!:%! Loop ;
-¡:¡ Loop ;
+%¡:%¡ Loop ;
 %#:%# Loop ;
 %$:%$ Loop ;
 %%:%% Loop ;
@@ -187,7 +188,10 @@ LEXICON Punct
 %}:%} Loop ;
 %|:%| Loop ;
 %~:%~ Loop ;
-%”:%” Loop ;
+%.:%. Loop ;
+%¿:%¿ Loop ;
 %”:%” Loop ;
 %“:%“ Loop ;
 %—:%— Loop ;
+%‘:%‘ Loop ;
+%’:%’ Loop ;
