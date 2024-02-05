@@ -7,7 +7,7 @@ LEXICON Loop
 Cns ;
 Vow ;
 Punct ;
- #  ;
+#  ;
 
 LEXICON Vow
 FrontVow ;
@@ -138,6 +138,7 @@ k:k Punct ;
 kw:kʷ Vow "weight: 2.0";
 ku:kʷ Vow ;
 ku:ku # ;
+ku:ku Cns ;
 ku:ku Punct ;
 
 m:m Loop ;
@@ -222,7 +223,7 @@ LEXICON Punct
 %':%' Loop ;
 %":%" Loop ;
 %!:%! Loop ;
-¡:¡ Loop ;
+%¡:%¡ Loop ;
 %#:%# Loop ;
 %$:%$ Loop ;
 %%:%% Loop ;
@@ -257,5 +258,5 @@ LEXICON Punct
 %”:%” Loop ;
 %“:%“ Loop ;
 %—:%— Loop ;
-%‘:%‘ Loop ;
-%’:%’ Loop ;
+%‘:ʔ Loop ;
+%’:ʔ Loop ;

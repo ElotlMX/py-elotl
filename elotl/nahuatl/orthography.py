@@ -26,7 +26,7 @@ with pkg_resources.path("elotl.utils.fst.att", "orig-fon.att") as p:
     _path_to_orig_fon = p
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
-_available_orthographies = ['sep', 'inali', 'ack']
+_available_orthographies = ['sep', 'inali', 'ack', "ilv"]
 logger = logging.getLogger(__name__)
 
 
@@ -37,6 +37,7 @@ class Normalizer(object):
     - SEP (e.g. "tiualaskej")
     - INALI (e.g. "tiwalaskeh")
     - ACK (e.g. "tihualazqueh")
+    - ILV (e.g. "tiualasqueh") <- this is the ilv orthography used with the nhi variety.
 
     The entry points for converting text are `.normalize(...)` and
     `.to_phones(...)`.
@@ -45,7 +46,7 @@ class Normalizer(object):
     ----------
     normalized_ort: str
         Name of the orthography to convert everything into. Must be one of
-        ("sep", "inali", "ack").
+        ("sep", "inali", "ack", "ilv").
     
     log_level: str
         Desired level of logging ("error", "warn", or "debug"). If "warn" or

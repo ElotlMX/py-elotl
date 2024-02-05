@@ -1,0 +1,197 @@
+LEXICON Root
+Cns ;
+Vow ;
+
+LEXICON Loop
+Cns ;
+Vow ;
+Punct ;
+ #  ;
+
+LEXICON FrontVow
+i:i Loop ;
+í:í Loop ;
+e:e Loop ;
+é:é Loop ;
+e%::e Loop "weight: 1.0";
+i%::i Loop "weight: 1.0";
+
+LEXICON HighBackVow
+u:u CnsNonGlottal ;
+uj:u CnsNonGlottal ;
+ú:ú Cns ;
+
+LEXICON LowBackVow
+a:a Loop ;
+ã:ã Loop ;
+á:á Loop ;
+o:o Loop ;
+ó:ó Loop ;
+a%::a Loop "weight: 1.0";
+o%::o Loop "weight: 1.0";
+
+LEXICON Vow
+HighBackVow ;
+FrontVow ;
+LowBackVow ;
+
+LEXICON CnsSigueVelar
+j:h Loop ;
+h:h Loop ;
+h:h FrontVow ;
+h:h LowBackVow ;
+
+b:b Loop ;
+kʷ:ku Vow ;
+t͡ʃ:ch Loop ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+k:qu FrontVow ;
+k:c LowBackVow ;
+k:c HighBackVow ;
+k:c # ;
+k:c CnsSigueVelar ;
+m:m Loop ;
+n:n Loop ;
+ñ:ñ Vow ;
+p:p Loop ;
+r:r Loop ;
+t:t Loop ;
+ts:tz Vow "weight: 2.0";
+ƛ:tl Loop ;
+v:v Loop ;
+w:u Vow ;
+ʃ:x Loop ;
+
+s:c FrontVow ;
+s:s LowBackVow ;
+s:s HighBackVow ;
+s:s Cns ;
+s:s # ;
+
+y:y Loop ;
+l:l Loop ;
+
+LEXICON CnsNonGlottal
+ʔ:h Cns ;
+ʔ:h # ;
+j:h Loop ;
+h:h Loop ;
+
+b:b Loop ;
+kʷ:cu Vow ;
+kʷ:uc Cns ;
+kʷ:uc # ;
+t͡ʃ:ch Loop ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+k:qu FrontVow ;
+k:c LowBackVow ;
+k:c HighBackVow ;
+k:c # ;
+k:c CnsSigueVelar ;
+m:m Loop ;
+n:n Loop ;
+ñ:ñ Vow ;
+p:p Loop ;
+r:r Loop ;
+t:t Loop ;
+ts:tz Vow "weight: 2.0";
+ƛ:tl Loop ;
+v:v Loop ;
+w:u Vow ;
+w:u Cns ;
+w:u # ;
+ʃ:x Loop ;
+s:s FrontVow ;
+s:s LowBackVow ;
+s:s HighBackVow ;
+s:s Cns ;
+s:s # ;
+y:y Loop ;
+l:l Loop ;
+
+LEXICON Cns
+ʔ:h Cns ;
+ʔ:h # ;
+j:h Loop ;
+h:h Loop ;
+b:b Loop ;
+kʷ:cu Vow ;
+kʷ:uc Cns ;
+kʷ:uc # ;
+t͡ʃ:ch Loop ;
+d:d Loop ;
+f:f Loop ;
+g:g Loop ;
+k:qu FrontVow ;
+k:c LowBackVow ;
+k:c HighBackVow ;
+k:c # ;
+k:c Punct ;
+k:c CnsSigueVelar ;
+m:m Loop ;
+n:n Loop ;
+ñ:ñ Vow ;
+p:p Loop ;
+r:r Loop ;
+t:t Loop ;
+ts:tz Vow "weight: 2.0";
+ƛ:tl Loop ;
+v:v Loop ;
+w:u Vow ;
+w:u Cns ;
+w:u # ;
+ʃ:x Loop ;
+s:s FrontVow ;
+s:s LowBackVow ;
+s:s HighBackVow ;
+s:s Cns ;
+s:s # ;
+s:s Punct ;
+y:y Loop ;
+l:l Loop ;
+
+LEXICON Punct
+%':%' Loop ;
+%":%" Loop ;
+%!:%! Loop ;
+%¡:%¡ Loop ;
+%#:%# Loop ;
+%$:%$ Loop ;
+%%:%% Loop ;
+%&:%& Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%*:%* Loop ;
+%+:%+ Loop ;
+%,:%, Loop ;
+%-:%- Loop ;
+%.:%. Loop ;
+%\:%\ Loop ;
+%::%: Loop ;
+%;:%; Loop ;
+%<:%< Loop ;
+%>:%> Loop ;
+%=:%= Loop ;
+%>:%> Loop ;
+%?:? Loop ;
+%@:%@ Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%/:%/ Loop ;
+%^:%^ Loop ;
+%`:%` Loop ;
+%{:%{ Loop ;
+%}:%} Loop ;
+%|:%| Loop ;
+%~:%~ Loop ;
+%.:%. Loop ;
+%¿:%¿ Loop ;
+%”:%” Loop ;
+%“:%“ Loop ;
+%—:%— Loop ;
+%‘:%‘ Loop ;
+%’:%’ Loop ;
