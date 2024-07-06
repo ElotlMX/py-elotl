@@ -146,17 +146,18 @@ documented.
 - python3
 - [HFST](https://github.com/hfst/hfst)
 - GNU make
-- virtualenv
-- Python packaging backend
-  - [poetry](https://python-poetry.org/docs/)
+- [poetry](https://python-poetry.org/docs/)
+    - For python packaging backend and virtualenvs
 
 ### Quick build
 
 ```bash
-virtualenv --python=/usr/bin/python3 venv
-source venv/bin/activate
+poetry env use 3.x
+poetry shell
 make all
 ```
+
+Where `3.x` is your local python version. Check [managing environments with poetry](https://python-poetry.org/docs/managing-environments/)
 
 ### Step by step
 
@@ -171,17 +172,15 @@ make fst
 #### Create a virtual environment and activate it.
 
 ```bash
-virtualenv --python=/usr/bin/python3 venv
-source venv/bin/activate
+poetry env use 3.x
+poetry shell
 ```
 
 #### Update `pip` and generate distribution files.
 
 ```bash
 python -m pip install --upgrade pip
-python -m pip install --upgrade setuptools wheel
-rm -rf build/ dist/
-python setup.py clean sdist bdist_wheel
+poetry build
 ```
 
 ### Testing the package locally
@@ -193,9 +192,10 @@ python -m pip install -e .
 ### Send to PyPI
 
 ```bash
-python -m pip install twine
-twine upload dist/*
+poetry publish
 ```
+
+Remember to [configure your PyPi credentials](https://python-poetry.org/docs/repositories/#configuring-credentials)
 
 ## License
 
@@ -205,6 +205,4 @@ twine upload dist/*
 
 - [https://elotl.mx/](https://elotl.mx/)
 - [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
-- [How To Package Your Python Code](https://python-packaging.readthedocs.io/en/latest/minimal.html)
-- [Making a Python Package](https://python-packaging-tutorial.readthedocs.io/en/latest/setup_py.html)
 - [Libraries with poetry](https://python-poetry.org/docs/libraries/)
