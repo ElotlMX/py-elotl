@@ -7,8 +7,9 @@ This is a project of [Comunidad Elotl](https://elotl.mx/).
 Developed by:
 - Paul Aguilar [@penserbjorne](https://github.com/penserbjorne), [paul.aguilar.enriquez@hotmail.com](mailto:paul.aguilar.enriquez@hotmail.com)
 - Robert Pugh [@Lguyogiro](https://github.com/Lguyogiro), [robertpugh408@gmail.com](mailto:robertpugh408@gmail.com)
+- Diego Barriga [@umoqnier](https://github.com/umoqnier/), dbarriga@ciencias.unam.mx
 
-Requiere python>=3.X
+Requiere python>=3.6
 
 - Development Status `Pre-Alpha`. Read [Classifiers](https://pypi.org/classifiers/)
 - pip package: [elotl](https://pypi.org/project/elotl/)
@@ -19,7 +20,7 @@ Requiere python>=3.X
 ### Using `pip`
 
 ```bash
-pip install elotl
+pip install elotl-test
 ```
 
 ### From source
