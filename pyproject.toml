@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "elotl-test"
-version = "0.0.16"
+name = "elotl"
+version = "0.0.17"
 description = "Python package for Natural Language Processing (NLP), focused on low-resource languages spoken in Mexico."
 authors = [
 	"Paul Aguilar <paul.aguilar.enriquez@hotmail.com>",
