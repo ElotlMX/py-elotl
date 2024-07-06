@@ -22,7 +22,7 @@ classifiers = [
         "Natural Language :: Spanish",
         "Topic :: Utilities",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 3 - Alpha",
 ]
 include = ["MANIFEST.in"]
 
