@@ -10,7 +10,7 @@ authors = [
 maintainers = ["Robert Pugh <robertpugh408@gmail.com>"]
 license = "MLP-2.0"
 readme = "README.md"
-repository = "https://github.com/umoqnier/elotl_pkg"
+repository = "https://github.com/ElotlMX/py-elotl"
 classifiers = [
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",

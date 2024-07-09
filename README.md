@@ -122,11 +122,13 @@ documented.
 ├── elotl                           Top-level package
     ├── corpora                     Here are the corpus data
     ├── corpus                      Subpackage to load corpus
-    ├── huave
+    ├── huave                       Huave language subpackage
+        └── orthography.py          Module to normalyze huave orthography and phonemas
     ├── __init__.py                 Initialize the package
     ├── nahuatl                     Nahuatl language subpackage
         └── orthography.py          Module to normalyze nahuatl orthography and phonemas
-    ├── otomi
+    ├── otomi                       Otomi language subpackage
+        └── orthography.py          Module to normalyze otomi orthography and phonemas
     ├── __pycache__
     └── utils                       Subpackage with common functions and files
         └── fst                     Finite State Transducer functions
