@@ -1,16 +1,18 @@
 # Py-Elotl
 
-Python package for Natural Language Processing (NLP), focused on low-resource languages spoken in Mexico.
+Python package for Natural Language Processing (NLP), focused on low-resource
+languages spoken in Mexico.
 
 This is a project of [Comunidad Elotl](https://elotl.mx/).
 
 Developed by:
 - Paul Aguilar [@penserbjorne](https://github.com/penserbjorne), [paul.aguilar.enriquez@hotmail.com](mailto:paul.aguilar.enriquez@hotmail.com)
 - Robert Pugh [@Lguyogiro](https://github.com/Lguyogiro), [robertpugh408@gmail.com](mailto:robertpugh408@gmail.com)
+- Diego Barriga [@umoqnier](https://github.com/umoqnier/), [dbarriga@ciencias.unam.mx](mailto:dbarriga@ciencias.unam.mx)
 
-Requiere python>=3.X
+Requiere python>=3.6
 
-- Development Status `Pre-Alpha`. Read [Classifiers](https://pypi.org/classifiers/)
+- Development Status `Alpha`. Read [Classifiers](https://pypi.org/classifiers/)
 - pip package: [elotl](https://pypi.org/project/elotl/)
 - GitHub repository: [ElotlMX/py-elotl](https://github.com/ElotlMX/py-elotl)
 
@@ -39,8 +41,6 @@ import elotl.corpus
 ```
 
 #### Listing available corpus
-
-Code:
 
 ```python
 print("Name\t\tDescription")
@@ -76,8 +76,13 @@ for row in axolotl:
     print(row)
 ```
 
-```bash
-['Hay que adivinar: un pozo, a la mitad del cerro, te vas a encontrar.', 'See tosaasaanil, see tosaasaanil. Tias iipan see tepeetl, iitlakotian tepeetl, tikoonextis san see aameyalli.', '', 'Adivinanzas nahuas']
+```python
+[
+    'Hay que adivinar: un pozo, a la mitad del cerro, te vas a encontrar.',
+    'See tosaasaanil, see tosaasaanil. Tias iipan see tepeetl, iitlakotian tepeetl, tikoonextis san see aameyalli.',
+    '',
+    'Adivinanzas nahuas'
+]
 ```
 
 Each element of the list has four indices:
@@ -96,30 +101,44 @@ tsunkua = elotl.corpus.load('tsunkua')
       print(row[3]) # document
 ```
 
-```bash
+```
 Una vez una señora se emborrachó
 nándi na ra t'u̱xú bintí
 Otomí del Estado de México (ots)
 El otomí de toluca, Yolanda Lastra
-
 ```
 
 
 ## Package structure
 
-The following structure is a reference. As the package grows it will be better documented.
+The following structure is a reference. As the package grows it will be better
+documented.
 
 ```
-elotl/                              Top-level package
-          __init__.py               Initialize the package
-          corpora/                  Here are the corpus data
-          corpus/                   Subpackage to load corpus     
-          nahuatl/                  Nahuatl language subpackage
-                  orthography.py    Module to normalyze nahuatl orthography and phonemas
-          utils/                    Subpackage with useful functions and files
-                  fst/              Finite State Transducer functions
-                        att/        Module with static .att files
-test/                               Unit test scripts
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── dist
+├── docs
+├── elotl                           Top-level package
+    ├── corpora                     Here are the corpus data
+    ├── corpus                      Subpackage to load corpus
+    ├── huave                       Huave language subpackage
+        └── orthography.py          Module to normalyze huave orthography and phonemas
+    ├── __init__.py                 Initialize the package
+    ├── nahuatl                     Nahuatl language subpackage
+        └── orthography.py          Module to normalyze nahuatl orthography and phonemas
+    ├── otomi                       Otomi language subpackage
+        └── orthography.py          Module to normalyze otomi orthography and phonemas
+    ├── __pycache__
+    └── utils                       Subpackage with common functions and files
+        └── fst                     Finite State Transducer functions
+            └── att                 Module with static .att files
+├── LICENSE
+├── Makefile
+├── MANIFEST.in
+├── pyproject.toml
+├── README.md
+└── tests
 ```
 
 ## Development
@@ -129,18 +148,18 @@ test/                               Unit test scripts
 - python3
 - [HFST](https://github.com/hfst/hfst)
 - GNU make
-- virtualenv
-- Python packages
-  - setuptools
-  - wheel
+- [poetry](https://python-poetry.org/docs/)
+    - For python packaging backend and virtualenvs
 
 ### Quick build
 
 ```bash
-virtualenv --python=/usr/bin/python3 venv
-source venv/bin/activate
+poetry env use 3.x
+poetry shell
 make all
 ```
+
+Where `3.x` is your local python version. Check [managing environments with poetry](https://python-poetry.org/docs/managing-environments/)
 
 ### Step by step
 
@@ -155,17 +174,15 @@ make fst
 #### Create a virtual environment and activate it.
 
 ```bash
-virtualenv --python=/usr/bin/python3 venv
-source venv/bin/activate
+poetry env use 3.x
+poetry shell
 ```
 
 #### Update `pip` and generate distribution files.
 
 ```bash
 python -m pip install --upgrade pip
-python -m pip install --upgrade setuptools wheel
-rm -rf build/ dist/
-python setup.py clean sdist bdist_wheel
+poetry build
 ```
 
 ### Testing the package locally
@@ -177,9 +194,10 @@ python -m pip install -e .
 ### Send to PyPI
 
 ```bash
-python -m pip install twine
-twine upload dist/*
+poetry publish
 ```
+
+Remember to [configure your PyPi credentials](https://python-poetry.org/docs/repositories/#configuring-credentials)
 
 ## License
 
@@ -189,5 +207,4 @@ twine upload dist/*
 
 - [https://elotl.mx/](https://elotl.mx/)
 - [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
-- [How To Package Your Python Code](https://python-packaging.readthedocs.io/en/latest/minimal.html)
-- [Making a Python Package](https://python-packaging-tutorial.readthedocs.io/en/latest/setup_py.html)
+- [Libraries with poetry](https://python-poetry.org/docs/libraries/)

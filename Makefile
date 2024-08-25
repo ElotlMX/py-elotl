@@ -30,7 +30,5 @@ fst:
 build_python:
 	rm -rf build/ dist/
 	python -m pip install --upgrade pip
-	python -m pip install --upgrade setuptools wheel
-	rm -rf build/ dist/
-	python setup.py clean sdist bdist_wheel
+	poetry build
 	python -m pip install -e .
