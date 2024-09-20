@@ -1,0 +1,141 @@
+LEXICON Root
+r ContextFree "weight: 2.0"; ! ignorar r inicial
+ContextFree ;
+
+LEXICON Loop
+ContextFree ;
+#  ;
+
+LEXICON ContextFree
+a:a Loop ; ! AP
+ä:ã Loop ;
+á:á Loop ;
+́a:á Loop ;
+a̱:ə Loop ;
+ă:ă Loop ;
+e:e Loop ;
+e̱:ɛ Loop ;
+e̠:ɛ Loop ;
+ĕ:ĕ Loop ;
+é:é Loop ;
+́e:é Loop ;
+i:i Loop ;
+ï:ĩ Loop ;
+í:í Loop ;
+́i:í Loop ;
+o:o Loop ;
+o̱:ɔ Loop ;
+o̠:ɔ Loop ;
+ö:õ Loop ;
+ó:ó Loop ;
+ŏ:ŏ Loop ;
+u:u Loop ;
+u̱:ɨ Loop ;
+u̠:ɨ Loop ;
+ü:ũ Loop ;
+ú:ú Loop ;
+ŭ:ŭ Loop ;
+b:b Loop ;
+d:d Loop ;
+g:g Loop ;
+f:ɸ Loop ;
+h:h Loop ;
+':ʔ Loop ;
+‘:ʔ Loop ;
+ʼ:ʔ Loop ;
+j:kh Loop ; ! pendiente
+k:k Loop ;
+l:l Loop ;
+m:m Loop ;
+n:n Loop ;
+ñ:ɲ Loop ;
+p:p Loop ;
+r:ɾ Loop ;
+rr:r Loop "weight: 2.0";
+s:s Loop ;
+t:t Loop ;
+ts:t͡s Loop ;
+ch:t͡ʃ Loop ;
+w:w Loop ;
+x:ʃ Loop ;
+y:j Loop ;
+z:z Loop ;
+
+j:h Loop ; ! OT (reglas no dadas arriba)
+
+tx:t͡ʃ Loop ; ! OQ (reglas no dadas arriba)
+
+ᶏ:ã Loop ; ! FH (reglas no dadas arriba)
+ʌ:ə Loop ;
+ɛ:ɛ Loop ;
+ɛ:ɛ Loop ;
+į:ĩ Loop ;
+ɔ:ɔ Loop ;
+ɔ:ɔ Loop ;
+ǫ:õ Loop ;
+ɨ:ɨ Loop ;
+ɨ:ɨ Loop ;
+ų:ũ Loop ;
+ph:ɸ Loop ;
+ʔ:ʔ Loop ;
+kh:kh Loop ;
+c:t͡s Loop ;
+č:t͡ʃ Loop ;
+š:ʃ Loop ;
+
+%{:%{ Loop ; ! otros símbolos
+%}:%} Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%-:%- Loop ;
+%!:%! Loop ;
+%.:%. Loop ;
+%,:%, Loop ;
+%;:%; Loop ;
+%/:%/ Loop ;
+%::%: Loop ;
+%":%" Loop ;
+%?:%? Loop ;
+%+:%+ Loop ;
+%=:%= Loop ;
+…:… Loop ;
+«:« Loop ;
+¿:¿ Loop ;
+¡:¡ Loop ;
+”:%" Loop ;
+“:%" Loop ;
+—:%- Loop ;
+–:%- Loop ;
+•:• Loop ;
+%0:%0 Loop ;
+1:1 Loop ;
+2:2 Loop ;
+3:3 Loop ;
+4:4 Loop ;
+5:5 Loop ;
+6:6 Loop ;
+7:7 Loop ;
+8:8 Loop ;
+9:9 Loop ;
+»:» Loop ;
+´:´ Loop ; ! tilde de tono
+ ́:´ Loop ; ! traslado de una tilde bizarra
+
+i̱:i̱ Loop ; ! caracteres de préstamos o sin ortografía ubicada
+đ:đ Loop ;
+ì:ì Loop ;
+ť:ť Loop ;
+ị:ị Loop ;
+ä̱:ä̱ Loop ;
+ë:ë Loop ;
+v:v Loop ;
+q:q Loop ;
+¨:¨ Loop ;
+è:è Loop ;
+â:â Loop ;
+ı:ı Loop ;
+ä̱:ä̱ Loop ;
+ň:ň Loop ;
+ř:r Loop ;

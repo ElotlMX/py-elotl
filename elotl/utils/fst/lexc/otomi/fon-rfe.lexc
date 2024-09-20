@@ -1,0 +1,108 @@
+LEXICON Root
+r ContextFree "weight: 2.0"; ! ignorar r inicial
+ContextFree ;
+
+LEXICON Loop
+ContextFree ;
+#  ;
+
+LEXICON ContextFree
+a:a Loop ;
+ã:ᶏ Loop ;
+á:á Loop ;
+ə:ʌ Loop ;
+ă:ă Loop ;
+e:e Loop ;
+ɛ:ɛ Loop ;
+ɛ:ɛ Loop ;
+ĕ:ĕ Loop ;
+é:é Loop ;
+i:i Loop ;
+ĩ:į Loop ;
+í:í Loop ;
+o:o Loop ;
+ɔ:ɔ Loop ;
+ɔ:ɔ Loop ;
+õ:ǫ Loop ;
+ó:ó Loop ;
+ŏ:ŏ Loop ;
+u:u Loop ;
+ɨ:ɨ Loop ;
+ɨ:ɨ Loop ;
+ũ:ų Loop ;
+ú:ú Loop ;
+ŭ:ŭ Loop ;
+b:b Loop ;
+d:d Loop ;
+g:g Loop ;
+ɸ:ph Loop ;
+h:h Loop ;
+ʔ:ʔ Loop ;
+kh:kh Loop ;
+k:k Loop ;
+l:l Loop ;
+m:m Loop ;
+n:n Loop ;
+ɲ:ñ Loop ;
+p:p Loop ;
+ɾ:r Loop ;
+r:rr Loop ;
+s:s Loop ;
+t:t Loop ;
+t͡s:c Loop ;
+t͡ʃ:č Loop ;
+w:w Loop ;
+ʃ:š Loop ;
+j:y Loop ;
+z:z Loop ;
+
+%{:%{ Loop ;
+%}:%} Loop ;
+%[:%[ Loop ;
+%]:%] Loop ;
+%(:%( Loop ;
+%):%) Loop ;
+%-:%- Loop ;
+%!:%! Loop ;
+%.:%. Loop ;
+%,:%, Loop ;
+%;:%; Loop ;
+%/:%/ Loop ;
+%::%: Loop ;
+%":%" Loop ;
+%?:%? Loop ;
+%+:%+ Loop ;
+%=:%= Loop ;
+…:… Loop ;
+«:« Loop ;
+¿:¿ Loop ;
+¡:¡ Loop ;
+•:• Loop ;
+%0:%0 Loop ;
+1:1 Loop ;
+2:2 Loop ;
+3:3 Loop ;
+4:4 Loop ;
+5:5 Loop ;
+6:6 Loop ;
+7:7 Loop ;
+8:8 Loop ;
+9:9 Loop ;
+»:» Loop ;
+´:´ Loop ; ! tilde de tono
+
+i̱:i̱ Loop ;
+đ:đ Loop ;
+ì:ì Loop ;
+ť:ť Loop ;
+ị:ị Loop ;
+ä̱:ä̱ Loop ;
+ë:ë Loop ;
+v:v Loop ;
+q:q Loop ;
+¨:¨ Loop ;
+è:è Loop ;
+â:â Loop ;
+ı:ı Loop ;
+ä̱:ä̱ Loop ;
+ň:ň Loop ;

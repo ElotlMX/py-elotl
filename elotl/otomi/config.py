@@ -6,4 +6,4 @@
 # de las opciones.
 #
 DEFAULT_LANG_CODE = "ote"
-SUPPORTED_LANG_CODES = ["ote"]
+SUPPORTED_LANG_CODES = ["ote", "inali", "ots", "otq", "rfe"]
