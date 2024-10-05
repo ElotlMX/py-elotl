@@ -12,7 +12,7 @@
 from __future__ import annotations
 import logging
 from elotl.utils.fst.attapply import ATTFST
-
+from elotl.nahuatl.config import AVAILABLE_ORTHOGRAPHIES, DEFAULT_ORTOGRAPHY
 # https://docs.python.org/3/library/importlib.html?highlight=resources#module-importlib.resources
 try:
     # For Python >= 3.7
@@ -21,12 +21,10 @@ except ImportError:
     # Try backported to Python < 3.7 `importlib_resources`.
     import importlib_resources as pkg_resources
 
-# https://stackoverflow.com/a/58520692
-with pkg_resources.path("elotl.utils.fst.att.nahuatl", "orig-fon.att") as p:
-    _path_to_orig_fon = p
+# https://importlib-resources.readthedocs.io/en/latest/using.html#migrating-from-legacy
+_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.nahuatl").joinpath('orig-fon.att')
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
-_available_orthographies = ['sep', 'inali', 'ack', "ilv"]
 logger = logging.getLogger(__name__)
 
 
@@ -55,11 +53,16 @@ class Normalizer(object):
         default the log level is set to "error".
 
     """
-    def __init__(self, normalized_ort: str = "sep", log_level="error"):
-        if not (normalized_ort in _available_orthographies):
-            print(normalized_ort + " is not a supported orthography.")
-            print("Using 'sep' as orthography.")
-            normalized_ort = "sep"
+    def __init__(self, normalized_ort: str, log_level="error"):
+        if normalized_ort is None:
+            normalized_ort = DEFAULT_ORTOGRAPHY
+            logger.info("No Nahuatl Ortography code provided. "
+                        "Defaulting to 'sep")
+
+        if not (normalized_ort in AVAILABLE_ORTHOGRAPHIES):
+            logger.warning(normalized_ort + " is not a supported orthography.")
+            logger.warning(f"Using '{DEFAULT_ORTOGRAPHY}' as orthography.")
+            normalized_ort = DEFAULT_ORTOGRAPHY
 
         log_level = log_level.lower()
         if log_level == "warn":
@@ -135,13 +138,13 @@ class Normalizer(object):
 
         fon = self._g2p(w)
         if fon is None:
-            logger.warn("Unable to convert word '{}' to phonemes."
+            logger.warning("Unable to convert word '{}' to phonemes."
                         .format(w))
             return w, w
 
         normed = self._convert(fon, self.norm_fst)
         if normed is None:
-            logger.warn("Unable to convert word '{}'.from phonemes to "
+            logger.warning("Unable to convert word '{}'.from phonemes to "
                         "normalized orthography.".format(fon))
             return fon, w
 
@@ -182,7 +185,7 @@ class Normalizer(object):
                 t_fon = overrides[token.lower()]
             t_fon = self._g2p(token)
             if t_fon is None:
-                logger.warn("Unable to convert word '{}' to phonemes."
+                logger.warning("Unable to convert word '{}' to phonemes."
                             .format(token))
                 fon.append(token)
                 continue

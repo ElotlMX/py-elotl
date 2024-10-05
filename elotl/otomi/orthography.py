@@ -12,6 +12,7 @@
 from __future__ import annotations
 import logging
 from elotl.utils.fst.attapply import ATTFST
+from elotl.otomi.config import DEFAULT_ORTOGRAPHY, AVAILABLE_ORTHOGRAPHIES
 
 # https://docs.python.org/3/library/importlib.html?highlight=resources#module-importlib.resources
 try:
@@ -21,12 +22,10 @@ except ImportError:
     # Try backported to Python < 3.7 `importlib_resources`.
     import importlib_resources as pkg_resources
 
-# https://stackoverflow.com/a/58520692
-with pkg_resources.path("elotl.utils.fst.att.otomi", "orig-fon.att") as p:
-    _path_to_orig_fon = p
+# https://importlib-resources.readthedocs.io/en/latest/using.html#migrating-from-legacy
+_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.otomi").joinpath('orig-fon.att')
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
-_available_orthographies = ['inali', 'otq', 'ots', "rfe"]
 logger = logging.getLogger(__name__)
 
 
@@ -57,10 +56,14 @@ class Normalizer(object):
 
     """
     def __init__(self, normalized_ort: str = "inali", log_level="error"):
-        if not (normalized_ort in _available_orthographies):
-            print(normalized_ort + " is not a supported orthography.")
-            print("Using 'inali' as orthography.")
-            normalized_ort = "inali"
+        if normalized_ort is None:
+            normalized_ort = DEFAULT_ORTOGRAPHY
+            logger.info(f"No Otomi Ortography code provided. Defaulting to {DEFAULT_ORTOGRAPHY}")
+
+        if not (normalized_ort in AVAILABLE_ORTHOGRAPHIES):
+            logger.warning(normalized_ort + " is not a supported orthography.")
+            logger.warning(f"Using '{DEFAULT_ORTOGRAPHY}' as orthography.")
+            normalized_ort = DEFAULT_ORTOGRAPHY
 
         log_level = log_level.lower()
         if log_level == "warn":
@@ -116,7 +119,7 @@ class Normalizer(object):
     def _normalize_word(self, original_word: str) -> tuple[str, str]:
         """
         Convert an input word from 'any' orthography into a normalized
-        orthography (currently OTQ, INALI, OTS, and  RFE). Since this process
+        orthography (currently OTQ, INALI, OTS, and RFE). Since this process
         requires first converting the input to a pseudo-phonemic
         representation, we return both the phonemic and normalized forms.
 
@@ -195,7 +198,7 @@ class Normalizer(object):
         """
         Convert a non-normalized Otomi text into normalized orthography.
         Depending on the value used when initializing this class, the
-        normalized orthography is OTQ, INALI, OTS, and  RFE. Conversion happens
+        normalized orthography is OTQ, INALI, OTS, and RFE. Conversion happens
         at the word-level after tokenizing on whitespace.
 
         Parameters

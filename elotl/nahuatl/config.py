@@ -7,3 +7,5 @@
 #
 DEFAULT_LANG_CODE = "nhi"
 SUPPORTED_LANG_CODES = ["nhi", "nci", "azz"]
+DEFAULT_ORTOGRAPHY = "sep"
+AVAILABLE_ORTHOGRAPHIES = ["sep", "inali", "ack", "ilv"]
