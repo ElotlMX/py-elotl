@@ -76,9 +76,10 @@ class Normalizer(object):
             logging.error("Log level '{}' not recognized. Setting log level to"
                           " 'ERROR'.".format(log_level))
 
-        with pkg_resources.path("elotl.utils.fst.att.nahuatl",
-                                "fon-" + normalized_ort + ".att") as p:
-            _path_to_att_dir = p
+        _path_to_att_dir = (
+            pkg_resources.files("elotl.utils.fst.att.nahuatl")
+            .joinpath("fon-" + normalized_ort + ".att")
+        )
 
         self.norm_fst = ATTFST(_path_to_att_dir)
 

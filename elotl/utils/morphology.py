@@ -118,29 +118,30 @@ class Convertor(object):
 		"""
 
 		rules = {'sym': set(), 'sub': []}
-		for line in open(fn):
-			if line[0] == '#':
-				continue
-			row = line.strip().split('\t')
-			priority = int(row[0])
-			score = priority
-			inn = [re.sub('^_$', '', i) for i in row[1:5]]
-			out = [re.sub('^_$', '', i) for i in row[5:]]
+		with open(fn, "r", encoding='UTF-8') as file:
+			for line in file:
+				if line[0] == '#':
+					continue
+				row = line.strip().split('\t')
+				priority = int(row[0])
+				score = priority
+				inn = [re.sub('^_$', '', i) for i in row[1:5]]
+				out = [re.sub('^_$', '', i) for i in row[5:]]
 
-			if inn[0] != '':
-				score += 4
-			if inn[1] != '':
-				score += 3
-			if inn[2] != '':
-				score += (2 * len(inn[2].split('|')))
-			if inn[3] != '':
-				score += 1
+				if inn[0] != '':
+					score += 4
+				if inn[1] != '':
+					score += 3
+				if inn[2] != '':
+					score += (2 * len(inn[2].split('|')))
+				if inn[3] != '':
+					score += 1
 
-			inn = [inn[0],
-					self._convert_tags(inn[1]), self._convert_tags(inn[2]), inn[3]]
-			rules['sym'].add(inn[1])
-			rules['sym'].add(inn[2])
-			rules['sub'].append((score, inn, out))
+				inn = [inn[0],
+						self._convert_tags(inn[1]), self._convert_tags(inn[2]), inn[3]]
+				rules['sym'].add(inn[1])
+				rules['sym'].add(inn[2])
+				rules['sub'].append((score, inn, out))
 
 		rules['sym'] = list(rules['sym'])
 		rules['sym'].sort(key=lambda x: len(x), reverse=True)

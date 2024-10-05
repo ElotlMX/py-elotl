@@ -74,12 +74,11 @@ class ATTFST:
         self.identity_symbol = identity_symbol
         self.unknown_symbol = unknown_symbol
         try:
-            lines = [line.rstrip('\n') for line in
-                     codecs.getreader('utf-8')(gzip.open(attfile),
-                                               errors='replace')]
-        except:
-            lines = [line.rstrip('\n') for line in
-                     codecs.open(attfile, "r", encoding="utf-8")]
+            with gzip.open(attfile) as gz_file:
+                lines = [line.rstrip('\n') for line in codecs.getreader('utf-8')(gz_file, errors='replace')]
+        except (OSError, TypeError):  # Captura errores específicos si es necesario
+            with codecs.open(attfile, "r", encoding="utf-8") as file:
+                lines = [line.rstrip('\n') for line in file]
         self.states = {}
         self.alphabet = set()
         for l in lines:
