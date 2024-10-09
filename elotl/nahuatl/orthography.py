@@ -56,8 +56,8 @@ class Normalizer(object):
     def __init__(self, normalized_ort: str, log_level="error"):
         if normalized_ort is None:
             normalized_ort = DEFAULT_ORTOGRAPHY
-            logger.info("No Nahuatl Ortography code provided. "
-                        "Defaulting to 'sep")
+            logger.info(f"No Nahuatl Ortography code provided. "
+                        "Defaulting to {DETAULT_ORTOGRAPHY}")
 
         if not (normalized_ort in AVAILABLE_ORTHOGRAPHIES):
             logger.warning(normalized_ort + " is not a supported orthography.")
