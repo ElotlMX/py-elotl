@@ -123,8 +123,7 @@ class Convertor(object):
 				if line[0] == '#':
 					continue
 				row = line.strip().split('\t')
-				priority = int(row[0])
-				score = priority
+				score = int(row[0])
 				inn = [re.sub('^_$', '', i) for i in row[1:5]]
 				out = [re.sub('^_$', '', i) for i in row[5:]]
 
