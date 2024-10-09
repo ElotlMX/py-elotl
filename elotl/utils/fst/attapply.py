@@ -76,7 +76,7 @@ class ATTFST:
         try:
             with gzip.open(attfile) as gz_file:
                 lines = [line.rstrip('\n') for line in codecs.getreader('utf-8')(gz_file, errors='replace')]
-        except (OSError, TypeError):  # Captura errores específicos si es necesario
+        except (OSError, TypeError): 
             with codecs.open(attfile, "r", encoding="utf-8") as file:
                 lines = [line.rstrip('\n') for line in file]
         self.states = {}
