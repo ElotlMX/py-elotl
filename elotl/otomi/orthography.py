@@ -1,18 +1,19 @@
 # -*- coding: UTF-8 -*-
 
 # Para usar desde la línea de comandos:
-#     $ python elotl/nahuatl/orthography.py "<texto>" -ort [sep|inali|ack]
+#     $ python elotl/otomi/orthography.py "<texto>" -ort [inali|otq|ots|rfe]
 
 # O, desde otro programa de Python:
 
-#     >>> from elotl.nahuatl.orthography import Normalizer
-#     >>> normalizer = Normalizer("sep")  # o "inali" "ack"
+#     >>> from elotl.otomi.orthography import Normalizer
+#     >>> normalizer = Normalizer("otq")  # o "ots" "rfe" "inali"
 #     >>> normalizer.normalize("<texto>")  # o `normalizer.to_phones("<texto>")`
 
 from __future__ import annotations
 import logging
 from elotl.utils.fst.attapply import ATTFST
-from elotl.nahuatl.config import AVAILABLE_ORTHOGRAPHIES, DEFAULT_ORTOGRAPHY
+from elotl.otomi.config import DEFAULT_ORTOGRAPHY, AVAILABLE_ORTHOGRAPHIES
+
 # https://docs.python.org/3/library/importlib.html?highlight=resources#module-importlib.resources
 try:
     # For Python >= 3.7
@@ -22,7 +23,7 @@ except ImportError:
     import importlib_resources as pkg_resources
 
 # https://importlib-resources.readthedocs.io/en/latest/using.html#migrating-from-legacy
-_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.nahuatl").joinpath('orig-fon.att')
+_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.otomi").joinpath('orig-fon.att')
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
 logger = logging.getLogger(__name__)
@@ -30,12 +31,13 @@ logger = logging.getLogger(__name__)
 
 class Normalizer(object):
     """
-    Class for normalizing Nahuatl texts to a single orthography. Currently
+    Class for normalizing Otomi texts to a single orthography. Currently
     supported output orthographies:
-    - SEP (e.g. "tiualaskej")
-    - INALI (e.g. "tiwalaskeh")
-    - ACK (e.g. "tihualazqueh")
-    - ILV (e.g. "tiualasqueh") <- this is the ilv orthography used with the nhi variety.
+    TODO: agergar ejemplos correctos
+    - OT (e.g. "tiualaskej")
+    - OQ (e.g. "tiwalaskeh")
+    - AP (e.g. "tihualazqueh")
+    - FH (e.g. "tiualasqueh") 
 
     The entry points for converting text are `.normalize(...)` and
     `.to_phones(...)`.
@@ -44,7 +46,7 @@ class Normalizer(object):
     ----------
     normalized_ort: str
         Name of the orthography to convert everything into. Must be one of
-        ("sep", "inali", "ack", "ilv").
+        ("inali", "otq", "ots", "rfe").
     
     log_level: str
         Desired level of logging ("error", "warn", or "debug"). If "warn" or
@@ -53,11 +55,10 @@ class Normalizer(object):
         default the log level is set to "error".
 
     """
-    def __init__(self, normalized_ort: str, log_level="error"):
+    def __init__(self, normalized_ort: str = "inali", log_level="error"):
         if normalized_ort is None:
             normalized_ort = DEFAULT_ORTOGRAPHY
-            logger.info(f"No Nahuatl Ortography code provided. "
-                        "Defaulting to {DETAULT_ORTOGRAPHY}")
+            logger.info(f"No Otomi Ortography code provided. Defaulting to {DEFAULT_ORTOGRAPHY}")
 
         if not (normalized_ort in AVAILABLE_ORTHOGRAPHIES):
             logger.warning(normalized_ort + " is not a supported orthography.")
@@ -76,10 +77,9 @@ class Normalizer(object):
             logging.error("Log level '{}' not recognized. Setting log level to"
                           " 'ERROR'.".format(log_level))
 
-        _path_to_att_dir = (
-            pkg_resources.files("elotl.utils.fst.att.nahuatl")
-            .joinpath("fon-" + normalized_ort + ".att")
-        )
+        with pkg_resources.path("elotl.utils.fst.att.otomi",
+                                "fon-" + normalized_ort + ".att") as p:
+            _path_to_att_dir = p
 
         self.norm_fst = ATTFST(_path_to_att_dir)
 
@@ -112,21 +112,21 @@ class Normalizer(object):
     def _g2p(self, w):
         """
         Converts an input word to a sequence of phonemes using an FST defined
-        in elotl/nahuatl/fst/lexc/orig-fon.lexc.
+        in elotl/otomi/fst/lexc/orig-fon.lexc. FIX: THIS COMMENT IS WRONG (SAME IN NAHUATL/ORTOGRAHPY)
         """
         return self._convert(w, _ORIG_FON_FST)
 
     def _normalize_word(self, original_word: str) -> tuple[str, str]:
         """
         Convert an input word from 'any' orthography into a normalized
-        orthography (currently SEP, INALI, and ACK). Since this process
+        orthography (currently OTQ, INALI, OTS, and RFE). Since this process
         requires first converting the input to a pseudo-phonemic
         representation, we return both the phonemic and normalized forms.
 
         Parameters
         ----------
         original_word: str
-            Input word form, in theory in any mixture of common Nahuatl
+            Input word form, in theory in any mixture of common Otomi
             orthographies.
 
         Returns
@@ -139,13 +139,13 @@ class Normalizer(object):
 
         fon = self._g2p(w)
         if fon is None:
-            logger.warning("Unable to convert word '{}' to phonemes."
+            logger.warn("Unable to convert word '{}' to phonemes."
                         .format(w))
             return w, w
 
         normed = self._convert(fon, self.norm_fst)
         if normed is None:
-            logger.warning("Unable to convert word '{}'.from phonemes to "
+            logger.warn("Unable to convert word '{}'.from phonemes to "
                         "normalized orthography.".format(fon))
             return fon, w
 
@@ -157,15 +157,15 @@ class Normalizer(object):
 
     def to_phones(self, text: str, overrides: dict[str, str] = None) -> str:
         """
-        Convert a non-normalized Nahuatl text into approximate/pseudo IPA.
+        Convert a non-normalized Otomi text into approximate/pseudo IPA. 
         Conversion happens at the word-level after tokenizing on whitespace.
 
         Parameters
         ----------
         text: str
-            Input text. It can be from any of a number of possible Nahuatl
+            Input text. It can be from any of a number of possible Otomi
             orthographies (the system attempts to handle many of the graphic
-            variations observed in diverse Nahuatl texts).
+            variations observed in diverse Otomi texts).
 
         overrides: dict
             A dictionary of hard-coded normalizations. If an input word
@@ -186,7 +186,7 @@ class Normalizer(object):
                 t_fon = overrides[token.lower()]
             t_fon = self._g2p(token)
             if t_fon is None:
-                logger.warning("Unable to convert word '{}' to phonemes."
+                logger.warn("Unable to convert word '{}' to phonemes."
                             .format(token))
                 fon.append(token)
                 continue
@@ -196,17 +196,17 @@ class Normalizer(object):
 
     def normalize(self, text: str, overrides: dict[str, str] = None) -> str:
         """
-        Convert a non-normalized Nahuatl text into normalized orthography.
+        Convert a non-normalized Otomi text into normalized orthography.
         Depending on the value used when initializing this class, the
-        normalized orthography is SEP, INALI or ACK. Conversion happens
+        normalized orthography is OTQ, INALI, OTS, and RFE. Conversion happens
         at the word-level after tokenizing on whitespace.
 
         Parameters
         ----------
         text: str
-            Input text. It can be from any of a number of possible Nahuatl
+            Input text. It can be from any of a number of possible Otomi
             orthographies (the system attempts to handle many of the graphic
-            variations observed in diverse Nahuatl texts).
+            variations observed in diverse Otomi texts).
 
         overrides: dict
             A dictionary of hard-coded normalizations. If an input word

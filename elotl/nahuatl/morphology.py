@@ -53,10 +53,8 @@ class Analyser(elotl.utils.morphology.Analyser):
 		if tokeniser:
 			self.tokenise = tokeniser
 
-		with pkg_resources.path("elotl.nahuatl.data", f"{self.lang_code}.mor.att") as p:
-			_path_to_att_dir = p
-		with pkg_resources.path("elotl.nahuatl.data", f"{self.lang_code}.mor.tsv") as p:
-			_path_to_tsv_dir = p
+		_path_to_att_dir = pkg_resources.files("elotl.nahuatl.data").joinpath(f"{self.lang_code}.mor.att")
+		_path_to_tsv_dir = pkg_resources.files("elotl.nahuatl.data").joinpath(f"{self.lang_code}.mor.tsv")
 
 		self.analyser = ATTFST(_path_to_att_dir)
 		self.convertor = elotl.utils.morphology.Convertor(_path_to_tsv_dir)
