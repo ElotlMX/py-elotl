@@ -33,11 +33,10 @@ class Normalizer(object):
     """
     Class for normalizing Otomi texts to a single orthography. Currently
     supported output orthographies:
-    TODO: agergar ejemplos correctos
-    - OT (e.g. "tiualaskej")
-    - OQ (e.g. "tiwalaskeh")
-    - AP (e.g. "tihualazqueh")
-    - FH (e.g. "tiualasqueh") 
+    - OTS (e.g. "kjämadi")
+    - OTQ (e.g. "hämadi")
+    - INALI (e.g. "jämadi")
+    - RFE (e.g. "hąmadi") 
 
     The entry points for converting text are `.normalize(...)` and
     `.to_phones(...)`.
