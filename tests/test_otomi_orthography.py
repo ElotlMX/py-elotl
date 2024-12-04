@@ -33,12 +33,50 @@ OTS_OUTPUTS = [
 ]
 
 
+OTQ_OUTPUTS = [
+    "ra ngaho ra tso̱ y'o̱te:",
+    "k'a mäistória dáté porke dósufré",
+    "bu̱ rané rabadi",
+    "por ehemplo dáfu̱ ná ra sapahtá pe lo prinsipal dáfu̱ ná ra ágila",
+    "ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra sahagún, mi b'e̱tsi ha ra ndäxkhua k'oi ra thuhu ra tsóditse florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
+    "ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
+    "ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
+    "gíraya náya'wi",
+    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hkhua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n dokha 'na.",
+    "făwi hi ndimá na madé",
+    "nuhe da fats'ihe da umbabihe ya za ya ngi ya tu̱di pa da o̱t'a ya mätsa ya ñämfo̱",
+    "gatho ya hyoyakhä'i mi b'u̱i ha ra hnini bi handi.",
+]
+
+
 @pytest.mark.parametrize(
     "input_sent, ots_norm_sent",
     list(zip(INPUT_OTOMI_SENT, OTS_OUTPUTS)),
 )
 def test_ots_normalizer(input_sent: str, ots_norm_sent: str):
-    assert Normalizer("ots").normalize(input_sent) == ots_norm_sent
+    # Arrange
+    normalizer = Normalizer("ots")
+
+    # Act
+    result = normalizer.normalize(input_sent)
+
+    # Assert
+    assert result == ots_norm_sent
+
+
+@pytest.mark.parametrize(
+    "input_sent, otq_norm_sent",
+    list(zip(INPUT_OTOMI_SENT, OTQ_OUTPUTS)),
+)
+def test_otq_normalizer(input_sent: str, otq_norm_sent: str):
+    # Arrange
+    normalizer = Normalizer("otq")
+
+    # Act
+    result = normalizer.normalize(input_sent)
+
+    # Assert
+    assert result == otq_norm_sent
 
 
 class TestOrthographicNormalization(unittest.TestCase):
