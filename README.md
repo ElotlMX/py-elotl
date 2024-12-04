@@ -145,7 +145,7 @@ documented.
 
 ### Requirements
 
-- python3
+- python>=3.8
 - [HFST](https://github.com/hfst/hfst)
 - GNU make
 - [poetry](https://python-poetry.org/docs/)
