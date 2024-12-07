@@ -80,8 +80,6 @@ class TestAnalysis(unittest.TestCase):
 
 		inp = ["Nomama","."]
 		outp = [{'analyses': [[[{'feats': {'Number[psor]': 'Sing', 'Person[psor]': '1'}, 'lemma': 'mama', 'pos': 'NOUN'}], 0.0], [[{'feats': {'Foreign': 'Yes', 'Number[psor]': 'Sing', 'Person[psor]': '1'}, 'lemma': 'mamá', 'pos': 'NOUN'}], 0.0], [[{'feats': {'Number[psor]': 'Sing', 'Number[subj]': 'Sing', 'Person[psor]': '1', 'Person[subj]': '3'}, 'lemma': 'mama', 'pos': 'NOUN'}], 1.0], [[{'feats': {'Foreign': 'Yes', 'Number[psor]': 'Sing', 'Number[subj]': 'Sing', 'Person[psor]': '1', 'Person[subj]': '3'}, 'lemma': 'mamá', 'pos': 'NOUN'}], 1.0]], 'lemma': None, 'pos': 'NOUN', 'wordform': 'Nomama'}, {'analyses': [[[{'feats': {}, 'lemma': '.', 'pos': 'PUNCT'}], 0.0]], 'lemma': '.', 'pos': 'PUNCT', 'wordform': '.'}]
-
-		# outp = [{"wordform": "Nomama", "analyses": [[[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[psor]": "1"}}], 0.0], [[{"lemma": "mama", "pos": "NOUN", "feats": {"Number[psor]": "Sing", "Person[subj]": "3", "Number[subj]": "Sing", "Person[psor]": "1"}}], 1.0]], "pos": "NOUN", "lemma": "mama"}, {"wordform": ".", "analyses": [[[{"lemma": ".", "pos": "PUNCT", "feats": {}}], 0.0]], "pos": "PUNCT", "lemma": "."}]
 		res = self.analyser.analyse(inp)
 		outpj = json.dumps(outp, cls=TokenEncoder, sort_keys=True)
 		resj = json.dumps(res, cls=TokenEncoder, sort_keys=True)
