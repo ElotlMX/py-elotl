@@ -27,7 +27,13 @@ classifiers = [
 include = ["MANIFEST.in"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.8"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.4"
 
 [build-system]
 requires = ["poetry-core"]
