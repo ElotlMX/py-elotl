@@ -23,7 +23,9 @@ except ImportError:
     import importlib_resources as pkg_resources
 
 # https://importlib-resources.readthedocs.io/en/latest/using.html#migrating-from-legacy
-_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.otomi").joinpath('orig-fon.att')
+_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.otomi").joinpath(
+    "orig-fon.att"
+)
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
 logger = logging.getLogger(__name__)
@@ -36,7 +38,7 @@ class Normalizer(object):
     - OTS (e.g. "kjämadi")
     - OTQ (e.g. "hämadi")
     - INALI (e.g. "jämadi")
-    - RFE (e.g. "hąmadi") 
+    - RFE (e.g. "hąmadi")
 
     The entry points for converting text are `.normalize(...)` and
     `.to_phones(...)`.
@@ -46,7 +48,7 @@ class Normalizer(object):
     normalized_ort: str
         Name of the orthography to convert everything into. Must be one of
         ("inali", "otq", "ots", "rfe").
-    
+
     log_level: str
         Desired level of logging ("error", "warn", or "debug"). If "warn" or
         "debug", a message will be produced every time the normalizer is unable
@@ -54,10 +56,13 @@ class Normalizer(object):
         default the log level is set to "error".
 
     """
+
     def __init__(self, normalized_ort: str = "inali", log_level="error"):
         if normalized_ort is None:
             normalized_ort = DEFAULT_ORTOGRAPHY
-            logger.info(f"No Otomi Ortography code provided. Defaulting to {DEFAULT_ORTOGRAPHY}")
+            logger.info(
+                f"No Otomi Ortography code provided. Defaulting to {DEFAULT_ORTOGRAPHY}"
+            )
 
         if not (normalized_ort in AVAILABLE_ORTHOGRAPHIES):
             logger.warning(normalized_ort + " is not a supported orthography.")
@@ -66,18 +71,21 @@ class Normalizer(object):
 
         log_level = log_level.lower()
         if log_level == "warn":
-            logger.setLevel(logging.WARN)
+            logger.setLevel(logging.WARNING)
         elif log_level == "error":
             logger.setLevel(logging.ERROR)
         elif log_level == "debug":
             logger.setLevel(logging.DEBUG)
         else:
             logger.setLevel(logging.ERROR)
-            logging.error("Log level '{}' not recognized. Setting log level to"
-                          " 'ERROR'.".format(log_level))
+            logging.error(
+                "Log level '{}' not recognized. Setting log level to"
+                " 'ERROR'.".format(log_level)
+            )
 
-        with pkg_resources.path("elotl.utils.fst.att.otomi",
-                                "fon-" + normalized_ort + ".att") as p:
+        with pkg_resources.path(
+            "elotl.utils.fst.att.otomi", "fon-" + normalized_ort + ".att"
+        ) as p:
             _path_to_att_dir = p
 
         self.norm_fst = ATTFST(_path_to_att_dir)
@@ -103,8 +111,8 @@ class Normalizer(object):
             The generated string with the highest weight.
 
         """
-        w = w.lower()
         forms = list(fst.apply(w))
+        # FIXME: manage error properly with an exception
         if forms:
             return forms[-1][0]
 
@@ -134,19 +142,20 @@ class Normalizer(object):
             Phonemic, Normalized forms of the string.
 
         """
-        w = original_word.lower()
-
-        fon = self._g2p(w)
+        fon = self._g2p(original_word)
         if fon is None:
-            logger.warn("Unable to convert word '{}' to phonemes."
-                        .format(w))
-            return w, w
+            logger.warning(
+                "Unable to convert word '{}' to phonemes.".format(original_word)
+            )
+            return original_word, original_word
 
         normed = self._convert(fon, self.norm_fst)
         if normed is None:
-            logger.warn("Unable to convert word '{}'.from phonemes to "
-                        "normalized orthography.".format(fon))
-            return fon, w
+            logger.warning(
+                "Unable to convert word '{}' from phonemes to "
+                "normalized orthography.".format(fon)
+            )
+            return fon, original_word
 
         return fon, normed
 
@@ -156,7 +165,7 @@ class Normalizer(object):
 
     def to_phones(self, text: str, overrides: dict[str, str] = None) -> str:
         """
-        Convert a non-normalized Otomi text into approximate/pseudo IPA. 
+        Convert a non-normalized Otomi text into approximate/pseudo IPA.
         Conversion happens at the word-level after tokenizing on whitespace.
 
         Parameters
@@ -185,8 +194,7 @@ class Normalizer(object):
                 t_fon = overrides[token.lower()]
             t_fon = self._g2p(token)
             if t_fon is None:
-                logger.warn("Unable to convert word '{}' to phonemes."
-                            .format(token))
+                logger.warning("Unable to convert word '{}' to phonemes.".format(token))
                 fon.append(token)
                 continue
             fon.append(t_fon)
