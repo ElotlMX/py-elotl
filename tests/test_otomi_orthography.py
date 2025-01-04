@@ -9,7 +9,7 @@ INPUT_OTOMI_SENT = [
     "Ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra Sahagún, mi b'e̱tsi ha ra ndäxjua k'oi ra thuhu ra Códice Florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
     "Ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, Ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
     "Ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
-    "gíRaya náya'wi",
+    "gíRaya náya'wi",  # TODO: Duda
     "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hjua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. Ge'bu̱ go min pu̱n doja 'na. ",
     "phăwi hi ndimá na madé",
     "nuhe da fats'ihe da umbabihe ya za ya ngi ya tu̱di pa da o̱t'a ya mätsa ya ñämfo̱",
@@ -17,66 +17,66 @@ INPUT_OTOMI_SENT = [
 ]
 
 OTS_OUTPUTS = [
-    "ra ngajo ra tso̱ y'o̱te:",
+    "Ra ngajo ra tso̱ y'o̱te:",
     "k'a mäistória dáté porke dósufré",
     "bu̱ rané rabadi",
     "por ejemplo dáfu̱ ná ra sapajtá pe lo prinsipal dáfu̱ ná ra ágila",
-    "ra b'ist'ofo gi nu̱tiju̱ ya jmä ya r'atsa noya ya mu̱dimejai ra sajagún, mi b'e̱tsi ja ra ndäxkjua k'oi ra tjuju ra tsóditse florentino, pede yojo ya b'ede mi mä ne juts'i xajño.",
-    "nduntji bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, ngu mañä ra ñ'udi mi tjanda n'a ra ts'otjogi.",
-    "ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ja ya mäts'a bi mu̱di ra ntujni.",
-    "gíraya náya'wi",
-    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro jkjua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n dokja 'na.",
+    "Ra b'ist'ofo gi nu̱tiju̱ ya jmä ya r'atsa noya ya mu̱dimejai ra Sajagún, mi b'e̱tsi ja ra ndäxkjua k'oi ra tjuju ra Tsóditse Florentino, pede yojo ya b'ede mi mä ne juts'i xajño.",
+    "Nduntji bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, Ngu mañä ra ñ'udi mi tjanda n'a ra ts'otjogi.",
+    "Ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ja ya mäts'a bi mu̱di ra ntujni.",
+    "gíRaya náya'wi",
+    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro jkjua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. Ge'bu̱ go min pu̱n dokja 'na.",
     "făwi ji ndimá na madé",
     "nuje da fats'ije da umbabije ya za ya ngi ya tu̱di pa da o̱t'a ya mätsa ya ñämfo̱",
-    "gatjo ya jyoyakjä'i mi b'u̱i ja ra jnini bi jandi.",
+    "Gatjo ya jyoyakjä'i mi b'u̱i ja ra jnini bi jandi.",
 ]
 
 
 OTQ_OUTPUTS = [
-    "ra ngaho ra tso̱ y'o̱te:",
+    "Ra ngaho ra tso̱ y'o̱te:",
     "k'a mäistória dáté porke dósufré",
     "bu̱ rané rabadi",
     "por ehemplo dáfu̱ ná ra sapahtá pe lo prinsipal dáfu̱ ná ra ágila",
-    "ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra sahagún, mi b'e̱tsi ha ra ndäxkhua k'oi ra thuhu ra tsóditse florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
-    "ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
-    "ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
-    "gíraya náya'wi",
-    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hkhua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n dokha 'na.",
+    "Ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra Sahagún, mi b'e̱tsi ha ra ndäxkhua k'oi ra thuhu ra Tsóditse Florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
+    "Ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, Ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
+    "Ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
+    "gíRaya náya'wi",
+    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hkhua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. Ge'bu̱ go min pu̱n dokha 'na.",
     "făwi hi ndimá na madé",
     "nuhe da fats'ihe da umbabihe ya za ya ngi ya tu̱di pa da o̱t'a ya mätsa ya ñämfo̱",
-    "gatho ya hyoyakhä'i mi b'u̱i ha ra hnini bi handi.",
+    "Gatho ya hyoyakhä'i mi b'u̱i ha ra hnini bi handi.",
 ]
 
 
 INALI_OUTPUTS = [
-    "ra ngaho ra tso̱ y'o̱te:",
+    "Ra ngaho ra tso̱ y'o̱te:",
     "k'a mäistória dáté porke dósufré",
     "bu̱ rané rabadi",
     "por ehemplo dáfu̱ ná ra sapahtá pe lo prinsipal dáfu̱ ná ra ágila",
-    "ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra sahagún, mi b'e̱tsi ha ra ndäxkhua k'oi ra thuhu ra tsóditse florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
-    "ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
-    "ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
-    "gíraya náya'wi",
-    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hkhua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n dokha 'na.",
+    "Ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra Sahagún, mi b'e̱tsi ha ra ndäxkhua k'oi ra thuhu ra Tsóditse Florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
+    "Ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, Ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
+    "Ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
+    "gíRaya náya'wi",
+    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hkhua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. Ge'bu̱ go min pu̱n dokha 'na.",
     "făwi hi ndimá na madé",
     "nuhe da fats'ihe da umbabihe ya za ya ngi ya tu̱di pa da o̱t'a ya mätsa ya ñämfo̱",
-    "gatho ya hyoyakhä'i mi b'u̱i ha ra hnini bi handi.",
+    "Gatho ya hyoyakhä'i mi b'u̱i ha ra hnini bi handi.",
 ]
 
 
 RFE_OUTPUTS = [
-    "ra ngaho ra cɔ yʔɔte:",
+    "Ra ngaho ra cɔ yʔɔte:",
     "kʔa mᶏistória dáté porke dósuphré",
     "bɨ rané rabadi",
     "por ehemplo dáphɨ ná ra sapahtá pe lo prinsipal dáphɨ ná ra ágila",
-    "ra bʔistʔopho gi nɨtihɨ ya hmᶏ ya rʔaca noya ya mɨdimehai ra sahagún, mi bʔɛci ha ra ndᶏškhua kʔoi ra thuhu ra códice phlorentino, pede yoho ya bʔede mi mᶏ ne hucʔi šahño.",
-    "ndunthi bi ncu nuya ñᶏmphɔ bi ñucʔi ya ndoyʔo ra ncu, ngu mañᶏ ra ñʔudi mi thanda nʔa ra cʔothogi.",
-    "ebɨ ba penga ya ñᶏmphɔ ne ya ñʔemabagi ha ya mᶏcʔa bi mɨdi ra ntuhni.",
-    "gíraya náyaʔwi",
-    "bi bošro ši ʔbɛcʔina, bidoʔɨ ro ʔyɨni ʔna, ši bi bɔš ro hkhua ʔna, bidoʔɨ ro cʔii ʔna, ši bɔšro cʔᶏre ʔna. geʔbɨ go min pɨn dokha ʔna.",
+    "Ra bʔistʔopho gi nɨtihɨ ya hmᶏ ya rʔaca noya ya mɨdimehai ra Sahagún, mi bʔɛci ha ra ndᶏškhua kʔoi ra thuhu ra Códice Phlorentino, pede yoho ya bʔede mi mᶏ ne hucʔi šahño.",
+    "Ndunthi bi ncu nuya ñᶏmphɔ bi ñucʔi ya ndoyʔo ra ncu, ngu mañᶏ ra ñʔudi mi thanda nʔa ra cʔothogi.",
+    "Ebɨ ba penga ya ñᶏmphɔ ne ya ñʔemabagi ha ya mᶏcʔa bi mɨdi ra ntuhni.",
+    "gíRaya náyaʔwi",
+    "bi bošro ši ʔbɛcʔina, bidoʔɨ ro ʔyɨni ʔna, ši bi bɔš ro hkhua ʔna, bidoʔɨ ro cʔii ʔna, ši bɔšro cʔᶏre ʔna. Geʔbɨ go min pɨn dokha ʔna.",
     "phăwi hi ndimá na madé",
     "nuhe da phacʔihe da umbabihe ya za ya ngi ya tɨdi pa da ɔtʔa ya mᶏca ya ñᶏmphɔ",
-    "gatho ya hyoyakhᶏʔi mi bʔɨi ha ra hnini bi handi.",
+    "Gatho ya hyoyakhᶏʔi mi bʔɨi ha ra hnini bi handi.",
 ]
 
 
