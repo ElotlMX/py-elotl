@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "elotl"
-version = "0.0.17"
+version = "0.1.0"
 description = "Python package for Natural Language Processing (NLP), focused on low-resource languages spoken in Mexico."
 authors = [
 	"Paul Aguilar <paul.aguilar.enriquez@hotmail.com>",
@@ -10,7 +10,6 @@ authors = [
 maintainers = ["Robert Pugh <robertpugh408@gmail.com>"]
 license = "MLP-2.0"
 readme = "README.md"
-repository = "https://github.com/ElotlMX/py-elotl"
 classifiers = [
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
@@ -22,9 +21,15 @@ classifiers = [
         "Natural Language :: Spanish",
         "Topic :: Utilities",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
 ]
 include = ["MANIFEST.in"]
+
+[project.urls]
+Homepage = "https://elotl.mx"
+Documentation = "https://github.com/ElotlMX/py-elotl/tree/master/docs"
+Repository = "https://github.com/ElotlMX/py-elotl"
+Issues = "https://github.com/ElotlMX/py-elotl/issues"
 
 [tool.poetry.dependencies]
 python = "^3.8"
