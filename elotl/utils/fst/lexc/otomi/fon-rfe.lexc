@@ -1,3 +1,6 @@
+Multichar_Symbols
+kh t͡s t͡ʃ
+
 LEXICON Root
 r ContextFree "weight: 2.0"; ! ignorar r inicial
 ContextFree ;

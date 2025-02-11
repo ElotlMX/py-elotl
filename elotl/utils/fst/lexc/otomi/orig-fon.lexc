@@ -1,3 +1,6 @@
+Multichar_Symbols
+rr ts ch kj tx ph kh
+
 LEXICON Root
 r ContextFree "weight: 2.0"; ! ignorar r inicial
 ContextFree ;
@@ -43,7 +46,7 @@ h:h Loop ;
 ':ʔ Loop ;
 ‘:ʔ Loop ;
 ʼ:ʔ Loop ;
-j:kh Loop ; ! pendiente
+j:kh Loop; ! pendiente
 k:k Loop ;
 l:l Loop ;
 m:m Loop ;
@@ -51,7 +54,7 @@ n:n Loop ;
 ñ:ɲ Loop ;
 p:p Loop ;
 r:ɾ Loop ;
-rr:r Loop "weight: 2.0";
+rr:r Loop ;
 s:s Loop ;
 t:t Loop ;
 ts:t͡s Loop ;
@@ -62,6 +65,7 @@ y:j Loop ;
 z:z Loop ;
 
 j:h Loop ; ! OT (reglas no dadas arriba)
+kj:kh Loop ;
 
 tx:t͡ʃ Loop ; ! OQ (reglas no dadas arriba)
 

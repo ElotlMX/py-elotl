@@ -37,14 +37,14 @@ OTQ_OUTPUTS = [
     "k'a mäistória dáté porke dósufré",
     "bu̱ rané rabadi",
     "por ehemplo dáfu̱ ná ra sapahtá pe lo prinsipal dáfu̱ ná ra ágila",
-    "ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra sahagún, mi b'e̱tsi ha ra ndäxkhua k'oi ra thuhu ra tsóditse florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
+    "ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra sahagún, mi b'e̱tsi ha ra ndäxjua k'oi ra thuhu ra tsóditse florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
     "ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
     "ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
     "gíraya náya'wi",
-    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hkhua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n dokha 'na.",
+    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hjua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n doja 'na.",
     "făwi hi ndimá na madé",
     "nuhe da fats'ihe da umbabihe ya za ya ngi ya tu̱di pa da o̱t'a ya mätsa ya ñämfo̱",
-    "gatho ya hyoyakhä'i mi b'u̱i ha ra hnini bi handi.",
+    "gatho ya hyoyajä'i mi b'u̱i ha ra hnini bi handi.",
 ]
 
 
@@ -53,14 +53,14 @@ INALI_OUTPUTS = [
     "k'a mäistória dáté porke dósufré",
     "bu̱ rané rabadi",
     "por ehemplo dáfu̱ ná ra sapahtá pe lo prinsipal dáfu̱ ná ra ágila",
-    "ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra sahagún, mi b'e̱tsi ha ra ndäxkhua k'oi ra thuhu ra tsóditse florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
+    "ra b'ist'ofo gi nu̱tihu̱ ya hmä ya r'atsa noya ya mu̱dimehai ra sahagún, mi b'e̱tsi ha ra ndäxjua k'oi ra thuhu ra tsóditse florentino, pede yoho ya b'ede mi mä ne huts'i xahño.",
     "ndunthi bi ntsu nuya ñämfo̱ bi ñuts'i ya ndoy'o ra ntsu, ngu mañä ra ñ'udi mi thanda n'a ra ts'othogi.",
     "ebu̱ ba penga ya ñämfo̱ ne ya ñ'emabagi ha ya mäts'a bi mu̱di ra ntuhni.",
     "gíraya náya'wi",
-    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hkhua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n dokha 'na.",
+    "bi boxro xi 'be̱ts'ina, bido'u̱ ro 'yu̱ni 'na, xi bi bo̱x ro hjua 'na, bido'u̱ ro ts'ii 'na, xi bo̱xro ts'äre 'na. ge'bu̱ go min pu̱n doja 'na.",
     "făwi hi ndimá na madé",
     "nuhe da fats'ihe da umbabihe ya za ya ngi ya tu̱di pa da o̱t'a ya mätsa ya ñämfo̱",
-    "gatho ya hyoyakhä'i mi b'u̱i ha ra hnini bi handi.",
+    "gatho ya hyoyajä'i mi b'u̱i ha ra hnini bi handi.",
 ]
 
 
