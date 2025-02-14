@@ -32,7 +32,7 @@ Repository = "https://github.com/ElotlMX/py-elotl"
 Issues = "https://github.com/ElotlMX/py-elotl/issues"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.11"
 
 [tool.poetry.group.test]
 optional = true
