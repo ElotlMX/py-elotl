@@ -10,9 +10,9 @@ Developed by:
 - Robert Pugh [@Lguyogiro](https://github.com/Lguyogiro), [robertpugh408@gmail.com](mailto:robertpugh408@gmail.com)
 - Diego Barriga [@umoqnier](https://github.com/umoqnier/), [dbarriga@ciencias.unam.mx](mailto:dbarriga@ciencias.unam.mx)
 
-Requiere python>=3.6
+Requiere python>=3.8
 
-- Development Status `Alpha`. Read [Classifiers](https://pypi.org/classifiers/)
+- Development Status `Beta`. Read [Classifiers](https://pypi.org/classifiers/)
 - pip package: [elotl](https://pypi.org/project/elotl/)
 - GitHub repository: [ElotlMX/py-elotl](https://github.com/ElotlMX/py-elotl)
 
