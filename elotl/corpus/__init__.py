@@ -1,16 +1,18 @@
+# FIXME: Use POO for this module like nltk corpus load module
 def list_of_corpus():
-    elotl_list_of_corpus = []
-    elotl_list_of_corpus.append(['axolotl','Is a nahuatl corpus'])
-    elotl_list_of_corpus.append(['tsunkua','Is an otomí corpus'])
-    return elotl_list_of_corpus
+    return [
+        ["axolotl", "Is a Spanish-Nahuatl parallel corpus"],
+        ["tsunkua", "Is a Spanish-Otomí parallel corpus"],
+        ["kolo", "Is a Spanish-Mixteco parallel corpus"],
+    ]
+
 
 def load(corpus_name):
     # https://stackoverflow.com/questions/6028000/how-to-read-a-static-file-from-inside-a-python-package
-    # l1,l2,variant,document_name
-    available_corpus = ['axolotl', 'tsunkua']
+    # l1,l2,variant,document_name,*extrafields (depends on corpus)
+    available_corpus = ["axolotl", "tsunkua", "kolo"]
 
     if corpus_name in available_corpus:
-
         from .. import corpora
 
         try:
@@ -22,8 +24,9 @@ def load(corpus_name):
         from io import StringIO
         import csv
 
-        corpus_content = pkg_resources.read_text(corpora, corpus_name + '.csv',
-            encoding='utf-8', errors='strict')
+        corpus_content = pkg_resources.read_text(
+            corpora, corpus_name + ".csv", encoding="utf-8", errors="strict"
+        )
         corpus_buff = StringIO(corpus_content)
         corpus_reader = csv.reader(corpus_buff)
 
