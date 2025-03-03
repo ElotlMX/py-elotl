@@ -10,7 +10,7 @@ Developed by:
 - Robert Pugh [@Lguyogiro](https://github.com/Lguyogiro), [robertpugh408@gmail.com](mailto:robertpugh408@gmail.com)
 - Diego Barriga [@umoqnier](https://github.com/umoqnier/), [dbarriga@ciencias.unam.mx](mailto:dbarriga@ciencias.unam.mx)
 
-Requiere python>=3.8
+Requiere python>=3.11
 
 - Development Status `Beta`. Read [Classifiers](https://pypi.org/classifiers/)
 - pip package: [elotl](https://pypi.org/project/elotl/)
@@ -54,8 +54,8 @@ Output:
 ```bash
 Name		Description
 ['axolotl', 'Is a Spanish-Nahuatl parallel corpus']
-['tsunkua', 'Is a Spanish-otomí parallel corpus']
-
+['tsunkua', 'Is a Spanish-Otomí parallel corpus']
+['kolo', 'Is a Spanish-Mixteco parallel corpus']
 ```
 
 #### Loading a corpus
@@ -85,12 +85,18 @@ for row in axolotl:
 ]
 ```
 
-Each element of the list has four indices:
+Each element of the list has four indices with optional extra data (depends on the corpus):
 
 - non_original_language
 - original_language
 - variant
 - document_name
+
+#### Extra data per corpus
+
+- Self denomination (kolo)
+- Iso lang (axolotl)
+TODO
 
 ```python
 tsunkua = elotl.corpus.load('tsunkua')
