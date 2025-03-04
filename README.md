@@ -81,22 +81,16 @@ for row in axolotl:
     'Hay que adivinar: un pozo, a la mitad del cerro, te vas a encontrar.',
     'See tosaasaanil, see tosaasaanil. Tias iipan see tepeetl, iitlakotian tepeetl, tikoonextis san see aameyalli.',
     '',
-    'Adivinanzas nahuas'
+    'Adivinanzas nahuas',
 ]
 ```
 
-Each element of the list has four indices with optional extra data (depends on the corpus):
+Each element of the list has four indices:
 
-- non_original_language
-- original_language
+- non_original_language (l1)
+- original_language (l2)
 - variant
 - document_name
-
-#### Extra data per corpus
-
-- Self denomination (kolo)
-- Iso lang (axolotl)
-TODO
 
 ```python
 tsunkua = elotl.corpus.load('tsunkua')
