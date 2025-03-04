@@ -72,16 +72,16 @@ If an existing corpus is entered, a list is returned.
 
 ```python
 axolotl = elotl.corpus.load('axolotl')
-for row in axolotl:
-    print(row)
+print(axolotl[0])
 ```
 
 ```python
 [
-    'Hay que adivinar: un pozo, a la mitad del cerro, te vas a encontrar.',
-    'See tosaasaanil, see tosaasaanil. Tias iipan see tepeetl, iitlakotian tepeetl, tikoonextis san see aameyalli.',
-    '',
-    'Adivinanzas nahuas',
+    'Y así, cuando hizo su ofrenda de fuego, se sienta delante de los demás y una persona se queda junto a él.',
+    'Auh in ye yuhqui in on tlenamacac niman ye ic teixpan on motlalia ce tlacatl itech mocaua.',
+    'Classical Nahuatl',
+    'Vida económica de Tenochtitlan',
+    'nci'
 ]
 ```
 
@@ -91,6 +91,7 @@ Each element of the list has four indices:
 - original_language (l2)
 - variant
 - document_name
+- iso lang (optional)
 
 ```python
 tsunkua = elotl.corpus.load('tsunkua')
