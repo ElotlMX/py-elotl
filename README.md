@@ -10,7 +10,7 @@ Developed by:
 - Robert Pugh [@Lguyogiro](https://github.com/Lguyogiro), [robertpugh408@gmail.com](mailto:robertpugh408@gmail.com)
 - Diego Barriga [@umoqnier](https://github.com/umoqnier/), [dbarriga@ciencias.unam.mx](mailto:dbarriga@ciencias.unam.mx)
 
-Requiere python>=3.8
+Requiere python>=3.11
 
 - Development Status `Beta`. Read [Classifiers](https://pypi.org/classifiers/)
 - pip package: [elotl](https://pypi.org/project/elotl/)
@@ -54,8 +54,8 @@ Output:
 ```bash
 Name		Description
 ['axolotl', 'Is a Spanish-Nahuatl parallel corpus']
-['tsunkua', 'Is a Spanish-otomí parallel corpus']
-
+['tsunkua', 'Is a Spanish-Otomí parallel corpus']
+['kolo', 'Is a Spanish-Mixteco parallel corpus']
 ```
 
 #### Loading a corpus
@@ -72,25 +72,26 @@ If an existing corpus is entered, a list is returned.
 
 ```python
 axolotl = elotl.corpus.load('axolotl')
-for row in axolotl:
-    print(row)
+print(axolotl[0])
 ```
 
 ```python
 [
-    'Hay que adivinar: un pozo, a la mitad del cerro, te vas a encontrar.',
-    'See tosaasaanil, see tosaasaanil. Tias iipan see tepeetl, iitlakotian tepeetl, tikoonextis san see aameyalli.',
-    '',
-    'Adivinanzas nahuas'
+    'Y así, cuando hizo su ofrenda de fuego, se sienta delante de los demás y una persona se queda junto a él.',
+    'Auh in ye yuhqui in on tlenamacac niman ye ic teixpan on motlalia ce tlacatl itech mocaua.',
+    'Classical Nahuatl',
+    'Vida económica de Tenochtitlan',
+    'nci'
 ]
 ```
 
 Each element of the list has four indices:
 
-- non_original_language
-- original_language
+- non_original_language (l1)
+- original_language (l2)
 - variant
 - document_name
+- iso lang (optional)
 
 ```python
 tsunkua = elotl.corpus.load('tsunkua')
