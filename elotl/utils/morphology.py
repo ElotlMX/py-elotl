@@ -10,6 +10,7 @@ Ejemplo de uso:
 
 import re
 from elotl.utils.fst.attapply import ATTFST
+from elotl.utils.util import langcode2macrolang
 
 try:
 	# For Python >= 3.7
@@ -223,24 +224,49 @@ class Analyser(object):
 
 	Parameters
 	----------
+	lang_code: str
+		ISO-639-3 code for the language variety for which you want to load and use 
+		the morphological analyzer. If not supported, 
 	tokeniser: function
 		A tokenisation function, if none is provided a default tokeniser, _tokenise()
 		is used which is based on regular expressions.
 
 	"""
-	def __init__(self, tokeniser=None):
+	def __init__(self, lang_code, tokeniser=None):
+		self.normaliser = None
 		self.tokenise = self._tokenise
-
+		self.lang_code = lang_code
+		self.macro_lang = langcode2macrolang.get(self.lang_code)
+		if self.macro_lang is None:
+			raise ValueError(
+				f"Language code {self.lang_code} is not recognized or not supported.\n"
+				f"Currently supported language codes: {', '.join(list(langcode2macrolang.keys()))}"
+			)
 		if tokeniser:
 			self.tokenise = tokeniser
+		
 
-		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.att") as p:
-			_path_to_att_dir = p
+		#
+		# Achto sequita mox catqui in archivo tlen omotzohtzocotziteh, .att.gz
+		#
+		package_name = f"elotl.{self.macro_lang}.data"
+		compressed_resource_name = f"{self.lang_code}.mor.att.gz"
+		resource_name = f"{self.lang_code}.mor.att"
+
+		if pkg_resources.is_resource(package_name, compressed_resource_name):
+			with pkg_resources.path(package_name, compressed_resource_name) as p:
+				self._path_to_att_dir = p
+		else:
+			# tlamo sectlehcoltia in archivo .att
+			with pkg_resources.path(package_name, resource_name) as p:
+				self._path_to_att_dir = p
+
+
 		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.tsv") as p:
-			_path_to_tsv_dir = p
+			self._path_to_tsv_dir = p
 
-		self.analyser = ATTFST(_path_to_att_dir)
-		self.convertor = Convertor(_path_to_tsv_dir)
+		self.analyser = ATTFST(self._path_to_att_dir)
+		self.convertor = Convertor(self._path_to_tsv_dir)
 
 	def _tokenise(self, text):
 		"""
@@ -364,7 +390,7 @@ class Analyser(object):
 		>>> a.analyse('ab, c', tokenise=True)
 		[<Token "a" (0)>, <Token "b" (0)>, <Token "," (0)>, <Token "c" (0)>]
 		"""
-
+		import pdb;pdb.set_trace()
 		tokens = []
 		wordforms = []
 		if not tokenise:

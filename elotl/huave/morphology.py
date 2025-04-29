@@ -45,7 +45,6 @@ class Analyser(elotl.utils.morphology.Analyser):
 
 		self.analyser = ATTFST(_path_to_att_dir)
 		self.convertor = elotl.utils.morphology.Convertor(_path_to_tsv_dir)
-		#self.normaliser = Normaliser("ack")
 		self.normaliser = None
 
 # Convenience alias for Analyser to Analyzer
