@@ -390,7 +390,6 @@ class Analyser(object):
 		>>> a.analyse('ab, c', tokenise=True)
 		[<Token "a" (0)>, <Token "b" (0)>, <Token "," (0)>, <Token "c" (0)>]
 		"""
-		import pdb;pdb.set_trace()
 		tokens = []
 		wordforms = []
 		if not tokenise:

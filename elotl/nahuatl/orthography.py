@@ -22,7 +22,10 @@ except ImportError:
     import importlib_resources as pkg_resources
 
 # https://importlib-resources.readthedocs.io/en/latest/using.html#migrating-from-legacy
-_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.nahuatl").joinpath('orig-fon.att')
+with pkg_resources.path("elotl.utils.fst.att.nahuatl", 'orig-fon.att') as p:
+    _path_to_orig_fon = p
+
+# _path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.nahuatl").joinpath('orig-fon.att')
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
 logger = logging.getLogger(__name__)
@@ -76,10 +79,13 @@ class Normalizer(object):
             logging.error("Log level '{}' not recognized. Setting log level to"
                           " 'ERROR'.".format(log_level))
 
-        _path_to_att_dir = (
-            pkg_resources.files("elotl.utils.fst.att.nahuatl")
-            .joinpath("fon-" + normalized_ort + ".att")
-        )
+        with pkg_resources.path("elotl.utils.fst.att.nahuatl", "fon-" + normalized_ort + ".att") as p:
+            _path_to_att_dir = p 
+        
+        # _path_to_att_dir = (
+        #     pkg_resources.files("elotl.utils.fst.att.nahuatl")
+        #     .joinpath("fon-" + normalized_ort + ".att")
+        # )
 
         self.norm_fst = ATTFST(_path_to_att_dir)
 

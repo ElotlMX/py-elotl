@@ -9,7 +9,6 @@ Ejemplo de uso:
 	>>> res = a.analyse('“Amo quen ximati, teh xiyo in escuela.', tokenise=True)
 """
 import logging
-from elotl.utils.fst.attapply import ATTFST
 from elotl.nahuatl.orthography import Normalizer as Normaliser
 from elotl.utils.morphology import Analyzer as GenericElotlAnalyzer
 
@@ -35,8 +34,8 @@ class Analyser(GenericElotlAnalyzer):
 		from the apertium project, were built with a "spellrelax" component that enables
 		flexible input orthography.
 	"""
-	def __init__(self, lang_code, tokeniser=None, normalize=True):
-		super().__init__(lang_code, tokeniser)
+	def __init__(self, lang_code, tokenizer=None, normalize=True):
+		super().__init__(lang_code, tokenizer)
 		if normalize is True:
 			self.normaliser = Normaliser("ack")
 
