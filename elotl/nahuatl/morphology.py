@@ -10,12 +10,12 @@ Ejemplo de uso:
 """
 import logging
 from elotl.nahuatl.orthography import Normalizer as Normaliser
-from elotl.utils.morphology import Analyzer as GenericElotlAnalyzer
+from elotl.utils.morphology import AnalyzerBase
 
 logger = logging.getLogger(__name__)
 
 
-class Analyser(GenericElotlAnalyzer):
+class Analyser(AnalyzerBase):
 	"""
 	Class for returning morphological analyses in a Python-friendly format
 	with UD-style POS tags and Feature=Value pairs.
@@ -34,10 +34,15 @@ class Analyser(GenericElotlAnalyzer):
 		from the apertium project, were built with a "spellrelax" component that enables
 		flexible input orthography.
 	"""
-	def __init__(self, lang_code, tokenizer=None, normalize=True):
-		super().__init__(lang_code, tokenizer)
-		if normalize is True:
+	def __init__(self, lang_code, tokeniser=None, normalise=True):
+		super().__init__(lang_code, tokeniser)
+		if normalise is True:
 			self.normaliser = Normaliser("ack")
 
 # Convenience alias for Analyser to Analyzer
-Analyzer = Analyser
+class Analyzer(AnalyzerBase):
+	def __init__(self, lang_code, tokenizer=None, normalize=True):
+		super().__init__(lang_code, tokenizer)
+		if normalize is True:
+			self.normalizer = Normaliser("ack")
+

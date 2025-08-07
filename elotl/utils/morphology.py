@@ -217,7 +217,7 @@ class Convertor(object):
 		return analysis
 
 
-class Analyser(object):
+class AnalyserBase(object):
 	"""
 	Class for returning morphological analyses in a Python-friendly format
 	with UD-style POS tags and Feature=Value pairs.
@@ -262,7 +262,7 @@ class Analyser(object):
 				self._path_to_att_dir = p
 
 
-		with pkg_resources.path("elotl.nahuatl.data", "nhi.mor.tsv") as p:
+		with pkg_resources.path(package_name, f"{self.lang_code}.mor.tsv") as p:
 			self._path_to_tsv_dir = p
 
 		self.analyser = ATTFST(self._path_to_att_dir)
@@ -437,4 +437,4 @@ class Analyser(object):
 		return self.analyse(text, tokenize, normalize, max_analyses)
 
 # Convenience alias for Analyser to Analyzer
-Analyzer = Analyser
+AnalyzerBase = AnalyserBase
