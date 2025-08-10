@@ -39,13 +39,13 @@ class Analyser(AnalyzerBase):
 	"""
 	def __init__(self, lang_code: str, tokeniser: Optional[Callable] = None, normalise: bool = True):
 		super().__init__(lang_code, tokeniser)
-		if normalise is True:
+		if normalise:
 			self.normaliser = Normaliser("ack")
 
 # Convenience alias for Analyser to Analyzer
 class Analyzer(AnalyzerBase):
 	def __init__(self, lang_code: str, tokenizer: Optional[Callable] = None, normalize: bool = True):
 		super().__init__(lang_code, tokenizer)
-		if normalize is True:
-			self.normalizer = Normaliser("ack")
+		if normalize:
+			self.normaliser = Normaliser("ack")
 

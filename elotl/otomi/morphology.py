@@ -42,7 +42,7 @@ class Analyser(AnalyzerBase):
 			lang_code="ote"
 		super().__init__(lang_code, tokeniser)
 
-		if normalise is True:
+		if normalise:
 			self.normaliser = Normaliser("inali") # todo: verify that this orthography is the most compatible with the morphological analyzer.
 
 
@@ -51,4 +51,7 @@ class Analyzer(AnalyzerBase):
 	def __init__(self, lang_code: Optional[str] = None, tokenizer: Optional[Callable] = None, normalize: bool = False):
 		if lang_code is None:
 			lang_code="ote"
+		if normalize:
+			self.normaliser = Normaliser("inali") # todo: verify that this orthography is the most compatible with the morphological analyzer.
+
 		super().__init__(lang_code, tokenizer)
