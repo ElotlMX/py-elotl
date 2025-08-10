@@ -11,12 +11,12 @@ import logging
 from elotl.otomi.orthography import Normalizer as Normaliser
 from elotl.utils.morphology import AnalyzerBase
 from elotl.otomi.config import SUPPORTED_LANG_CODES, DEFAULT_LANG_CODE
-
+from typing import Callable, Optional
 
 logger = logging.getLogger(__name__)
 
 class Analyser(AnalyzerBase):
-	def __init__(self, lang_code=None, tokeniser=None, normalise=False):
+	def __init__(self, lang_code: Optional[str] = None, tokeniser: Optional[Callable] = None, normalise: bool = False):
 		"""
 		Parameters
 		----------
@@ -48,7 +48,7 @@ class Analyser(AnalyzerBase):
 
 # Convenience alias for Analyser to Analyzer
 class Analyzer(AnalyzerBase):
-	def __init__(self, lang_code=None, tokenizer=None, normalize=True):
+	def __init__(self, lang_code: Optional[str] = None, tokenizer: Optional[Callable] = None, normalize: bool = False):
 		if lang_code is None:
 			lang_code="ote"
 		super().__init__(lang_code, tokenizer)

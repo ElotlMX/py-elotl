@@ -10,7 +10,7 @@ Ejemplo de uso:
 """
 #from elotl.huave.orthography import Normalizer as Normaliser
 from elotl.utils.morphology import AnalyzerBase
-
+from typing import Optional, Callable
 
 class Analyser(AnalyzerBase):
 	"""
@@ -27,18 +27,18 @@ class Analyser(AnalyzerBase):
 		is used which is based on regular expressions.
 
 	"""
-	def __init__(self, lang_code=None, tokeniser=None):
+	def __init__(self, lang_code: Optional[str] = None, tokeniser: Optional[Callable] = None):
 		# This is just a temporary default until (if ever) we support multiple varieties.
 		# It seems weird to require a language code if only one variety is supported
 		# especially since you already imported this from `otomi`.
 		if lang_code is None:
 			lang_code="huv"
 		super().__init__(lang_code, tokeniser)
-		
+
 
 # Convenience alias for Analyser to Analyzer
 class Analyzer(AnalyzerBase):
-	def __init__(self, lang_code=None, tokenizer=None, normalize=True):
+	def __init__(self, lang_code: Optional[str] = None, tokenizer: Optional[Callable] = None, normalize: bool = True):
 		if lang_code is None:
 			lang_code="huv"
 		super().__init__(lang_code, tokenizer)

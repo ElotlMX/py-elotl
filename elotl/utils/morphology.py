@@ -11,6 +11,7 @@ Ejemplo de uso:
 import re
 from elotl.utils.fst.attapply import ATTFST
 from elotl.utils.util import langcode2macrolang
+from typing import Callable, List, Optional
 
 try:
 	# For Python >= 3.7
@@ -26,7 +27,7 @@ class Token(object):
 	contain more than one word, a word is a dictionary of
 		{lemma, pos, {feat:value}}
 	"""
-	def __init__(self, wordform, analyses=[], max_analyses=None):
+	def __init__(self, wordform: str, analyses: list = [], max_analyses: int = None):
 		self.wordform = wordform
 		self.analyses = analyses[:max_analyses]
 		self.pos = None
@@ -76,11 +77,11 @@ class Convertor(object):
 			9. Output dependency relation (unused)
 
 	"""
-	def __init__(self, rule_file):
+	def __init__(self, rule_file: str):
 		self.conversion_rules = self._load_conversion_rules(rule_file)
 		self.input_patterns = re.compile('(' + '|'.join(self.conversion_rules['sym']) + ')')
 
-	def _convert_tags(self, tags):
+	def _convert_tags(self, tags: str):
 		"""
 		Convert from the tag format in the TSV rule-file to tags that will match
 		the Apertium analyses, e.g. v|tv → <v><tv> and p1|sg → <p1><sg>
@@ -100,7 +101,7 @@ class Convertor(object):
 			return '<' + tags.replace('|', '><') + '>'
 		return tags
 
-	def _load_conversion_rules(self, fn):
+	def _load_conversion_rules(self, fn: str):
 		"""
 		Loads the conversion rules and scores each rule. Longer rules are
 		scored higher, rules containing lemmas are scored higher.
@@ -148,7 +149,7 @@ class Convertor(object):
 		rules['sub'].sort()
 		return rules
 
-	def _convert(self, a):
+	def _convert(self, a: str):
 		"""
 		Convert an analysis to UD using the conversion rules, rules
 		are applied in priority order.
@@ -193,7 +194,7 @@ class Convertor(object):
 
 		return analysis
 
-	def convert(self, analysis_):
+	def convert(self, analysis_: str):
 		"""
 		The main function for conversion, takes a full analysis, including possible
 		subwords, e.g. ya<adv>+<s_sg1>quiza<v><iv><pret> and returns a list of
@@ -232,7 +233,7 @@ class AnalyserBase(object):
 		is used which is based on regular expressions.
 
 	"""
-	def __init__(self, lang_code, tokeniser=None):
+	def __init__(self, lang_code: str, tokeniser: Optional[Callable]=None):
 		self.normaliser = None
 		self.tokenise = self._tokenise
 		self.lang_code = lang_code
@@ -268,7 +269,7 @@ class AnalyserBase(object):
 		self.analyser = ATTFST(self._path_to_att_dir)
 		self.convertor = Convertor(self._path_to_tsv_dir)
 
-	def _tokenise(self, text):
+	def _tokenise(self, text: str):
 		"""
 		Internal backoff tokenisation function.
 
@@ -289,7 +290,7 @@ class AnalyserBase(object):
 			for token in tokens.split(' ')
 				if not token.strip() == '']
 
-	def _convert_analysis(self, analysis):
+	def _convert_analysis(self, analysis: str):
 		"""
 		Takes an analysis returned by the transducer and converts it
 		to a more Python-friendly format.
@@ -312,7 +313,7 @@ class AnalyserBase(object):
 		analyses = self.convertor.convert(analysis)
 		return analyses
 
-	def _analyse_token(self, token, alternatives=[]):
+	def _analyse_token(self, token: str, alternatives: List=[]):
 		"""
 		Function that takes a token and returns a list of analyses with their
 		weights as assigned by the transducer.
@@ -350,7 +351,7 @@ class AnalyserBase(object):
 
 		return converted
 
-	def analyse(self, text, tokenise=False, normalise=False, max_analyses=None):
+	def analyse(self, text: str, tokenise: bool = False, normalise: bool = False, max_analyses: int = None):
 		"""
 		An analyse function that can take either a string with a tokeniser,
 		a pre-tokenised list or a pre-tokenised string. If it is passed a
@@ -411,7 +412,7 @@ class AnalyserBase(object):
 
 		return tokens
 
-	def analyze(self, text, tokenize=False, normalize=False, max_analyses=None):
+	def analyze(self, text: str, tokenize: bool = False, normalize: bool = False, max_analyses: int = None):
 		"""
 		Convenience alias of analyse() with alternative spelling.
 
@@ -423,6 +424,10 @@ class AnalyserBase(object):
 
 		tokenize: bool
 			Should tokenisation be performed on the input prior to analysis?
+		
+		normalize: bool
+			Should orthographic normalization be applied to the input prior 
+			to passing it through the analyzer?
 
 		max_analyses: int
 			The maximum number of analyses that should be returned, these

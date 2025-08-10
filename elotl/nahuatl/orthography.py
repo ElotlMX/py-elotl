@@ -56,7 +56,7 @@ class Normalizer(object):
         default the log level is set to "error".
 
     """
-    def __init__(self, normalized_ort: str, log_level="error"):
+    def __init__(self, normalized_ort: str, log_level: str = "error"):
         if normalized_ort is None:
             normalized_ort = DEFAULT_ORTOGRAPHY
             logger.info(f"No Nahuatl Ortography code provided. "
@@ -81,11 +81,6 @@ class Normalizer(object):
 
         with pkg_resources.path("elotl.utils.fst.att.nahuatl", "fon-" + normalized_ort + ".att") as p:
             _path_to_att_dir = p 
-        
-        # _path_to_att_dir = (
-        #     pkg_resources.files("elotl.utils.fst.att.nahuatl")
-        #     .joinpath("fon-" + normalized_ort + ".att")
-        # )
 
         self.norm_fst = ATTFST(_path_to_att_dir)
 
@@ -115,7 +110,7 @@ class Normalizer(object):
         if forms:
             return forms[-1][0]
 
-    def _g2p(self, w):
+    def _g2p(self, w: str):
         """
         Converts an input word to a sequence of phonemes using an FST defined
         in elotl/nahuatl/fst/lexc/orig-fon.lexc.
@@ -158,7 +153,7 @@ class Normalizer(object):
         return fon, normed
 
     @staticmethod
-    def _tokenize(s):
+    def _tokenize(s: str):
         return s.split()
 
     def to_phones(self, text: str, overrides: dict[str, str] = None) -> str:
