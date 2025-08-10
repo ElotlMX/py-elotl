@@ -34,20 +34,7 @@ class Analyser(AnalyzerBase):
 		if lang_code is None:
 			lang_code="huv"
 		super().__init__(lang_code, tokeniser)
-
-		# self.tokenise = self._tokenise
-
-		# if tokeniser:
-		# 	self.tokenise = tokeniser
-
-		# with pkg_resources.path("elotl.huave.data", "huv.mor.att") as p:
-		# 	_path_to_att_dir = p
-		# with pkg_resources.path("elotl.huave.data", "huv.mor.tsv") as p:
-		# 	_path_to_tsv_dir = p
-
-		# self.analyser = ATTFST(_path_to_att_dir)
-		# self.convertor = elotl.utils.morphology.Convertor(_path_to_tsv_dir)
-		# self.normaliser = None
+		
 
 # Convenience alias for Analyser to Analyzer
 class Analyzer(AnalyzerBase):
