@@ -17,9 +17,27 @@ logger = logging.getLogger(__name__)
 
 class Analyser(AnalyzerBase):
 	def __init__(self, lang_code=None, tokeniser=None, normalise=False):
-		# This is just a temporary default until (if ever) we support multiple varieties.
-		# It seems weird to require a language code if only one variety is supported
-		# especially since you already imported this from `otomi`.
+		"""
+		Parameters
+		----------
+		lang_code: str or None
+			ISO-639-3 code for the language variety for which you want to load and use 
+			the morphological analyzer. This is just a temporary default until (if ever) 
+			we support multiple varieties. It seems weird to require a language code if 
+			only one variety is supported especially since you already imported this 
+			from `otomi`.
+		tokeniser: function
+			A tokenisation function, if none is provided a default tokeniser, _tokenise()
+			is used which is based on regular expressions.
+		normalize: bool
+			Whether of not to perform orthographic normalization on the input prior to
+			passing it to the analyzer. Each language's analyzer should have its own
+			default target normalized orthography (depending on the orthogaphy used in the analyzer).
+			In some cases this may be beneficial. Often, though, it may not be necessary,
+			since most of the morphological analyzers, at least those that we currently leverage
+			from the apertium project, were built with a "spellrelax" component that enables
+			flexible input orthography.
+		"""
 		if lang_code is None:
 			lang_code="ote"
 		super().__init__(lang_code, tokeniser)

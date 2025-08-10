@@ -226,7 +226,7 @@ class AnalyserBase(object):
 	----------
 	lang_code: str
 		ISO-639-3 code for the language variety for which you want to load and use 
-		the morphological analyzer. If not supported, 
+		the morphological analyzer.
 	tokeniser: function
 		A tokenisation function, if none is provided a default tokeniser, _tokenise()
 		is used which is based on regular expressions.
