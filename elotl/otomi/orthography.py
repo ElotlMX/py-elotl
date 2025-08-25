@@ -23,7 +23,9 @@ except ImportError:
     import importlib_resources as pkg_resources
 
 # https://importlib-resources.readthedocs.io/en/latest/using.html#migrating-from-legacy
-_path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.otomi").joinpath('orig-fon.att')
+with pkg_resources.path("elotl.utils.fst.att.otomi", "orig-fon.att") as p:
+    _path_to_orig_fon = p
+# _path_to_orig_fon = pkg_resources.files("elotl.utils.fst.att.otomi").joinpath('orig-fon.att')
 
 _ORIG_FON_FST = ATTFST(_path_to_orig_fon)
 logger = logging.getLogger(__name__)

@@ -8,89 +8,50 @@ Ejemplo de uso:
 	>>> res = a.analyse('Mä ga ze̱ngua mä dada habu̱ bí ʼbu̱i', tokenise=True)
 """
 import logging
-import re
-from elotl.utils.fst.attapply import ATTFST
-import elotl.utils.morphology
+from elotl.otomi.orthography import Normalizer as Normaliser
+from elotl.utils.morphology import AnalyzerBase
 from elotl.otomi.config import SUPPORTED_LANG_CODES, DEFAULT_LANG_CODE
-
-try:
-	# For Python >= 3.7
-	import importlib.resources as pkg_resources
-except ImportError:
-	# Try backported to Python < 3.7 `importlib_resources`.
-	import importlib_resources as pkg_resources
+from typing import Callable, Optional
 
 logger = logging.getLogger(__name__)
 
-
-class Analyser(elotl.utils.morphology.Analyser):
-	"""
-	Class for returning morphological analyses in a Python-friendly format
-	with UD-style POS tags and Feature=Value pairs.
-
-	Parameters
-	----------
-	tokeniser: function
-		A tokenisation function, if none is provided a default tokeniser, _tokenise()
-		is used which is based on regular expressions.
-
-	"""
-	def __init__(self, tokeniser=None, lang_code=None):
-		self.tokenise = self._tokenise
-
-		if lang_code is None:
-			self.lang_code = DEFAULT_LANG_CODE
-			logger.info("No Otomi variant language code provided. "
-			            "Defaulting to `ote`.")
-		else:
-			if lang_code not in SUPPORTED_LANG_CODES:
-				logger.error("Unsupported language variant specified.")
-				logger.error("Available codes: " + 
-						" ".join(SUPPORTED_LANG_CODES))
-				raise ValueError(f"Unsupported lang code for Otomi: "
-								 f"{lang_code}")
-			else:
-				self.lang_code = lang_code
-		if tokeniser:
-			self.tokenise = tokeniser
-
-		with pkg_resources.path("elotl.otomi.data", f"{self.lang_code}.mor.att") as p:
-			_path_to_att_dir = p
-		with pkg_resources.path("elotl.otomi.data", f"{self.lang_code}.mor.tsv") as p:
-			_path_to_tsv_dir = p
-
-		self.analyser = ATTFST(_path_to_att_dir)
-		self.convertor = elotl.utils.morphology.Convertor(_path_to_tsv_dir)
-		self.normaliser = None
-
-	def _tokenise(self, text):
+class Analyser(AnalyzerBase):
+	def __init__(self, lang_code: Optional[str] = None, tokeniser: Optional[Callable] = None, normalise: bool = False):
 		"""
-		Internal backoff tokenisation function.
-
 		Parameters
 		----------
-		text: str
-			The text to be tokenised.
-
-		Returns
-		----------
-		list
-			List of space separated tokens.
-
+		lang_code: str or None
+			ISO-639-3 code for the language variety for which you want to load and use 
+			the morphological analyzer. This is just a temporary default until (if ever) 
+			we support multiple varieties. It seems weird to require a language code if 
+			only one variety is supported especially since you already imported this 
+			from `otomi`.
+		tokeniser: function
+			A tokenisation function, if none is provided a default tokeniser, _tokenise()
+			is used which is based on regular expressions.
+		normalize: bool
+			Whether of not to perform orthographic normalization on the input prior to
+			passing it to the analyzer. Each language's analyzer should have its own
+			default target normalized orthography (depending on the orthogaphy used in the analyzer).
+			In some cases this may be beneficial. Often, though, it may not be necessary,
+			since most of the morphological analyzers, at least those that we currently leverage
+			from the apertium project, were built with a "spellrelax" component that enables
+			flexible input orthography.
 		"""
+		if lang_code is None:
+			lang_code="ote"
+		super().__init__(lang_code, tokeniser)
 
-		"""
-		This regular expression is a combination of all word symbols 
-		and the diacritic symbols mentioned above. Otomi uses
-		the U+0331 COMBINING MACRON BELOW symbol, and combining characters
-		are usually not included in the set of word symbols.
-		"""
-		diacritics = '\u0331'
-		tokens = re.sub(r'([^\w' + diacritics + '])', r' \g<1> ', text)
-		return [token.strip()
-			for token in tokens.split(' ')
-				if not token.strip() == '']
+		if normalise:
+			self.normaliser = Normaliser("inali") # todo: verify that this orthography is the most compatible with the morphological analyzer.
 
 
 # Convenience alias for Analyser to Analyzer
-Analyzer = Analyser
+class Analyzer(AnalyzerBase):
+	def __init__(self, lang_code: Optional[str] = None, tokenizer: Optional[Callable] = None, normalize: bool = False):
+		if lang_code is None:
+			lang_code="ote"
+		if normalize:
+			self.normaliser = Normaliser("inali") # todo: verify that this orthography is the most compatible with the morphological analyzer.
+
+		super().__init__(lang_code, tokenizer)
